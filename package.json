@@ -1,0 +1,25 @@
+{
+  "name": "javascript-review",
+  "version": "1.0.0",
+  "description": "Node crash course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/podvistorcheto/javascript-review.git"
+  },
+  "author": "Deyan Denev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/podvistorcheto/javascript-review/issues"
+  },
+  "homepage": "https://github.com/podvistorcheto/javascript-review#readme",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
