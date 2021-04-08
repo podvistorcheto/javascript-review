@@ -142,7 +142,7 @@ console.log(x, y);
 
 const averageAge = (ageDeyan + ageKiril) / 2;
 console.log(ageDeyan, ageKiril, averageAge);
-*/
+
 
 // Coding challenge 1
 // ex. 1
@@ -172,3 +172,77 @@ console.log(bmiMark, bmiMark2);
 console.log(bmiJohn, bmiJohn2);
 const markHigherBMI = bmiMark > bmiJohn;
 console.log(markHigherBMI);
+
+const firstName = 'Deyan';
+const job = 'teacher';
+const birthYear = 1983;
+const year = 2021;
+
+const deyan = "I'm " + firstName + ', a ' + (year - birthYear) + ' years old ' + job + '!';
+console.log(deyan);
+
+const deyanNew = `I'm ${firstName}, a ${year - birthYear} year old ${job}!`;
+console.log(deyanNew);
+
+console.log(`Just a regular string......`);
+console.log(`Just
+a regular
+string......`);
+
+// Taking basic decisions if/else statemetns
+const age = 17;
+const isOldEnough = age >= 18;
+
+// in the paranthesis we put the condition to be valuatedIF is TRUE, then in curly braces
+// we put the code meant to executewhen the condition is found true
+if (isOldEnough) {
+    console.log('Kiril can start driving license. Congrats!');
+} else {
+    const yearsLeft = 18 - age;
+    console.log(`Kiril is too young. Wait another ${yearsLeft} years. Cheers`);
+}
+
+let century;
+const birthYear = 2001;
+if (birthYear <=2000) {
+    century = 20;
+} else {
+    century = 21;
+}
+console.log(century);
+
+
+// Coding challenge 2
+const massMark = 95;
+const heightMark = 1.88;
+const massJohn = 85;
+const heightJohn = 1.76;
+const bmiMark = massMark/heightMark ** 2;
+const bmiMark2 = massMark /(heightMark * heightMark);
+const bmiJohn = massJohn/heightJohn ** 2;
+const bmiJohn2 = massJohn / (heightJohn * heightJohn);
+console.log(bmiMark, bmiMark2);
+console.log(bmiJohn, bmiJohn2);
+const markHigherBMI = bmiMark > bmiJohn;
+if (bmiMark > bmiJohn) {
+    console.log(`Mark's BMI (${bmiMark}) is higher than John's (${bmiJohn})`)
+} else {
+    console.log(`John's BMI (${bmiJohn}) is higher than Mark's (${bmiMark})`)
+}
+*/
+
+const inputYear = "1991";
+console.log(Number(inputYear), inputYear);
+console.log(Number(inputYear) + 18);
+
+// type coercion
+console.log('I am ' + 23 + ' years old')
+console.log('23' - '10' - 3)
+console.log('23'/ '2');
+console.log('23' > '18')
+
+let n = '1' + 1;
+n = n - 1
+console.log(n);
+
+let 
