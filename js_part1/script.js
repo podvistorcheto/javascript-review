@@ -229,7 +229,7 @@ if (bmiMark > bmiJohn) {
 } else {
     console.log(`John's BMI (${bmiJohn}) is higher than Mark's (${bmiMark})`)
 }
-*/
+
 
 const inputYear = "1991";
 console.log(Number(inputYear), inputYear);
@@ -245,4 +245,338 @@ let n = '1' + 1;
 n = n - 1
 console.log(n);
 
-let 
+
+const age = 17;
+
+if(age >=18) {
+    console.log('Sarah can start driving license ');
+} else {
+    const yearsLeft = 18 - age;
+    console.log(`Sarah is too young. Wait another ${yearsLeft} years`);
+}
+
+
+
+const birthYear = 1998;
+
+let century;
+if (birthYear <= 2000) {
+    century = 20;
+} else {
+    century = 21;
+}
+console.log(century);
+
+
+
+const firstName = 'Jonas';
+const job = 'teacher';
+const birthYear = 1991;
+const year = 2037;
+
+const jonas = "I'm " + firstName + ', a ' + (year - birthYear) + ' years old' + job + '!';
+console.log(jonas);
+
+const jonasNew = `I'm ${firstName}, a ${year - birthYear} year old ${job}`;
+console.log(jonasNew);
+
+console.log(`Just a regular string...`)
+
+console.log('String with \n\ new line');
+
+
+const age = 15;
+
+if(age >= 18) {
+    console.log('Sarah can start driving lessons')
+} else {
+    const yearsLeft = 18 - age;
+    console.log(`Sarah needs to wait ${yearsLeft} years to start driving lessons`);
+}
+
+
+
+
+let century;
+const birthYear = 2012;
+if(birthYear <= 2000) {
+    century = 20;
+} else {
+    century = 21;
+}
+
+console.log(century);
+
+
+
+// Coding challenge 2
+const massMark = 95;
+const heightMark = 1.88;
+const massJohn = 85;
+const heightJohn = 1.76;
+const bmiMark = massMark/heightMark ** 2;
+const bmiMark2 = massMark /(heightMark * heightMark);
+const bmiJohn = massJohn/heightJohn ** 2;
+const bmiJohn2 = massJohn / (heightJohn * heightJohn);
+console.log(bmiMark, bmiMark2);
+console.log(bmiJohn, bmiJohn2);
+const markHigherBMI = bmiMark > bmiJohn;
+if (bmiMark > bmiJohn) {
+    console.log(`Mark's BMI (${bmiMark}) is higher than John's (${bmiJohn})`)
+} else {
+    console.log(`John's BMI (${bmiJohn}) is higher than Mark's (${bmiMark})`)
+}
+
+
+
+// type conversion
+const inputYear = '1991';
+console.log(Number(inputYear), inputYear);
+console.log(Number(inputYear) + 18);
+
+console.log(Number('Jonas'));
+console.log(typeof NaN);
+
+console.log(String(23));
+
+// type coercion 
+console.log('I am ' + 23 + ' years old');
+console.log('23' - '10' - 3);
+console.log('23' + '10' + 3);
+console.log('23' > '18');
+
+let n = '1' + 1; //11
+n = n - 1; // 11-1
+console.log(n); // 10
+
+
+
+// Truthly and Falsy values
+
+// 5  falsy values in .js : 0, '', undefined, null, NaN
+console.log(Boolean(0));
+console.log(Boolean(undefined));
+console.log(Boolean('Jonas'));
+console.log(Boolean({}));
+console.log(Boolean(''));
+
+
+const money = 5;
+if(money) {
+    console.log("Do not spend it all");
+} else console.log("You should get a job");
+
+let height = 0;
+if(height) {
+    console.log('YAY! Height is defined');
+} else {
+    console.log('Height is UNDEFINED');
+}
+
+// Equality Operators: == vs. ===
+
+const favourite = Number(prompt("What is your favourite number"));
+
+console.log(favourite);
+console.log(typeof favourite);
+
+if (favourite === 23) {
+    console.log('Cool! 23 is amazing number!');
+} else if (favourite === 7) {
+    console.log('7 is also a cool number')
+} else if (favourite === 9) {
+    console.log('9 is also a cool number')
+}
+  else {
+    console.log('Number is not 23 or 7')
+}
+
+if(favourite !==23) console.log('Why not 23?');
+
+
+
+// Boolean logic
+const hasDriverLic = true;
+const hasGoodVis = true;
+
+console.log(hasDriverLic && hasGoodVis);
+console.log(hasDriverLic || hasGoodVis);
+console.log(!hasDriverLic);
+//practical example
+const shouldDrive = hasDriverLic && hasGoodVis;
+
+if(shouldDrive) {
+    console.log('Sarah should drive!')
+} else {
+    console.log('Someone else should drive')
+}
+
+// same can be written this way
+if(hasDriverLic && hasGoodVis) {
+    console.log('Sarah should drive!')
+} else {
+    console.log('Someone else should drive')
+}
+
+const isTired = true;
+console.log(hasDriverLic && hasGoodVis && isTired)
+
+if(hasDriverLic && hasGoodVis && !isTired) {
+    console.log('Sarah should drive!')
+} else {
+    console.log('Someone else should drive')
+}
+
+*/
+
+// Coding challenge #3
+/*
+There are two gymnastics teams, Dolphins and Koalas. They compete against each 
+other 3 times. The winner with the highest average score wins a trophy!
+Your tasks:
+1. Calculate the average score for each team, using the test data below
+2. Compare the team's average scores to determine the winner of the competition, 
+and print it to the console. Don't forget that there can be a draw, so test for that 
+as well (draw means they have the same average score)
+3. Bonus 1: Include a requirement for a minimum score of 100. With this rule, a 
+team only wins if it has a higher score than the other team, and the same time a 
+score of at least 100 points. Hint: Use a logical operator to test for minimum 
+score, as well as multiple else-if blocks �
+4. Bonus 2: Minimum score also applies to a draw! So a draw only happens when 
+both teams have the same score and both have a score greater or equal 100 
+points. Otherwise, no team wins the trophy
+Test data:
+§ Data 1: Dolphins score 96, 108 and 89. Koalas score 88, 91 and 110
+§ Data Bonus 1: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 123
+§ Data Bonus 2: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 106
+
+
+// first we calc the avg for each team
+
+const scoreDolphins = (96 + 108 + 89) / 3;
+const scoreKoalas = (88 + 91 + 110) / 3;
+
+console.log(scoreDolphins, scoreKoalas)
+
+// 2nd compare the results
+
+if(scoreDolphins > scoreKoalas) {
+    console.log('Dolphins win the trophy!');
+} else if (scoreKoalas > scoreDolphins) {
+    console.log('Koalas win the trophy');
+} else if (scoreDophins === scoreKoalas) {
+    console.log('Both win the trophy!');
+}
+
+
+// bonus 1 and 2
+const scoreDolphins = (97 + 112 + 101) / 3;
+const scoreKoalas = (109 + 95 + 106) / 3;
+
+console.log(scoreDolphins, scoreKoalas)
+
+if(scoreDolphins > scoreKoalas && scoreDolphins >= 100) {
+    console.log('Dolphins win the trophy!');
+} else if (scoreKoalas > scoreDolphins && scoreKoalas >= 100) {
+    console.log('Koalas win the trophy');
+} else if (scoreDolphins === scoreKoalas && scoreKoalas  >= 100 && scoreDolphins >= 100) {
+    console.log('Both win the trophy!');
+} else {
+    console.log('No one wins the trophy!');
+}
+
+
+// Switch statement
+
+const day = 'anyday';
+
+switch(day) {
+    case 'monday': // i.e day === monday
+        console.log('Plan course structure');
+        console.log('Go to coding meetup');
+    break;
+    case 'tuesday': 
+        console.log('Prepare theory videos');
+        break;
+    case 'wednesday':
+    case 'thursday':
+        console.log('Write code examples');
+    break;
+    case 'friday':
+        console.log('Record Videos');
+        break;
+    case 'saturday':
+    case 'sunday':
+        console.log('Enjoy the weekend :D');
+        break;
+    default:
+        console.log('Not a valid day');
+}
+
+
+if(day === 'monday') {
+    console.log('Plan course structure');
+    console.log('Go to coding meetup');
+} else if(day === 'tuesday') {
+    console.log('Prepare theory videos');
+} else if(day === 'wednesday' || day === 'thursday') {
+    console.log('Write code examples');
+} else if(day === 'friday') {
+    console.log('Record Videos');
+} else if(day === 'saturday' || day === 'sunday') {
+    console.log('Enjoy the weekend :D');
+} else {
+    console.log('Not a valid day!')
+}
+
+
+// Statement and Expressions
+
+if(23>10) {
+    const str = '23 is bigger than 10!'
+}
+
+
+// Ternary operator
+const age = 19;
+//age >= 18 ? console.log('I like to drink wine'):
+//console.log('I like to drink water');
+
+const drink = age >= 18 ? 'wine': 'water';
+console.log(drink);
+
+let drink2;
+if(age >= 18) {
+    drink2 = 'wine';
+} else {
+    drink2 = 'water';
+}
+console.log(drink2);
+
+console.log(`I like to drink ${age >= 18 ? 'wine': 'water'}`);
+
+
+
+// Coding challenge #4
+Tip calculator
+Steven wants to build a very simple tip calculator for whenever he goes eating in a 
+restaurant. In his country, it's usual to tip 15% if the bill value is between 50 and 
+300. If the value is different, the tip is 20%.
+Your tasks:
+1. Calculate the tip, depending on the bill value. Create a variable called 'tip' for 
+this. It's not allowed to use an if/else statement � (If it's easier for you, you can 
+start with an if/else statement, and then try to convert it to a ternary 
+operator!)
+2. Print a string to the console containing the bill value, the tip, and the final value 
+(bill + tip). Example: “The bill was 275, the tip was 41.25, and the total value 
+316.25”
+Test data:
+§ Data 1: Test for bill values 275, 40 and 430
+Hints:
+§ To calculate 20% of a value, simply multiply it by 20/100 = 0.2
+§ Value X is between 50 and 300, if it's >= 50 && <= 300
+*/
+
+const bill = 430;
+const tip = bill <= 300 && bill >= 50 ? bill * 0.15: bill * 0.2;
+console.log(`The bill was ${bill}, the tip was ${tip}, and the total value is ${bill + tip}`);
