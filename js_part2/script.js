@@ -578,7 +578,6 @@ added together
 4.2. To calculate the average, divide the sum you calculated before by the 
 length of the array (because that's the number of elements)
 4.3. Call the function with the 'totals' array
-*/
 
 //1.
 const bills = [
@@ -610,3 +609,4 @@ for (let i=0; i < bills.length; i++) {
 }
 
 console.log(bills, tips, totals);
+*/
