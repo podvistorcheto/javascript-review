@@ -20,16 +20,16 @@ console.log(document.querySelector('.guess').value);
 // Game logic starts with defining the randomized secreNumber
 // to compare it with the user input to see if they guessed the number
 
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 // mutable variable for decreasing the score for wrong guesses
 // this variable stores the data in our code instead only the DOM 
 let score = 20; 
-document.querySelector('.number').textContent = secretNumber;
 
 // now we are handling the .onclick event on the button
 // we need to use the event listener function and pass it a 
 // parameter which catches the reaction
 // on action that happens on the page, like mouse moving, key type
+
 document.querySelector('.check').addEventListener('click', function() {
     const guess = Number(document.querySelector('.guess').value);
     console.log(guess, typeof guess);
@@ -40,6 +40,7 @@ document.querySelector('.check').addEventListener('click', function() {
     // when player wins
     } else if (guess === secretNumber) {
         document.querySelector('.message').textContent = 'Correct Number!';
+        document.querySelector('.number').textContent = secretNumber;
     // changing the CSS styles if wins
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').style.width = '30rem';
@@ -70,4 +71,26 @@ document.querySelector('.check').addEventListener('click', function() {
                 document.querySelector('.score').textContent = 0;
             }    
         }
+});
+// CODING CHALLENGE 1
+/*
+Implement a game rest functionality, so that the player can make a new guess!
+Your tasks:
+1. Select the element with the 'again' class and attach a click event handler
+2. In the handler function, restore initial values of the 'score' and 
+'secretNumber' variables
+3. Restore the initial conditions of the message, number, score and guess input 
+fields
+4. Also restore the original background color (#222) and number width (15rem
+*/
+document.querySelector('.again').addEventListener('click', function() {
+    score = 20;
+    secretNumber = Math.trunc(Math.random() * 20) + 1;
+    document.querySelector('.message').textContent = 'Start guessing';
+    document.querySelector('.score').textContent = score;
+    document.querySelector('.number').textContent = '?';
+    document.querySelector('.guess').value = '';
+    // reset the styles
+    document.querySelector('body').style.backgroundColor = '#222';
+    document.querySelector('.number').style.width = '15rem'; 
 });
