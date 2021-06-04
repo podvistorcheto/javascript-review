@@ -13,7 +13,7 @@ document.querySelector('.score').textContent = 10;
 document.querySelector('.guess').value = 23;
 // now we access the input element with the .value property which creates an emply value
 // because there is nothing there but it will get the actual value
-// this will log the .value = 23 in the console
+// this will log the .value = 23 in the console new
 console.log(document.querySelector('.guess').value);
 */
 
@@ -26,6 +26,10 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20; 
 let highscore = 0;
 
+const displayMessage = function(message) {
+    document.querySelector('.message').textContent = message;
+}
+
 // now we are handling the .onclick event on the button
 // we need to use the event listener function and pass it a 
 // parameter which catches the reaction
@@ -37,10 +41,11 @@ document.querySelector('.check').addEventListener('click', function() {
     // when there is no input
     // check if the user inserted value input in the box field
     if (!guess) {
-        document.querySelector('.message').textContent = 'No Number input!';
+        //document.querySelector('.message').textContent = 'No Number input!';
+        displayMessage('No user input!');
     // when player wins
     } else if (guess === secretNumber) {
-        document.querySelector('.message').textContent = 'Correct Number!';
+        displayMessage('Correct Number!');
         document.querySelector('.number').textContent = secretNumber;
     // changing the CSS styles if wins
     document.querySelector('body').style.backgroundColor = '#60b347';
@@ -50,33 +55,21 @@ document.querySelector('.check').addEventListener('click', function() {
         highscore = score;
         document.querySelector('.highscore').textContent = highscore;
     }
-    // when number is too high
-    } else if (guess > secretNumber) {
-        if(score > 1) {
-            document.querySelector('.message').textContent = 'Number simply too high!';
-            // decrement the score if !==guess
-            score--;
-            // display with the decreased score
-            document.querySelector('.score').textContent = score;
-        // when player looses
-        } else {
-            document.querySelector('.message').textContent = 'GAME OVER'
-            document.querySelector('.score').textContent = 0;
-        }
-        // when guess is too low
-        } else if (guess < secretNumber) {
+    } else if(guess !== secretNumber) {
             if(score > 1) {
-                document.querySelector('.message').textContent = 'Number simply too low!';
+                //document.querySelector('.message').textContent =
+                //guess > secretNumber ? 'Number simply too high!': 'Number simply too low!';
+                displayMessage(guess > secretNumber ? 'Number simply too high!': 'Number simply too low!');
                 // decrement the score if !==guess
                 score--;
                 // display with the decreased score
                 document.querySelector('.score').textContent = score;
-                // player looses
+            // when player looses
             } else {
-                document.querySelector('.message').textContent = 'GAME OVER'
+                displayMessage('GAME OVER');
                 document.querySelector('.score').textContent = 0;
-            }    
-        }
+            }
+    }
 });
 // CODING CHALLENGE 1
 /*
