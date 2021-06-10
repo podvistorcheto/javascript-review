@@ -22,12 +22,23 @@ for (let i=0; i < btnsOpenModal.length; i++)
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
-// handling keyboard press event for Esc button
-document.addEventListener('keydown', function(event) {
+// handling keyboard press event for Esc button for the entire page
+/*document.addEventListener('keydown', function(event) {
     console.log(event.key);
 
     if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
             closeModal();
     }
 });
+*/
 
+//exercise code witten with two if statements
+document.addEventListener('keydown', function(event) {
+    console.log(event.key);
+
+    if (event.key === 'Escape') {
+        if(!modal.classList.contains('hidden')) {
+            closeModal();
+        }
+    }
+});
