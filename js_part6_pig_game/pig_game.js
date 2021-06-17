@@ -3,7 +3,7 @@
 // target the selected elements
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
-const score0El = document.querySelector('#score--0');
+const score0El = document.getElementById('score--0');
 const score1El = document.getElementById('score--1');
 const current0El = document.getElementById('current--0');
 const current1El = document.getElementById('current--1');
@@ -20,7 +20,7 @@ score1El.textContent = 0;
 // set the dice not to be shown before is rolled first time
 diceEl.classList.add('hidden');
 
-const scores = [0, 0];
+let scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
 
@@ -55,10 +55,10 @@ btnRoll.addEventListener('click', function() {
 btnHold.addEventListener('click', function () {
     // Add correct score to active players score
     scores[activePlayer] += currentScore;
+    console.log(scores[activePlayer]);
     //scores[1] = scores[1] + currentScore;
-    document.getElementById(`score--${activePlayer}`).textContext =
+    document.getElementById(`score--${activePlayer}`).textContent =
     scores[activePlayer];
-
     // check is if the score is =< 100 then we have a winner
     // if not switch to next player
     switchPlayer();
