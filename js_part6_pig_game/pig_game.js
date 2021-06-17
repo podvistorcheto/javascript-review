@@ -12,23 +12,32 @@ const diceEl = document.querySelector('.dice');
 // make the buttons move
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
-const btnHold = document.querySelector('.btn-hold');
+const btnHold = document.querySelector('.btn--hold');
 
 // set the default scores for both players to zero when starting the game
 score0El.textContent = 0;
 score1El.textContent = 0;
+// set the dice not to be shown before is rolled first time
+diceEl.classList.add('hidden');
+
 const scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
 
-// set the dice not to be shown before is rolled first time
-diceEl.classList.add('hidden');
+const switchPlayer = function() {
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    currentScore = 0;
+    activePlayer = activePlayer === 0 ? 1: 0;
+    player0El.classList.toggle('player--active');
+    player1El.classList.toggle('player--active');
+};
+
 
 // rolling dice functionality
 btnRoll.addEventListener('click', function() {
+    console.log();
     // generate random dice number
     const dice = Math.trunc(Math.random() * 6 + 1);
-    console.log(dice);
     // display dice number
     diceEl.classList.remove('hidden');
     diceEl.src = `dice-${dice}.png`;
@@ -39,10 +48,18 @@ btnRoll.addEventListener('click', function() {
     document.getElementById(`current--${activePlayer}`).textContent = currentScore;
     } else {
         // Swithc to next player
-        document.getElementById(`current--${activePlayer}`).textContent = 0;
-        activePlayer = activePlayer === 0 ? 1: 0;
-        currentScore = 0;
-        player0El.classList.toggle('player--active');
-        player1El.classList.toggle('player--active');
+        switchPlayer();
     }
 });
+
+btnHold.addEventListener('click', function () {
+    // Add correct score to active players score
+    scores[activePlayer] += currentScore;
+    //scores[1] = scores[1] + currentScore;
+    document.getElementById(`score--${activePlayer}`).textContext =
+    scores[activePlayer];
+
+    // check is if the score is =< 100 then we have a winner
+    // if not switch to next player
+    switchPlayer();
+}); 
