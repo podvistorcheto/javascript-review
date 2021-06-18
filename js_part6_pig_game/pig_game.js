@@ -60,6 +60,11 @@ btnHold.addEventListener('click', function () {
     document.getElementById(`score--${activePlayer}`).textContent =
     scores[activePlayer];
     // check is if the score is =< 100 then we have a winner
+    if (scores[activePlayer] >= 100) {
+        document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+        document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+    } else {
+        switchPlayer();
+    }
     // if not switch to next player
-    switchPlayer();
-}); 
+});
