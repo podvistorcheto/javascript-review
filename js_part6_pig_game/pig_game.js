@@ -15,16 +15,32 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
 // set the default scores for both players to zero when starting the game
-score0El.textContent = 0;
-score1El.textContent = 0;
-// set the dice not to be shown before is rolled first time
-diceEl.classList.add('hidden');
 
-let scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
 // we need to state if the game is playing or not
-let playing = true;
+let playing;
+let scores;
+let currentScore;
+let activePlayer;
+
+const init = function() {
+    // set the dice not to be shown before is rolled first time
+    scores = [0, 0];
+    currentScore = 0;
+    activePlayer = 0;
+    // we need to state if the game is playing or not
+    playing = true;
+    // reset the scores
+    score0El.textContent = 0;
+    score1El.textContent = 0;
+    current0El.textContent = 0;
+    current1El.textContent = 0;
+    diceEl.classList.add('hidden');
+    player0El.classList.remove('player--winner');
+    player1El.classList.remove('player--winner');
+    player0El.classList.add('player--active');
+    player1El.classList.remove('player--active');
+};
+init();
 
 const switchPlayer = function() {
     document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -33,7 +49,6 @@ const switchPlayer = function() {
     player0El.classList.toggle('player--active');
     player1El.classList.toggle('player--active');
 };
-
 
 // rolling dice functionality
 btnRoll.addEventListener('click', function() {
@@ -49,7 +64,7 @@ btnRoll.addEventListener('click', function() {
         currentScore += dice;
         document.getElementById(`current--${activePlayer}`).textContent = currentScore;
         } else {
-            // Swithc to next player
+            // Switch to next player
             switchPlayer();
         }
     }
@@ -75,3 +90,5 @@ btnHold.addEventListener('click', function () {
     // if not switch to next player
     } 
 });
+// Addind the new game functionality
+btnNew.addEventListener('click', init);
