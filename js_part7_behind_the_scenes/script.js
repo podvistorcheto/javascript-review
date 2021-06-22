@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 /*
 function calcAge(birthYear) {
     const age = 2037 - birthYear;
@@ -63,7 +63,6 @@ const addExpr = function(a,b) {
 }
 
 const addArrow = (a, b) => a + b;
-*/
 // Example
 if(!numProducts) deleteShoppingCart();
 
@@ -73,3 +72,49 @@ function deleteShoppingCart() {
     console.log('All products deleted');
 }
 
+// 'this' keyword
+// method: this = <object that is calling the method>
+const jonas = {
+    name: 'Jonas',
+    year: 1989,
+    calcAge: function() {
+        // calcAge is method, this calls jonas
+        return 2037 - this.year;
+    }
+};
+jonas.calcAge(); //48
+*/
+
+//
+console.log(this); // global scope
+// simple function
+const calcAge = function(birthYear) {
+    console.log(2037 - birthYear);
+    console.log(this);
+};
+calcAge(1991);
+// arrow function
+const calcAgeArrow = birthYear => {
+    console.log(2037 - birthYear);
+    console.log(this); // points to the this keyword of the global scope at line 90, which is the parent scope
+};
+calcAgeArrow(1980);
+// use this inside of a method
+const jonas = {
+    year: 1991,
+    calcAge: function() {
+        // this calls the owner of the method jonas
+        console.log(this);   
+        console.log(2037 - this.year);
+    }
+};
+jonas.calcAge(); //46
+
+const matilda = {
+     year: 2017,
+};
+matilda.calcAge = jonas.calcAge;
+matilda.calcAge();
+
+const f = jonas.calcAge;
+f();
