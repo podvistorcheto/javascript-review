@@ -83,7 +83,7 @@ const jonas = {
     }
 };
 jonas.calcAge(); //48
-*/
+
 
 //
 console.log(this); // global scope
@@ -118,3 +118,73 @@ matilda.calcAge();
 
 const f = jonas.calcAge;
 f();
+
+
+
+const jonas = {
+    firstName: 'Jonas',
+    year: 1991,
+    calcAge: function() {
+        //console.log(this);
+        console.log(2037-this.year);
+
+    },
+    // arrow function in the global scope
+    greet: () => console.log(`Hey ${this.firstName}`)
+};
+// calling the function will log Hey undefined because is in the global scope
+jonas.greet();
+
+const isMillenial = function() {
+    console.log(this);
+    console.log(this.year >= 1981 && this.year <= 1996);
+};
+isMillenial();
+//primitives values
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age);
+console.log(oldAge);
+//objects
+const me = {
+    name: 'Jonas',
+    age: 30,
+};
+const friend = me;
+friend.age = 27;
+console.log('Friend',friend);
+console.log('Me', me);
+*/
+// Primitive types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName);
+// Reference types
+const jessica = {
+    firstName: 'Jessica',
+    lastName: 'Williams',
+    age: 27,
+};
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+console.log('Before marriage:', jessica);
+console.log('After marriage', marriedJessica);
+
+// Merge objects
+const jessica2 = {
+    firstName: 'Jessica',
+    lastName: 'Williams',
+    age: 27,
+    family: ['Alice', 'Bob']
+};
+
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = 'Davis';
+
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+
+console.log('Before marriage',jessica2);
+console.log('After marriage', jessicaCopy);
