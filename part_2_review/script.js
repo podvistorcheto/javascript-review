@@ -26,3 +26,34 @@ const multiFruit = fruitProcessor(8,7);
 console.log(multiFruit);
 
 const num = Number("23");
+
+// functions declarations vs function expressions
+function calcAgeDeclaration(birthYear) {
+    return 2037 - birthYear;
+};
+
+const age1 = calcAgeDeclaration(1991);
+console.log(age1);
+
+
+const calcAgeExpression = function (birthYear) {
+    return 2037 - birthYear;
+}
+
+const age2 = calcAgeExpression(1991);
+console.log(age1, age2);
+
+// Arrow functions
+const calcAgeArrow = birthYear => 2037 - birthYear;
+const age3 = calcAgeArrow(1991);
+
+console.log(age3);
+
+const yearsToRetire = (birthYear, firstName) => {
+    const age = 2037 - birthYear;
+    const retire = 65 - age;
+    return `${firstName} retires in ${retire} years`;    
+}
+
+console.log(yearsToRetire(1991, 'Jonas'));
+console.log(yearsToRetire(1980, 'Bob'));
