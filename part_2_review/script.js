@@ -252,7 +252,6 @@ respective BMI. Example: "John's BMI (28.3) is higher than Mark's (23.9)!"
 Test data: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m 
 tall.
 
-*/
 
 const mark = {
     fullName: 'Mark',
@@ -283,3 +282,153 @@ if (mark.bmi > john.bmi) {
 } else {
     console.log(`John's BMI (${john.bmi}) is higher than Mark's (${mark.bmi})`)
 };
+
+
+
+
+// LOOPS
+
+console.log('Do 20 pushups day 1');
+console.log('Do 20 pushups day 2');
+console.log('Do 20 pushups day 3');
+console.log('Do 20 pushups day 4');
+console.log('Do 20 pushups day 5');
+console.log('Do 20 pushups day 6');
+console.log('Do 20 pushups day 7');
+console.log('Do 20 pushups day 8');
+console.log('Do 20 pushups day 9');
+console.log('Do 20 pushups day 10');
+
+for loops keeps running while condition rep <= 10; is TRUE
+
+for (let rep = 1; rep <= 10; rep++) {
+    console.log(`Do 20 pushups day ${rep}`);
+}
+
+
+
+// const jonas = {
+//     firstName: 'Jonas',
+//     lastName: 'Schmet',
+//     age: 2037 - 1991,
+//     job: 'teacher',
+//     friends: ['Mike', 'Steve', 'Peter']
+// };
+
+const jonas = [
+    'Jonas',
+    'Schmet',
+    2037 - 1991,
+    'teacher',
+    ['Mike', 'Steve', 'Peter'],
+    true,
+    false
+];
+
+const types = [];
+
+for (let i = 0; i < jonas.length; i++) {
+    console.log(jonas[i], typeof jonas[i]);
+
+    types[i] = typeof jonas[i];
+    types.push(typeof jonas[i]);
+};
+// log the new array based on previous array
+console.log(types);
+
+// calculate values in array with a for loop
+const years = [1991, 1984, 2008, 2020, 2021];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+    ages.push(2037 - years[i]);
+}
+
+console.log(ages);
+
+// continue and break statement
+console.log('----ONLY STRINGS');
+for (let i = 0; i < jonas.length; i++) {
+    if(typeof jonas[i] !== 'string') continue;
+
+    console.log(jonas[i], typeof jonas[i]);
+};
+
+console.log('---- BREAK WHEN FIND A NUMBER');
+for (let i = 0; i < jonas.length; i++) {
+    if(typeof jonas[i] === 'number') break;
+
+    console.log(jonas[i], typeof jonas[i]);
+};
+
+// LOPPING BACKWARDS IN ARRAY
+const jonas = [
+    'Jonas',
+    'Schmet',
+    2037 - 1991,
+    'teacher',
+    ['Mike', 'Steve', 'Peter'],
+    true,
+    false
+];
+
+
+for (let i = jonas.length - 1; i >=0; i--) {
+    console.log(i, jonas[i]);
+}
+
+// loop inside another loop
+for (let pushup = 1; pushup < 4; pushup++) {
+    console.log(`==== Starting pushups SEQUENCE ${pushup}`);
+
+    for (let rep=1; rep < 21; rep++) {
+        console.log(`==== Doing pushups repetition ${rep}`);
+    }
+};
+
+
+
+// WHILE LOOP
+// it runs while a condition is true
+
+let rep = 1;
+while (rep <= 20) {
+    console.log(`==== WHILE LOOP: Starting pushups SEQUENCE ${rep}`);
+    rep++;
+}
+
+// roll the dice minigame until we score value of 6
+let dice = Math.trunc(Math.random() * 6) + 1;
+//console.log(dice);
+
+while (dice !== 6) {
+    console.log(`You rolled a ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) console.log('Score 6, loop is about to end!');
+}
+// CODING CHALLENGE #4
+Your tasks:
+1. Create an array 'bills' containing all 10 test bill values
+2. Create empty arrays for the tips and the totals ('tips' and 'totals')
+3. Use the 'calcTip' function we wrote before (no need to repeat) to calculate 
+tips and total values (bill + tip) for every bill value in the bills array. Use a for
+loop to perform the 10 calculations!
+Test data: 22, 295, 176, 440, 37, 105, 10, 1100, 86 and 52
+Hints: Call ‘calcTip ‘in the loop and use the push method to add values to the 
+tips and totals arrays �
+Bonus:
+4. Bonus: Write a function 'calcAverage' which takes an array called 'arr' as 
+an argument. This function calculates the average of all numbers in the given 
+array. This is a difficult challenge (we haven't done this before)! Here is how to 
+solve it:
+4.1. First, you will need to add up all values in the array. To do the addition, 
+start by creating a variable 'sum' that starts at 0. Then loop over the 
+array using a for loop. In each iteration, add the current value to the 
+'sum' variable. This way, by the end of the loop, you have all values 
+added together
+4.2. To calculate the average, divide the sum you calculated before by the 
+length of the array (because that's the number of elements)
+4.3. Call the function with the 'totals' array
+
+*/
+
