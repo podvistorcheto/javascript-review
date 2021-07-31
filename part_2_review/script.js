@@ -432,3 +432,56 @@ length of the array (because that's the number of elements)
 
 */
 
+// 1 
+
+const bills = [
+    22, 
+    295,
+    176,
+    440,
+    37,
+    105,
+    10,
+    1100,
+    86,
+    52
+];
+//2.
+const tips = [];
+const totals = [];
+
+//3. calculative function
+const calcTip = function(bill) {
+    return bill >= 50 && bill <= 300 ? bill * 0.15: bill * 0.20;
+};
+
+//4. loop through the array
+for (let i=0; i < bills.length; i++) {
+    const tip = calcTip(bills[i]);
+    tips.push(tip);
+    totals.push(tip+bills[i]);
+}
+
+console.log(bills);
+console.log(tips);
+console.log(totals);
+
+//5. Calculate the average
+
+const calcAverage = function(arr) {
+    let sum = 0;
+    for (let i=0; i < arr.length; i++) {
+// as we loop through the array we keep adding the current value to the sum variable
+        //sum = sum + arr[i];
+        sum += arr[i];
+    }
+// test with    console.log(sum);
+// we want to return the sum divided the number of elements in the array
+    return sum / arr.length;
+}
+//test the function with random values to log
+//calcAverage([2,3,6]);
+console.log(calcAverage([2,3,7]));
+console.log(calcAverage(bills));
+console.log(calcAverage(tips));
+console.log(calcAverage(totals));
