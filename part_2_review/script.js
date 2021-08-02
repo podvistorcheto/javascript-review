@@ -433,19 +433,7 @@ length of the array (because that's the number of elements)
 */
 
 // 1 
-
-const bills = [
-    22, 
-    295,
-    176,
-    440,
-    37,
-    105,
-    10,
-    1100,
-    86,
-    52
-];
+const bills = [22, 295, 176, 440,37, 105, 10, 1100, 86, 52];
 //2.
 const tips = [];
 const totals = [];
