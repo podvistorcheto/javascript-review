@@ -13,6 +13,7 @@ console.log(document.querySelector(".guess").value);
 */
 // randomize the numbers to be between 1 and 20 without the decimal signs
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let score = 20;
 document.querySelector(".number").textContent = secretNumber;
 
 // this selects the button check class
@@ -25,5 +26,13 @@ document.querySelector(".check").addEventListener("click", function () {
       "Invalid input. Please insert a number!";
   } else if (guess === secretNumber) {
     document.querySelector(".message").textContent = "Bravo! Correct number!";
+  } else if (guess > secretNumber) {
+    document.querySelector(".message").textContent = "Too High";
+    score--;
+    document.querySelector(".score").textContent = score;
+  } else if (guess < secretNumber) {
+    document.querySelector(".message").textContent = "Too Low";
+    score--;
+    document.querySelector(".score").textContent = score;
   }
 });
