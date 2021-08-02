@@ -14,6 +14,8 @@ console.log(document.querySelector(".guess").value);
 // randomize the numbers to be between 1 and 20 without the decimal signs
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
+// highscore variable setup
+let highscore = 0;
 
 // this selects the button check class
 document.querySelector(".check").addEventListener("click", function () {
@@ -30,6 +32,11 @@ document.querySelector(".check").addEventListener("click", function () {
     // change page color when player wins
     document.querySelector("body").style.backgroundColor = "#60b347";
     document.querySelector(".number").style.width = "25rem";
+    // check for the highscore value while playing
+    if (score > highscore) {
+      highscore = score;
+      document.querySelector(".highscore").textContent = highscore;
+    }
     // when guess is too high
   } else if (guess > secretNumber) {
     if (score > 1) {
