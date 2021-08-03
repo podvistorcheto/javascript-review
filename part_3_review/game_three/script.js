@@ -1,6 +1,8 @@
 "use strict";
 
 // Selecting elements to initialize the game
+const player0Element = document.querySelector(".player--0");
+const player1Element = document.querySelector(".player--1");
 const score1Element = document.querySelector("#score--0");
 const score2Element = document.getElementById("score--1");
 const current0Element = document.getElementById("current--0");
@@ -38,7 +40,9 @@ btnRoll.addEventListener("click", function () {
   } else {
     // switch player when score is 1
     document.getElementById(`current--${activePlayer}`).textContent = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
     currentScore = 0;
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    player0Element.classList.toggle("player--active");
+    player1Element.classList.toggle("player--active");
   }
 });
