@@ -13,14 +13,37 @@ const btnRoll = document.querySelector(".btn--roll");
 const btnHold = document.querySelector(".btn--hold");
 
 // all scores to zero
-score1Element.textContent = 0;
-score2Element.textContent = 0;
-diceElement.classList.add("hidden");
+// score1Element.textContent = 0;
+// score2Element.textContent = 0;
+// diceElement.classList.add("hidden");
 
-const scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
+// Define variable to live outside the functions
+// and to be declared as global variables and can
+// accessed in every function everywhere in the code
+let scores;
+let currentScore;
+let activePlayer;
+let playing;
+
+//Initialising game with these starting conditions
+const gameInit = function () {
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  score1Element.textContent = 0;
+  score2Element.textContent = 0;
+  current0Element.textContent = 0;
+  current1Element.textContent = 0;
+
+  diceElement.classList.add("hidden");
+  player0Element.classList.remove("player--winner");
+  player1Element.classList.remove("player--winner");
+  player0Element.classList.add("player--active");
+  player1Element.classList.remove("player--active");
+};
+gameInit();
 
 const switchPlayer = function () {
   currentScore = 0;
@@ -67,7 +90,7 @@ btnHold.addEventListener("click", function () {
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
     //2. Check if player's score is >= 100
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 100) {
       playing = false;
       diceElement.classList.add("hidden");
       document
@@ -79,7 +102,19 @@ btnHold.addEventListener("click", function () {
     } else {
       //. Switch to other player
       switchPlayer();
+      gameInit();
     }
     // Finish the game
   }
 });
+
+btnNew.addEventListener("click", gameInit);
+// function () {
+// score1Element.textContent = 0;
+// score2Element.textContent = 0;
+// current0Element.textContent = 0;
+// current1Element.textContent = 0;
+// player0Element.classList.remove("player--winner");
+// player1Element.classList.remove("player--winner");
+// player0Element.classList.add("player--active");
+// player1Element.classList.remove("player--active"); }
