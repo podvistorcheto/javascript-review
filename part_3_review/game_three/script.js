@@ -37,6 +37,8 @@ btnRoll.addEventListener("click", function () {
       currentScore;
   } else {
     // switch player when score is 1
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
     activePlayer = activePlayer === 0 ? 1 : 0;
+    currentScore = 0;
   }
 });
