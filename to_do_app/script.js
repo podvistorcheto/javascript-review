@@ -4,7 +4,7 @@
 //console.log(test);
 
 const tudu = new (function () {
-  this.element = document.getElementById("tasks");
+  this.el = document.getElementById("tasks");
   // create an empty array with the tasks
   this.tasks = [];
 
@@ -26,22 +26,39 @@ const tudu = new (function () {
         taskListData += "</tr>";
       }
     }
-    return (this.element.innerHTML = taskListData);
+    return (this.el.innerHTML = taskListData);
   };
 
   this.addTask = function () {
-    element = document.getElementById("add-new-task");
-    var task = element.value;
+    el = document.getElementById("add-new-task");
+    var task = el.value;
     if (task) {
       this.tasks.push(task.trim());
-      element.value = "";
+      this.el.value = "";
       this.FetchAll();
     }
   };
 
-  this.updateTask = function () {};
+  this.updateTask = function (item) {
+    el = document.getElementById("update-task");
+    el.value = this.tasks[item];
+    document.getElementById("update-form").style.display = "block";
+    self = this;
 
-  this.removeTask = function () {};
+    document.getElementById("save-update").onsubmit = function () {
+      var task = el.value;
+      if (task) {
+        self.tasks.splice(item, 1, task.trim());
+        self.FetchAll();
+        CloseInput();
+      }
+    };
+  };
+
+  this.removeTask = function (item) {
+    this.tasks.splice(item, 1);
+    this.FetchAll();
+  };
 })();
 
 tudu.FetchAll();

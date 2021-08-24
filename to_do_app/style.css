@@ -21,3 +21,13 @@ button,
   margin: auto;
   margin-top: 10px;
 }
+
+td {
+  background-color: lightslategray;
+  padding-right: 10px;
+  text-align: left;
+}
+
+.to-do {
+  background: transparent !important;
+}
