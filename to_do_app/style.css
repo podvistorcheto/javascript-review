@@ -1,3 +1,23 @@
 .title {
   color: grey;
+  text-align: center;
+}
+
+.form {
+  margin: auto;
+  max-width: 75%;
+  text-align: center;
+}
+
+input[type="submit"],
+button,
+[aria-label] {
+  cursor: pointer;
+}
+
+#update-form {
+  display: none;
+  max-width: 75%;
+  margin: auto;
+  margin-top: 10px;
 }
