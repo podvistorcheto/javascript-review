@@ -35,6 +35,7 @@ const tudu = new (function () {
     if (task) {
       this.tasks.push(task.trim());
       this.el.value = "";
+      console.log(el);
       this.FetchAll();
     }
   };
