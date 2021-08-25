@@ -16,3 +16,16 @@ addTaskBox.onkeyup = () => {
     addTaskBtn.classList.remove("active");
   }
 };
+
+// configuring the local data storage in the browser
+addTaskBtn.onclick = () => {
+  let userInput = addTaskBox.value; // gets the users input
+  let getLocalStorage = localStorage.getItem("New Task"); // to get the local data from the browser
+  if (getLocalStorage == null) {
+    taskListArr = []; // create an empty array
+  } else {
+    taskListArr = JSON.parse(getLocalStorage); // turns the JSON string to a js object
+  }
+  taskListArr.push(userInput); // adds or push the user input
+  localStorage.setItem("New Task", JSON.stringify(taskListArr)); // turns the js object to JSON string
+};
