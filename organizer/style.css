@@ -1,27 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tudu App With JavaScript</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-</head>
-<body>
-  <div class="wrapper">
-    <header>Tudu App</header>
-    <div class="inputField">
-      <input type="text" placeholder="Add your new todo">
-      <button><i class="fas fa-plus"></i></button>
-    </div>
-    <ul class="todoList">
-      <!-- data are comes from local storage -->
-    </ul>
-    <div class="footer">
-      <span>You have <span class="pendingTasks"></span> pending tasks</span>
-      <button>Clear All</button>
-    </div>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom, #fafafa 0%, #9ba8c0 100%);
+}
+
+.wrapper {
+  margin: 120px auto;
+  max-width: 400px;
+  width: 100%;
+  background: rgb(128, 141, 155);
+  border-radius: 10px;
+  padding: 25px;
+}
