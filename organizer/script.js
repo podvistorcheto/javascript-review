@@ -7,6 +7,7 @@
 const addTaskBox = document.querySelector(".addNewTask input");
 const addTaskBtn = document.querySelector(".addNewTask button");
 const taskList = document.querySelector(".taskList");
+let createNewTask;
 
 addTaskBox.onkeyup = () => {
   let userInput = addTaskBox.value; // gets the users input
@@ -17,6 +18,8 @@ addTaskBox.onkeyup = () => {
     addTaskBtn.classList.remove("active");
   }
 };
+
+displayTasks();
 
 // configuring the local data storage in the browser
 addTaskBtn.onclick = () => {
@@ -32,6 +35,7 @@ addTaskBtn.onclick = () => {
   displayTasks();
 };
 
+// method to create new task and fill the task list with data
 function displayTasks() {
   // to get the local data from the browser
   let getLocalStorage = localStorage.getItem("New Task");
@@ -43,10 +47,30 @@ function displayTasks() {
     // turn the JSON string to a js object
     taskListArr = JSON.parse(getLocalStorage);
   }
-  let createNewTask = "";
+  let createNewTask = Array();
   taskListArr.forEach((element, index) => {
-    createNewTask = `<li> ${element} <span><i class="fas fa-trash"></i></span></li>`;
+    createNewTask += `<li>${element}<span onclick="removeTask(${index})";>
+    <i class="fas fa-trash"></i></span>
+    </li>`;
+    console.log(getLocalStorage);
   });
   // add new task
   taskList.innerHTML = createNewTask;
+  // make the add task field blank after task is added
+  addTaskBox.value = "";
+}
+
+// delete task method
+function removeTask(element, index) {
+  let getLocalStorage = localStorage.getItem("New Task");
+  taskListArr = JSON.parse(getLocalStorage);
+  console.log(taskListArr);
+  console.log(localStorage);
+  console.log(getLocalStorage);
+  // remove the task
+  taskListArr.splice(index, 1);
+  // then update data in local storage
+  localStorage.setItem("New Task", JSON.stringify(taskListArr));
+  // show updated list with tasks
+  displayTasks();
 }
