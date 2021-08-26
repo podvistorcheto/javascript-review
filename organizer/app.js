@@ -8,7 +8,7 @@
 // 1. TASKS MANAGER
 const taskManager = (function () {
   // method to contruct the task
-  const task = function (id, name, description) {
+  const Item = function (id, name, description) {
     this.id = id;
     this.name = name;
   };
@@ -29,7 +29,18 @@ const taskManager = (function () {
       return database.todoItems;
     },
     addTask: function (name) {
-      console.log(name);
+      //   console.log(name);
+      // create ID for each task
+      let ID;
+      if (database.todoItems.length > 0) {
+        ID = database.todoItems[database.todoItems.length - 1].id + 1;
+      } else {
+        ID = 0;
+      }
+      let newTask = new Item(ID, name);
+      database.todoItems.push(newTask);
+      return newTask;
+      // for future: here to add description to the task
     },
     logData: function () {
       return database;
