@@ -8,7 +8,7 @@
 // 1. TASKS MANAGER
 const taskManager = (function () {
   // method to contruct the task
-  const Item = function (id, name, description) {
+  const task = function (id, name, description) {
     this.id = id;
     this.name = name;
   };
@@ -37,7 +37,7 @@ const taskManager = (function () {
       } else {
         ID = 0;
       }
-      let newTask = new Item(ID, name);
+      let newTask = new task(ID, name);
       database.todoItems.push(newTask);
       return newTask;
       // for future: here to add description to the task
@@ -76,6 +76,18 @@ const userControl = (function () {
         // ).value,
       };
     },
+    addListTask: function (item) {
+      // create li
+      const li = document.createElement("li");
+      li.className = "task-list";
+      li.id = `item-${item.it}`;
+      li.innerHTML = `${item.id}. ${item.name}
+        <i class="fas fa-edit"></i> <i class="fas fa-trash"></i></span>`;
+      // insert item
+      document
+        .querySelector(userSelectors.listWithTasks)
+        .insertAdjacentElement("beforeend", li);
+    },
     getSelectors: function () {
       return userSelectors;
     },
@@ -101,6 +113,8 @@ const appManager = (function (taskManager, userControl) {
       // add task
       const newTask = taskManager.addTask(userInput.name);
       //   console.log(userInput);
+      // add item to user interface
+      userControl.addListTask(newTask);
     }
 
     e.preventDefault();
