@@ -15,9 +15,9 @@ const taskManager = (function () {
   // data structure
   const database = {
     todoItems: [
-      { id: 0, name: "Get Groceries", description: "Do with a shopping list" },
-      { id: 1, name: "Run and exercise", description: "For at least 45 mins" },
-      { id: 2, name: "Build a to-do app", description: "Use JavaScript" },
+      //   { id: 0, name: "Get Groceries", description: "Do with a shopping list" },
+      //   { id: 1, name: "Run and exercise", description: "For at least 45 mins" },
+      //   { id: 2, name: "Build a to-do app", description: "Use JavaScript" },
     ],
     currenTask: null,
     totalToDoItems: 0,
@@ -87,6 +87,8 @@ const userControl = (function () {
       document
         .querySelector(userSelectors.listWithTasks)
         .insertAdjacentElement("beforeend", li);
+      // clear input after submit
+      document.querySelector(userSelectors.taskNameInput).value = "";
     },
     getSelectors: function () {
       return userSelectors;
@@ -116,7 +118,6 @@ const appManager = (function (taskManager, userControl) {
       // add item to user interface
       userControl.addListTask(newTask);
     }
-
     e.preventDefault();
   };
   // public methods
