@@ -60,6 +60,21 @@ function displayTasks() {
   addTaskBox.value = "";
 }
 
+// update task
+function removeTask(element, index) {
+  let getLocalStorage = localStorage.getItem("New Task");
+  taskListArr = JSON.parse(getLocalStorage);
+  console.log(taskListArr);
+  console.log(localStorage);
+  console.log(getLocalStorage);
+  // remove the task
+  taskListArr.splice(index, 1);
+  // then update data in local storage
+  localStorage.setItem("New Task", JSON.stringify(taskListArr));
+  // show updated list with tasks
+  displayTasks();
+}
+
 // delete task method
 function removeTask(element, index) {
   let getLocalStorage = localStorage.getItem("New Task");
