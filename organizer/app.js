@@ -3,16 +3,6 @@
 // const test = true;
 // console.log(test);
 
-const database = {
-  todoItems: [
-    { id: 0, name: "Get Groceries", description: "Do with a shopping list" },
-    { id: 1, name: "Run and exercise", description: "For at least 45 mins" },
-    { id: 2, name: "Build a to-do app", description: "Use JavaScript" },
-  ],
-  currenTask: null,
-  totalToDoItems: 0,
-};
-
 // 4.LOCAL STORAGE CONFIGURATION - to be added at the end
 
 // 1. TASKS MANAGER
@@ -38,16 +28,21 @@ const taskManager = (function () {
     getTasks: function () {
       return database.todoItems;
     },
+    addTask: function (name) {
+      console.log(name);
+    },
     logData: function () {
       return database;
     },
   };
 })();
-// 2. UI CONTROLLER
+
+// 2. USER CONTROLLER
 const userControl = (function () {
   const userSelectors = {
     listWithTasks: ".task-list",
     addTaskBtn: ".add-new-task",
+    taskNameInput: "#task-name",
   };
   // public method
   return {
@@ -55,18 +50,27 @@ const userControl = (function () {
       let html = "";
 
       todoItems.forEach(function (item) {
-        html += `<li> id="item-${item.id}"> ${item.name}
+        html += `<li>${item.id}. ${item.name}
       <i class="fas fa-edit"></i> <i class="fas fa-trash"></i></span>
       </li>`;
       });
       // Insert list names
       document.querySelector(userSelectors.listWithTasks).innerHTML = html;
     },
+    getTaskInput: function () {
+      return {
+        name: document.querySelector(userSelectors.taskNameInput).value,
+        // description: document.querySelector(
+        //   userSelectors.listWithTaskDescriptions
+        // ).value,
+      };
+    },
     getSelectors: function () {
       return userSelectors;
     },
   };
 })();
+
 // 3. APP MANAGER
 const appManager = (function (taskManager, userControl) {
   // Load events
@@ -80,7 +84,14 @@ const appManager = (function (taskManager, userControl) {
   };
   // Add task submit method
   const addTaskSubmit = function (e) {
-    console.log("Adding Task....");
+    // get form input from user controller
+    const userInput = userControl.getTaskInput();
+    if (userInput.name !== "") {
+      // add task
+      const newTask = taskManager.addTask(userInput.name);
+      //   console.log(userInput);
+    }
+
     e.preventDefault();
   };
   // public methods
