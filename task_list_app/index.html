@@ -18,32 +18,47 @@
     <title>Task List App</title>
   </head>
   <body>
-    <nav>
-      <div class="row col-6">
-        <h3>To-Do List App Local Storage</h3>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="s12">
+            <nav>
+              <div class="container">
+                <h3>tudu list</h3>
+              </div>
+            </nav>
+            <div id="container" class="card">
+              <div class="card-content">
+                <form>
+                  <div>
+                    <input
+                      id="task-name"
+                      type="text"
+                      placeholder="Add New Task"
+                    />
+                    <button class="btn-secondary" id="save_task" type="button">
+                      Save
+                    </button>
+                  </div>
+                  <div>
+                    <input
+                      id="task-status"
+                      type="text"
+                      placeholder="Task Status"
+                    />
+                  </div>
+                  <div></div>
+                </form>
+              </div>
+              <hr />
+              <div id="container">
+                <h2>Task List</h2>
+                <ul id="task_wrapper"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </nav>
-    <div id="container">
-      <form>
-        <div>
-          <label for="task-name">Description</label>
-          <input id="task-name" type="text" />
-        </div>
-        <div>
-          <label for="task-status">State</label>
-          <input id="task-status" type="text" />
-        </div>
-        <div>
-          <button class="btn-secondary" id="save_task" type="button">
-            Save Task
-          </button>
-        </div>
-      </form>
-    </div>
-    <hr />
-    <div id="container">
-      <h2>Task List</h2>
-      <ul id="task_wrapper"></ul>
     </div>
     <script src="script.js"></script>
   </body>

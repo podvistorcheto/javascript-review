@@ -8,6 +8,8 @@
 (function () {
   // Adding the elements
   var lastId = 0;
+  var taskInput = document.querySelector("#task-name");
+  var taskStatus = document.querySelector("#task-status");
   var taskWrapper = document.getElementById("task_wrapper");
   var btnSave = document.getElementById("save_task");
   var removeIcon;
@@ -51,11 +53,15 @@
       taskDes: document.getElementById("task-name").value,
       taskState: document.getElementById("task-status").value,
     };
-    taskList.push(task);
-    syncTask();
-    addTaskToList(task);
-    syncEvents();
-    lastId++;
+    if (taskInput.value === "" && taskStatus.value === "") {
+      alert("Add a task");
+    } else {
+      taskList.push(task);
+      syncTask();
+      addTaskToList(task);
+      syncEvents();
+      lastId++;
+    }
   }
 
   function addTaskToList(task) {
@@ -63,12 +69,12 @@
     var removeIcon = document.createElement("span");
     var updateIcon = document.createElement("span");
 
-    removeIcon.innerHTML = "X";
-    removeIcon.className = "remove_item clickable";
+    removeIcon.innerHTML = `<i class="far fa-trash-alt"></i>`;
+    removeIcon.className = "remove_item btn btn-danger";
     removeIcon.setAttribute("title", "Update");
 
-    updateIcon.innerHTML = "U";
-    updateIcon.className = "update_icon clickable";
+    updateIcon.innerHTML = `<i class="far fa-edit"></i>`;
+    updateIcon.className = "update_icon btn btn-warning";
     updateIcon.setAttribute("title", "Remove");
 
     element.appendChild(removeIcon);
