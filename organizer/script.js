@@ -49,9 +49,7 @@ function displayTasks() {
   }
   let createNewTask = Array();
   taskListArr.forEach((element, index) => {
-    createNewTask += `<i class="fas fa-edit"></i><li>${element}<span onclick="removeTask(${index})";>
-    <i class="fas fa-trash"></i></span>
-    </li>`;
+    createNewTask += `<li>${element}<span class="icon" onclick="removeTask(${index})"><i class="fas fa-trash"></i></span></li>`;
   });
   // add new task
   taskList.innerHTML = createNewTask;

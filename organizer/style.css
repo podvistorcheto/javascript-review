@@ -69,41 +69,31 @@ body {
 }
 
 .taskList li {
-  list-style: none;
-  height: 45%;
-  line-height: 45px;
   position: relative;
-  background: #fafafa;
-  border-radius: 3px;
+  list-style: none;
   margin-bottom: 8px;
-  padding: 0 15px;
+  background: #f2f2f2;
+  border-radius: 3px;
+  padding: 10px 15px;
+  cursor: default;
   overflow: hidden;
+  word-wrap: break-word;
 }
-
-.taskList li span i {
+.taskList li .icon {
   position: absolute;
   right: -45px;
-  color: #fff;
+  top: 50%;
+  transform: translateY(-50%);
+  background: coral;
   width: 45px;
   text-align: center;
-  background: coral;
-  border-radius: 0 3px 3px 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.taskList li span {
-  position: absolute;
-  right: -45px;
   color: #fff;
-  width: 45px;
-  text-align: center;
-  background: coral;
+  padding: 10px 15px;
   border-radius: 0 3px 3px 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
-.taskList li:hover span {
+.taskList li:hover .icon {
   right: 0px;
 }
 
