@@ -80,7 +80,7 @@ body {
   overflow: hidden;
 }
 
-.taskList li span {
+.taskList li span i {
   position: absolute;
   right: -45px;
   color: #fff;
@@ -92,6 +92,17 @@ body {
   transition: all 0.3s ease;
 }
 
+.taskList li span {
+  position: absolute;
+  right: -45px;
+  color: #fff;
+  width: 45px;
+  text-align: center;
+  background: coral;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 .taskList li:hover span {
   right: 0px;
 }

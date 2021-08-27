@@ -53,6 +53,9 @@ const userControl = (function () {
   const userSelectors = {
     listWithTasks: ".task-list",
     addTaskBtn: ".add-new-task",
+    editBtn: ".update-btn",
+    backBtn: ".back-btn",
+    deleteBtn: ".delete-btn",
     taskNameInput: "#task-name",
   };
   // public method
@@ -62,7 +65,7 @@ const userControl = (function () {
 
       todoItems.forEach(function (item) {
         html += `<li>${item.id}. ${item.name}
-      <i class="fas fa-edit"></i> <i class="fas fa-trash"></i></span>
+      <i class="update-btn fas fa-edit"></i> <i class="fas fa-trash"></i></span>
       </li>`;
       });
       // Insert list names
@@ -90,6 +93,9 @@ const userControl = (function () {
       // clear input after submit
       document.querySelector(userSelectors.taskNameInput).value = "";
     },
+    clearEditState() {
+      document.querySelector(userSelectors.taskNameInput).value = "";
+    },
     getSelectors: function () {
       return userSelectors;
     },
@@ -107,6 +113,10 @@ const appManager = (function (taskManager, userControl) {
       .querySelector(userSelectors.addTaskBtn)
       .addEventListener("click", addTaskSubmit);
   };
+  // click on the edit icon
+  document
+    .querySelector(userSelectors.)
+    .addEventListener("click", taskUpdateSubmit);
   // Add task submit method
   const addTaskSubmit = function (e) {
     // get form input from user controller
@@ -117,7 +127,15 @@ const appManager = (function (taskManager, userControl) {
       //   console.log(userInput);
       // add item to user interface
       userControl.addListTask(newTask);
+      e.preventDefault();
     }
+    // Update Item method
+    const taskUpdateSubmit = function (e) {
+      if (e.target.classList.contains("edit-item")) {
+        // get the task id
+        const listId = e.target.parentNode.parentNode;
+      }
+    };
     e.preventDefault();
   };
   // public methods

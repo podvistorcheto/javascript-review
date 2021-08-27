@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <title>Task List App</title>
+  </head>
+  <body>
+    <nav>
+      <div class="row col-6">
+        <h3>To-Do List App Local Storage</h3>
+      </div>
+    </nav>
+    <div id="container">
+      <form>
+        <div>
+          <label for="task-name">Description</label>
+          <input id="task-name" type="text" />
+        </div>
+        <div>
+          <label for="task-status">State</label>
+          <input id="task-status" type="text" />
+        </div>
+        <div>
+          <button class="btn-secondary" id="save_task" type="button">
+            Save Task
+          </button>
+        </div>
+      </form>
+    </div>
+    <hr />
+    <div id="container">
+      <h2>Task List</h2>
+      <ul id="task_wrapper"></ul>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

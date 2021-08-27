@@ -49,10 +49,9 @@ function displayTasks() {
   }
   let createNewTask = Array();
   taskListArr.forEach((element, index) => {
-    createNewTask += `<li>${element}<span onclick="removeTask(${index})";>
+    createNewTask += `<i class="fas fa-edit"></i><li>${element}<span onclick="removeTask(${index})";>
     <i class="fas fa-trash"></i></span>
     </li>`;
-    console.log(getLocalStorage);
   });
   // add new task
   taskList.innerHTML = createNewTask;
@@ -61,27 +60,17 @@ function displayTasks() {
 }
 
 // update task
-function removeTask(element, index) {
+function updateTask(index) {
   let getLocalStorage = localStorage.getItem("New Task");
   taskListArr = JSON.parse(getLocalStorage);
   console.log(taskListArr);
-  console.log(localStorage);
-  console.log(getLocalStorage);
-  // remove the task
-  taskListArr.splice(index, 1);
-  // then update data in local storage
-  localStorage.setItem("New Task", JSON.stringify(taskListArr));
-  // show updated list with tasks
-  displayTasks();
 }
+updateTask();
 
 // delete task method
 function removeTask(element, index) {
   let getLocalStorage = localStorage.getItem("New Task");
   taskListArr = JSON.parse(getLocalStorage);
-  console.log(taskListArr);
-  console.log(localStorage);
-  console.log(getLocalStorage);
   // remove the task
   taskListArr.splice(index, 1);
   // then update data in local storage
