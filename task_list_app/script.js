@@ -53,21 +53,28 @@
       taskDes: document.getElementById("task-name").value,
       taskState: document.getElementById("task-status").value,
     };
-    if (taskInput.value === "" && taskStatus.value === "") {
-      alert("Add a task");
-    } else {
-      taskList.push(task);
-      syncTask();
-      addTaskToList(task);
-      syncEvents();
-      lastId++;
-    }
+    // if (taskInput.value === "" || taskStatus.value === "") {
+    //   alert("Add a task");
+    // } else {
+    taskList.push(task);
+    syncTask();
+    addTaskToList(task);
+    syncEvents();
+    lastId++;
+    //   taskInput.value = "";
+    //   taskStatus.value = "";
   }
 
   function addTaskToList(task) {
     var element = document.createElement("li");
     var removeIcon = document.createElement("span");
     var updateIcon = document.createElement("span");
+
+    element.innerHTML += task.taskDes;
+    taskWrapper.appendChild(element);
+    element.appendChild(updateIcon);
+    element.appendChild(removeIcon);
+    element.setAttribute("id", task.taskId);
 
     removeIcon.innerHTML = `<i class="far fa-trash-alt"></i>`;
     removeIcon.className = "remove_item btn btn-danger";
@@ -76,13 +83,9 @@
     updateIcon.innerHTML = `<i class="far fa-edit"></i>`;
     updateIcon.className = "update_icon btn btn-warning";
     updateIcon.setAttribute("title", "Remove");
-
-    element.appendChild(removeIcon);
-    element.appendChild(updateIcon);
-    element.setAttribute("id", task.taskId);
-    element.innerHTML += task.taskDes;
-    taskWrapper.appendChild(element);
   }
+
+  // TO-DO mark task as completed
 
   function updateTask(event) {
     var taskTag = event.currentTarget.parentNode;

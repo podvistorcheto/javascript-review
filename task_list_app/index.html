@@ -21,40 +21,41 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="s12">
-            <nav>
-              <div class="container">
-                <h3>tudu list</h3>
-              </div>
-            </nav>
-            <div id="container" class="card">
-              <div class="card-content">
-                <form>
-                  <div>
-                    <input
-                      id="task-name"
-                      type="text"
-                      placeholder="Add New Task"
-                    />
-                    <button class="btn-secondary" id="save_task" type="button">
-                      Save
-                    </button>
-                  </div>
-                  <div>
-                    <input
-                      id="task-status"
-                      type="text"
-                      placeholder="Task Status"
-                    />
-                  </div>
-                  <div></div>
-                </form>
-              </div>
-              <hr />
-              <div id="container">
-                <h2>Task List</h2>
-                <ul id="task_wrapper"></ul>
-              </div>
+          <nav>
+            <div class="container">
+              <h3>tudu list</h3>
+            </div>
+          </nav>
+            <div class="card">
+              <form>
+                <div>
+                  <input
+                    id="task-name"
+                    type="text"
+                    placeholder="Add New Task"
+                  />
+                  <button class="btn-secondary" id="save_task" type="button">
+                    Save
+                  </button>
+                </div>
+                <div>
+                  <input
+                    id="task-status"
+                    type="text"
+                    placeholder="Task Status"
+                  />
+                </div>
+                <div></div>
+              </form>
+            </div>
+            <hr />
+            <div class="card" id="container">
+              <h2>Task List</h2>
+              <ul id="task_wrapper"></ul>
+            </div>
+            <div class="card" id="container">
+              <h2>Completed Tasks</h2>
+              <ul id="completed-tasks"></ul>
             </div>
           </div>
         </div>

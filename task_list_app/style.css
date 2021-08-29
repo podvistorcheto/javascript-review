@@ -24,7 +24,6 @@ nav {
 }
 .remove_item {
   color: red;
-  padding: 10px 5px 10px 10px;
 }
 
 .clickeable {
@@ -43,3 +42,24 @@ nav {
 .hide {
   display: none;
 }
+
+/* Add a "checked" mark when clicked on
+ul li.crossed-out::before {
+  content: "";
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+ */
