@@ -8,8 +8,6 @@
 (function () {
   // Adding the elements
   var lastId = 0;
-  var taskInput = document.querySelector("#task-name");
-  var taskStatus = document.querySelector("#task-status");
   var taskWrapper = document.getElementById("task_wrapper");
   var btnSave = document.getElementById("save_task");
   var removeIcon;
@@ -26,6 +24,7 @@
     } else {
       taskList = [];
     }
+    console.log(taskList);
     btnSave.addEventListener("click", saveTask);
     console.log("Initializing app....");
     showList();
@@ -37,8 +36,9 @@
 
   // method to show the list
   function showList() {
-    if (!!taskList.length) {
+    if (taskList.length) {
       getLastTaskId();
+      console.log(taskList.length);
       for (var item in taskList) {
         var task = taskList[item];
         addTaskToList(task);
@@ -53,14 +53,17 @@
       taskDes: document.getElementById("task-name").value,
       taskState: document.getElementById("task-status").value,
     };
+    console.log(task);
     // if (taskInput.value === "" || taskStatus.value === "") {
     //   alert("Add a task");
     // } else {
     taskList.push(task);
+    console.log(task);
     syncTask();
     addTaskToList(task);
     syncEvents();
     lastId++;
+    console.log(lastId);
     //   taskInput.value = "";
     //   taskStatus.value = "";
   }
@@ -70,29 +73,33 @@
     var removeIcon = document.createElement("span");
     var updateIcon = document.createElement("span");
 
-    element.innerHTML += task.taskDes;
-    taskWrapper.appendChild(element);
-    element.appendChild(updateIcon);
-    element.appendChild(removeIcon);
-    element.setAttribute("id", task.taskId);
-
     removeIcon.innerHTML = `<i class="far fa-trash-alt"></i>`;
     removeIcon.className = "remove_item btn btn-danger";
-    removeIcon.setAttribute("title", "Update");
+    removeIcon.setAttribute("title", "Remove");
 
     updateIcon.innerHTML = `<i class="far fa-edit"></i>`;
     updateIcon.className = "update_icon btn btn-warning";
-    updateIcon.setAttribute("title", "Remove");
+    updateIcon.setAttribute("title", "Update");
+
+    element.appendChild(updateIcon);
+    element.appendChild(removeIcon);
+    element.setAttribute("id", task.taskId);
+    element.innerHTML += task.taskDes;
+    taskWrapper.appendChild(element);
   }
 
   // TO-DO mark task as completed
 
   function updateTask(event) {
     var taskTag = event.currentTarget.parentNode;
+    console.log(taskTag);
     var taskId = taskTag.id;
+    console.log(taskId);
     var taskToUpdate = findTask(taskId).task;
+    console.log(taskToUpdate);
     var pos = findTask(taskId).pos;
-    if (!!taskToUpdate) {
+    console.log(pos);
+    if (taskToUpdate) {
       var des = prompt("Task Description", taskToUpdate.taskDes);
       var state = prompt("Task State", taskToUpdate.taskState);
       taskToUpdate.taskDes = des;
