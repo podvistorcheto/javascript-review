@@ -107,3 +107,19 @@ deleteallbtn.addEventListener("click", function () {
   localStorage.setItem("localtask", JSON.stringify(taskObject));
   showTask();
 });
+
+// search box method
+let searchtextbox = document.getElementById("searchtextbox");
+searchtextbox.addEventListener("input", function () {
+  let trlist = document.querySelector("tr");
+  Array.from(trlist).forEach(function (item) {
+    let searchedtext = item.getElementsByTagName("td")[0].innerText;
+    let searchtextboxval = searchtextbox.value;
+    let re = new RegExp(searchtextboxval, "gi");
+    if (searchedtext.match(re)) {
+      item.style.display = "table-row";
+    } else {
+      item.style.display = "none";
+    }
+  });
+});
