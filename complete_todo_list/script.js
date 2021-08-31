@@ -79,3 +79,31 @@ savetaskbtn.addEventListener("click", function () {
   localStorage.setItem("localtask", JSON.stringify(taskObject));
   showTask();
 });
+
+// method to delete item
+function deleteitem(index) {
+  let webTask = localStorage.getItem("localtask");
+  let taskObject = JSON.parse(webTask);
+  taskObject.splice(index, 1);
+  localStorage.setItem("localtask", JSON.stringify(taskObject));
+  showTask();
+}
+
+// clear all method
+let deleteallbtn = document.getElementById("deleteallbtn");
+deleteallbtn.addEventListener("click", function () {
+  let savetaskbtn = document.getElementById("savetaskbtn");
+  let addTaskBtn = document.getElementById("addtaskbtn");
+  let webTask = localStorage.getItem("localtask");
+  let taskObject = JSON.parse(webTask);
+  if (taskObject == 0) {
+    taskObject = [];
+  } else {
+    taskObject = JSON.parse(webTask);
+    taskObject = [];
+  }
+  savetaskbtn.style.display = "none";
+  addTaskBtn.style.display = "block";
+  localStorage.setItem("localtask", JSON.stringify(taskObject));
+  showTask();
+});
