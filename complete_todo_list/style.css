@@ -40,3 +40,8 @@ table tr td button {
 .completed {
   text-decoration: line-through;
 }
+
+.fab,
+.far {
+  font-size: 32px;
+}

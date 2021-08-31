@@ -40,7 +40,7 @@ function showTask() {
   let addedtasklist = document.getElementById("addedtasklist");
   taskObject.forEach((item, index) => {
     html += `<tr>
-                    <th scope="row">${index + 1}</th>
+                    <th><i class="far fa-check-square"></i></th>
                     <td>${item}</td>
                     <td><button type="button" onclick="edittask(${index})"
                     class="text-primary"><i class="fas fa-edit"></i>
