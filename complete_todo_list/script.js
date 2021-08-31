@@ -52,3 +52,30 @@ function showTask() {
   });
   addedtasklist.innerHTML = html;
 }
+
+// method to edit task
+function edittask(index) {
+  let saveindex = document.getElementById("saveindex");
+  let addTaskBtn = document.getElementById("addtaskbtn");
+  let savetaskbtn = document.getElementById("savetaskbtn");
+  saveindex.value = index;
+  let webTask = localStorage.getItem("localtask");
+  let taskObject = JSON.parse(webTask);
+  addTaskInput.value = taskObject[index];
+  addTaskBtn.style.display = "none";
+  savetaskbtn.style.display = "block";
+}
+
+// save task
+let savetaskbtn = document.getElementById("savetaskbtn");
+savetaskbtn.addEventListener("click", function () {
+  let webTask = localStorage.getItem("localtask");
+  let taskObject = JSON.parse(webTask);
+  let saveindex = document.getElementById("saveindex").value;
+  taskObject[saveindex] = addTaskInput.value;
+  savetaskbtn.style.display = "none";
+  addTaskBtn.style.display = "block";
+  addTaskInput.value = "";
+  localStorage.setItem("localtask", JSON.stringify(taskObject));
+  showTask();
+});
