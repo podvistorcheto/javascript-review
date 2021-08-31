@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <title>softUni_01</title>
+  </head>
+  <body>
+    <header class="bg-dark mb-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <nav class="navbar justify-content-between">
+              <a class="navbar-brand">Todo List</a>
+              <form class="form-inline">
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  id="searchtextbox"
+                />
+              </form>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="todo-outer">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-sm-12 col-md-8">
+            <h1>Welcome in Todo List Application</h1>
+            <div class="todo-inner">
+              <div class="form-row">
+                <div class="col-8 mr-sm-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter your task"
+                    id="addtaskinput"
+                  />
+                  <input type="hidden" id="saveindex" />
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-success mr-sm-2"
+                  id="addtaskbtn"
+                >
+                  Add Task
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary mr-sm-2"
+                  id="savetaskbtn"
+                  style="display: none"
+                >
+                  Update
+                </button>
+                <button type="button" id="deleteallbtn" class="btn btn-danger">
+                  Delete All
+                </button>
+              </div>
+              <div class="to-do-output">
+                <table
+                  class="table table-striped mt-3 mb-0"
+                  id="addedtasklist"
+                ></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
