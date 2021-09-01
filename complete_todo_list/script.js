@@ -28,7 +28,7 @@ addTaskBtn.addEventListener("click", function () {
   showTask();
 });
 
-// display tasks
+// display tasks method
 function showTask() {
   let webTask = localStorage.getItem("localtask");
   if (webTask == null) {
@@ -59,9 +59,12 @@ function edittask(index) {
   let addTaskBtn = document.getElementById("addtaskbtn");
   let savetaskbtn = document.getElementById("savetaskbtn");
   saveindex.value = index;
+  // the lifecycle of webstaks does not starts by user clicking the
+  // edit button
   let webTask = localStorage.getItem("localtask");
   let taskObject = JSON.parse(webTask);
   addTaskInput.value = taskObject[index];
+  // these lines up
   addTaskBtn.style.display = "none";
   savetaskbtn.style.display = "block";
 }
@@ -108,18 +111,24 @@ deleteallbtn.addEventListener("click", function () {
   showTask();
 });
 
-// search box method
-let searchtextbox = document.getElementById("searchtextbox");
-searchtextbox.addEventListener("input", function () {
-  let trlist = document.querySelector("tr");
-  Array.from(trlist).forEach(function (item) {
-    let searchedtext = item.getElementsByTagName("td")[0].innerText;
-    let searchtextboxval = searchtextbox.value;
-    let re = new RegExp(searchtextboxval, "gi");
-    if (searchedtext.match(re)) {
-      item.style.display = "table-row";
-    } else {
-      item.style.display = "none";
-    }
-  });
-});
+// // search box method
+// let searchtextbox = document.getElementById("searchtextbox");
+// searchtextbox.addEventListener("input", function () {
+//   let trlist = document.querySelector("tr");
+//   Array.from(trlist).forEach(function (item) {
+//     let searchedtext = item.getElementsByTagName("td")[0].innerText;
+//     let searchtextboxval = searchtextbox.value;
+//     let re = new RegExp(searchtextboxval, "gi");
+//     if (searchedtext.match(re)) {
+//       item.style.display = "table-row";
+//     } else {
+//       item.style.display = "none";
+//     }
+//   });
+// });
+// Action points:
+// Separation of concerns. Google. Styling update, data update (optional)
+// Add feature marking as done. Done should be visually highlighted. Also it should be persistent.
+// Advanced: Add feature: mark currently editing task in green
+// Read about event delegation, event bubbling
+// Refactor: saveData, loadData
