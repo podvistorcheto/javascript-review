@@ -195,3 +195,35 @@ function shoppingFruirs(input) {
 }
 shoppingFruirs(["48", "10", "3.3", "6.5", "1.7"]);
 shoppingFruirs(["63.5", "3.57", "6.35", "8.15", "2.5"]);
+
+// Aquarium calculate obem (cubic meters) - bulgarian text follows
+// За рождения си ден Любомир получил аквариум с формата на паралелепипед. Първоначално приемаме,
+// като вход размерите му – дължина, широчина и височина в сантиметри. Трябва да се пресметне, колко литра вода ще събира аквариума,
+//  ако се знае, че определен процент от вместимостта му е заета от пясък, растения, нагревател и помпа.
+// Един литър вода се равнява на един кубичен дециметър/ 1л=1 дм3/.
+// Да се напише функция, която изчислява литрите вода, която са необходими за напълването на аквариума.
+// Вход
+// Функцията приема 4 аргумента:
+// ⦁	Дължина в см –число в интервала [10 … 500]
+// ⦁	Широчина в см –число в интервала [10 … 300]
+// ⦁	Височина в см –число в интервала [10… 200]
+// ⦁	Процент  –число в интервала [0.000 … 100.000]
+// Изход
+// Да се отпечата на конзолата едно число:
+// ⦁	литрите вода, които ще  събира аквариума.
+// Примерен вход и изход
+
+function calculateAquarium(input) {
+  let height = Number(input[0]);
+  let width = Number(input[1]);
+  let length = Number(input[2]);
+  let percentage = Number(input[3]);
+  let cubeAquarium = height * width * length;
+  console.log(cubeAquarium);
+  let volumeAquarium = cubeAquarium / 1000; // same as cubeAquarium * 0.001
+  console.log(volumeAquarium);
+  let netLitresNeeded = volumeAquarium * (1 - percentage / 100);
+  console.log(netLitresNeeded);
+}
+calculateAquarium(["85", "75", "47", "17"]);
+calculateAquarium(["105", "77", "89", "18.5"]);
