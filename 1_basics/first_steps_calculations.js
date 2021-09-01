@@ -168,3 +168,30 @@ function pastryShopCharityChampaign(input) {
 }
 pastryShopCharityChampaign(["23", "8", "14", "30", "16"]);
 pastryShopCharityChampaign(["131", "5", "9", "33", "46"]);
+
+// shopping for fruits
+function shoppingFruirs(input) {
+  // get the price for straw
+  // get the kilos for s, r, o, b
+  // calc price for rasbe = half the price of the straw
+  // calc price oranges = oranges minus 40% that rasberies
+  // calc bananas price = 80% less than rasperries
+  // calc total amount of groceries
+  let pricePerKiloStrw = Number(input[0]);
+  let kilosBananas = Number(input[1]);
+  let kilosOranges = Number(input[2]);
+  let kilosRasb = Number(input[3]);
+  let kilosStrw = Number(input[4]);
+  let priceRasb = pricePerKiloStrw / 2;
+  let costRasb = priceRasb * kilosRasb;
+  let priceOranges = priceRasb - 0.4 * priceRasb;
+  let totalPriceOranges = kilosOranges * priceOranges;
+  let priceBananas = priceRasb - 0.8 * priceRasb;
+  let totalPriceBananas = priceBananas * kilosBananas;
+  let totalPriceStrw = pricePerKiloStrw * kilosStrw;
+  let moneyTotal =
+    totalPriceOranges + costRasb + totalPriceBananas + totalPriceStrw;
+  console.log(moneyTotal);
+}
+shoppingFruirs(["48", "10", "3.3", "6.5", "1.7"]);
+shoppingFruirs(["63.5", "3.57", "6.35", "8.15", "2.5"]);
