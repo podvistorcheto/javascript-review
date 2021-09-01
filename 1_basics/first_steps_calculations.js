@@ -153,4 +153,4 @@ function pastryShopCharityChampaign(input) {
   let returnsForCharity = totalIncome - totalExpenses;
   console.log(returnsForCharity);
 }
-pastryShopCharityChampaign(["23", "8", "14", "30", "16"]);
+pastryShopCharityChampaign(["23", "8", "14", "30", "16"]); // wrong output
