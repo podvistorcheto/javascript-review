@@ -141,16 +141,30 @@
 // birthdayCosts(["2250"]);
 // birthdayCosts(["3720"]);
 
-// pastryShopCharityChampaign
 function pastryShopCharityChampaign(input) {
-  let dniNaKampaniata = Number(input[0]);
-  let broiSladkari = Number(input[1]);
-  let broiTorti = Number(input[2]) * 45;
-  let broiGofreti = Number(input[3]) * 5.8;
-  let broiPala4inki = Number(input[4]) * 3.2;
-  let totalIncome = (broiTorti + broiGofreti + broiPala4inki) * dniNaKampaniata;
-  let totalExpenses = totalIncome * (1 / 8);
-  let returnsForCharity = totalIncome - totalExpenses;
-  console.log(returnsForCharity);
+  // get the number of days total
+  // get the number of pastry chefs
+  // get the daily produce cakes, waffles, pancakes for each chef
+  // get the dayly returns vs. daily expenses
+  // get the campaign returns minus the campaign expenses
+  let cakePrice = 45;
+  let wafflesPrice = 5.8;
+  let pancakesPrice = 3.2;
+  let daysTotal = Number(input[0]);
+  let numberOfChefs = Number(input[1]);
+  let cakesPerDay = Number(input[2]) * cakePrice;
+  let wafflesPerDay = Number(input[3]) * wafflesPrice;
+  let pancakesPerDay = Number(input[4]) * pancakesPrice;
+  let dailyProduce =
+    (cakesPerDay + wafflesPerDay + pancakesPerDay) * numberOfChefs;
+  let campaignCharityTotalReturns = dailyProduce * daysTotal;
+  let expenses = campaignCharityTotalReturns * (1 / 8);
+  //   console.log(cakesPerDay, wafflesPrice, pancakesPerDay);
+
+  //   console.log(campaignCharityTotalReturns);
+  //   console.log(expenses);
+  let netCharityReturns = campaignCharityTotalReturns - expenses;
+  console.log(netCharityReturns);
 }
-pastryShopCharityChampaign(["23", "8", "14", "30", "16"]); // wrong output
+pastryShopCharityChampaign(["23", "8", "14", "30", "16"]);
+pastryShopCharityChampaign(["131", "5", "9", "33", "46"]);
