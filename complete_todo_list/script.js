@@ -83,24 +83,40 @@ function edittask(index) {
   // the lifecycle of webstaks does not starts by user clicking the
   // edit button
   let webTask = localStorage.getItem("localtask");
+  console.log(`Piece 3. Gets the the task from the LS to display it
+  in the input for updating`);
   let taskObject = JSON.parse(webTask);
+  console.log(`Piece 3.1. Parses the webtask value to its orginal format to
+  show it in the tasklist`);
   addTaskInput.value = taskObject[index];
+  console.log(`Piece 3.2. Targets the task by its index 
+  from the array of strings as stored in LS`);
   // these lines up
   addTaskBtn.style.display = "none";
+  console.log("Piece 3.3. Removes the add task button");
   savetaskbtn.style.display = "block";
+  console.log("Piece 3.4. Displays the update button instead of the add task");
 }
 
 // save task
 let savetaskbtn = document.getElementById("savetaskbtn");
 savetaskbtn.addEventListener("click", function () {
+  console.log(`Pieces 4. Triggers the function by clicking the update button`);
   let webTask = localStorage.getItem("localtask");
+  console.log(`Piece 4.1. Gets the the task from the LS to display it
+  in the input for updating`);
   let taskObject = JSON.parse(webTask);
+  console.log(`Piece 4.2. Parses the webtask value to its orginal format to
+  show it in the tasklist`);
   let saveindex = document.getElementById("saveindex").value;
+  console.log(0.1);
   taskObject[saveindex] = addTaskInput.value;
+  console.log(0.2);
   savetaskbtn.style.display = "none";
   addTaskBtn.style.display = "block";
   addTaskInput.value = "";
   localStorage.setItem("localtask", JSON.stringify(taskObject));
+  console.log(0.3);
   showTask();
 });
 
