@@ -219,9 +219,9 @@ function calculateAquarium(input) {
   let length = Number(input[2]);
   let percentage = Number(input[3]);
   let cubeAquarium = height * width * length;
-  console.log(cubeAquarium);
+  //   console.log(cubeAquarium);
   let volumeAquarium = cubeAquarium / 1000; // same as cubeAquarium * 0.001
-  console.log(volumeAquarium);
+  //   console.log(volumeAquarium);
   let netLitresNeeded = volumeAquarium * (1 - percentage / 100);
   console.log(netLitresNeeded);
 }

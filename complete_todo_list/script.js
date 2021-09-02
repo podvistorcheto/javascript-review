@@ -15,14 +15,29 @@ showTask();
 addTaskBtn.addEventListener("click", function () {
   addTaskInputValue = addTaskInput.value;
   if (addTaskInputValue.trim() != 0) {
+    // get the web task values from local storage
     let webTask = localStorage.getItem("localtask");
+    console.log(
+      `Piece 1.4. Gets the values of the localtask to display in the list`
+    );
     if (webTask == null) {
       taskObject = [];
+      console.log(
+        "Piece 1: Creates an empty array to be populated with data from the user input"
+      );
     } else {
       taskObject = JSON.parse(webTask);
+      console.log(`Piece 1.1. Transforms the task from JSON in original format
+      to show it in the list`);
     }
     taskObject.push(addTaskInputValue);
+    console.log(
+      "Piece 1.2. Pushes the task in the empty array to show in the browser"
+    );
     localStorage.setItem("localtask", JSON.stringify(taskObject));
+    console.log(`Piece 1.3. Sets the item ready for LS,
+    then formats it to JSON and the function 'stringify' transforms
+    the object into a string (LS stores strings only) that can be referenced with the key 'localtask`);
     addTaskInput.value = "";
   }
   showTask();
@@ -33,8 +48,14 @@ function showTask() {
   let webTask = localStorage.getItem("localtask");
   if (webTask == null) {
     taskObject = [];
+    console.log(
+      "Piece 2: No tasks to show, hence creates an empty array, and waits for user input"
+    );
   } else {
     taskObject = JSON.parse(webTask);
+    console.log(
+      `Piece 2.1: object websTask exists already in LS, it has stored at least the key of 'localtask'.`
+    );
   }
   let html = "";
   let addedtasklist = document.getElementById("addedtasklist");
