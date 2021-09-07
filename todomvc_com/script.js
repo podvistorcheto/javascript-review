@@ -1,73 +1,83 @@
 "use strict";
 
-const test = true;
-console.log(true);
+// select the elements for the DOM
+const form = document.querySelector("#itemForm");
+const inputItem = document.querySelector("#itemInput");
+const itemsList = document.querySelector("#itemsList");
+const filters = document.querySelector(".nav-item");
 
-// select the elements in html
-const form = document.querySelector("#taskForm");
-const inputTask = document.querySelector("#taskInput");
-const taskList = document.querySelector("#taskList");
-const filterTask = document.querySelector(".nav-item");
+let todoItems = [];
 
-let taskItems = [];
-
-// 1. Initialize the add task form
-
-document.addEventListener("DOMContentLoaded", function () {
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const taskName = inputTask.value.trim();
-    if (taskName.length === 0) {
-      // console.log(taskName);
-    } else {
-      let taskObject = {
-        name: taskName,
-        completed: false,
-        id: new Date().getTime(),
-      };
-      taskItems.push(taskObject);
-      addLocalStorage(taskItems);
+// step 5 manage the items
+const handleItem = function (itemDate) {
+  const items = document.querySelectorAll(".list-group-item");
+  items.forEach((item) => {
+    if (
+      item.querySelector(".title").getAttribute("data-time") == itemDate.addedAt
+    ) {
+      // mark item as completed
+      item.querySelector("[data-done]").addEventListener("click", function (e) {
+        e.preventDefault();
+        alert("Hi!");
+      });
     }
   });
-  //  load task list
-  getLocalStorage();
-});
-
-// 2. sent tasks to LS
-const addLocalStorage = function (taskItems) {
-  localStorage.setItem("taskItems", JSON.stringify(taskItems));
 };
 
-// 3. get tasks from LS
-const getLocalStorage = function () {
-  let taskStorage = localStorage.getItem("taskItems");
-  if (taskStorage === "undefined" || taskStorage === null) {
-    taskItems = [];
-  } else {
-    taskItems = JSON.parse(taskStorage);
-  }
-  console.log("tasks", taskItems);
-  showList(taskItems);
-};
-
-// 4. show list to UI
-const showList = function (taskItems) {
-  taskList.innerHTML = "";
-  if (taskItems.length > 0) {
-    taskItems.forEach((task) => {
-      taskList.insertAdjacentHTML(
+// step 4 get the list for the UI
+const getList = function (todoItems) {
+  itemsList.innerHTML = "";
+  if (todoItems.length > 0) {
+    todoItems.forEach((item) => {
+      itemsList.insertAdjacentHTML(
         "beforeend",
         `<li class="list-group-item d-flex justify-content-between align-items-center">
-          <a href="#" data-done><i class="fas fa-check-circle"></i></a>
-          <span class="title" data-time="#">${task.name}</span> 
-          <span>
-            <a href="#" data-edit><i class="fas fa-edit coral"></i></a>
-            <a href="#" data-delete><i class="fas fa-trash red"></i></a>
-          </span>
-        </li>`
+      <span class="title" data-time="${item.addedAt}">${item.name}</span> 
+      <span>
+          <a href="#" data-done><i class="bi bi-check-circle green"></i></a>
+          <a href="#" data-edit><i class="bi bi-pencil-square blue"></i></a>
+          <a href="#" data-delete><i class="bi bi-x-circle red"></i></a>
+      </span>
+    </li>`
       );
+      handleItem(item);
     });
   }
 };
 
-// 5. manage items (to be implemented....)
+// step 3 get local storage from the page
+const getLocalStorage = function () {
+  const todoStorage = localStorage.getItem("todoItems");
+  if (todoStorage === "undefined" || todoStorage === null) {
+    todoItems = [];
+  } else {
+    todoItems = JSON.parse(todoStorage);
+  }
+  getList(todoItems);
+};
+
+// Step 2 - store items to local storage
+const setLocalStorage = function (todoItems) {
+  localStorage.setItem("todoItems", JSON.stringify(todoItems));
+};
+
+// Step 1: Add item
+document.addEventListener("DOMContentLoaded", () => {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const itemName = inputItem.value.trim();
+    if (itemName.length === 0) {
+      alert("Please enter name...");
+    } else {
+      const itemObj = {
+        addedAt: new Date().getTime(),
+        name: itemName,
+        isDone: false,
+      };
+      todoItems.push(itemObj);
+      setLocalStorage(todoItems);
+    }
+  });
+  // load the items from LS
+  getLocalStorage();
+});
