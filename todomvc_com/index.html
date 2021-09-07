@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <title>to_do_list</title>
+  </head>
+  <body>
+    <section class="todo-outer">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-sm-12 col-md-8">
+            <!-- <h1>Welcome in Todo List Application</h1> -->
+            <div class="todo-inner">
+              <div class="to-do-output">
+                <form id="taskForm">
+                  <div class="input-group mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="taskInput"
+                      value=""
+                      placeholder="Enter task..."
+                    />
+                    <button class="btn btn-outline-primary">ADD ITEM</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+          <div class="col-sm-12 col-md-8">
+            <ul class="nav nav-tabs">
+              <li class="nav-item" data-type="all">
+                <a class="nav-link active" href="#">All</a>
+              </li>
+              <li class="nav-item" data-type="todo">
+                <a class="nav-link" href="#">To Do</a>
+              </li>
+              <li class="nav-item" data-type="done">
+                <a class="nav-link" href="#">Completed</a>
+              </li>
+            </ul>
+            <ul class="list-group list-group-flush" id="taskList"></ul>
+            <input type="hidden" id="filterType" value="all" />
+            <input type="hidden" id="citem" value="" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
