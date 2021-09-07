@@ -16,6 +16,12 @@ const updateItem = function (currentItemIndex, value) {
   setLocalStorage(todoItems);
 };
 
+// step 7.1
+const removeItem = function (item) {
+  const removeIndex = todoItems.indexOf(item);
+  todoItems.splice(removeIndex, 1);
+};
+
 // step 5 manage the items
 const handleItem = function (itemData) {
   const items = document.querySelectorAll(".list-group-item");
@@ -46,6 +52,18 @@ const handleItem = function (itemData) {
         inputItem.value = itemData.name;
         document.querySelector("#objIndex").value = todoItems.indexOf(itemData);
       });
+      // step 7 delete task
+      item
+        .querySelector("[data-delete]")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          if (confirm("Please confirm to delete this task...")) {
+            itemsList.removeChild(item);
+            removeItem(item);
+            setLocalStorage(todoItems);
+            return todoItems.filter((item) => item != itemData);
+          }
+        });
     }
   });
 };
