@@ -9,16 +9,22 @@ const filters = document.querySelector(".nav-item");
 let todoItems = [];
 
 // step 5 manage the items
-const handleItem = function (itemDate) {
+const handleItem = function (itemData) {
   const items = document.querySelectorAll(".list-group-item");
   items.forEach((item) => {
     if (
-      item.querySelector(".title").getAttribute("data-time") == itemDate.addedAt
+      item.querySelector(".title").getAttribute("data-time") == itemData.addedAt
     ) {
       // mark item as completed
       item.querySelector("[data-done]").addEventListener("click", function (e) {
         e.preventDefault();
-        alert("Hi!");
+        // alert("Hi!");
+        const itemIndex = todoItems.indexOf(itemData);
+        const currentItem = todoItems[itemIndex];
+
+        currentItem.isDone = currentItem.isDone ? false : true;
+        todoItems.splice(itemIndex, 1, currentItem);
+        setLocalStorage(todoItems);
       });
     }
   });
