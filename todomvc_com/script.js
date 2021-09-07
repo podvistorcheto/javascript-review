@@ -8,6 +8,14 @@ const filters = document.querySelector(".nav-item");
 
 let todoItems = [];
 
+// step 6.1
+const updateItem = function (currentItemIndex, value) {
+  const newItem = todoItems[currentItemIndex];
+  newItem.name = value;
+  todoItems.splice(currentItemIndex, 1, newItem);
+  setLocalStorage(todoItems);
+};
+
 // step 5 manage the items
 const handleItem = function (itemData) {
   const items = document.querySelectorAll(".list-group-item");
@@ -21,10 +29,22 @@ const handleItem = function (itemData) {
         // alert("Hi!");
         const itemIndex = todoItems.indexOf(itemData);
         const currentItem = todoItems[itemIndex];
-
+        const currentClass = currentItem.isDone
+          ? "bi-check-circle-fill"
+          : "bi-check-circle";
         currentItem.isDone = currentItem.isDone ? false : true;
         todoItems.splice(itemIndex, 1, currentItem);
         setLocalStorage(todoItems);
+        const iconClass = currentItem.isDone
+          ? "bi-check-circle-fill"
+          : "bi-check-circle";
+        this.firstElementChild.classList.replace(currentClass, iconClass);
+      });
+      // step 6 edit task
+      item.querySelector("[data-edit]").addEventListener("click", function (e) {
+        e.preventDefault();
+        inputItem.value = itemData.name;
+        document.querySelector("#objIndex").value = todoItems.indexOf(itemData);
       });
     }
   });
@@ -35,12 +55,15 @@ const getList = function (todoItems) {
   itemsList.innerHTML = "";
   if (todoItems.length > 0) {
     todoItems.forEach((item) => {
+      const iconClass = item.isDone
+        ? "bi-check-circle-fill"
+        : "bi-check-circle";
       itemsList.insertAdjacentHTML(
         "beforeend",
         `<li class="list-group-item d-flex justify-content-between align-items-center">
       <span class="title" data-time="${item.addedAt}">${item.name}</span> 
       <span>
-          <a href="#" data-done><i class="bi bi-check-circle green"></i></a>
+          <a href="#" data-done><i class="bi ${iconClass} green"></i></a>
           <a href="#" data-edit><i class="bi bi-pencil-square blue"></i></a>
           <a href="#" data-delete><i class="bi bi-x-circle red"></i></a>
       </span>
@@ -75,14 +98,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (itemName.length === 0) {
       alert("Please enter name...");
     } else {
-      const itemObj = {
-        addedAt: new Date().getTime(),
-        name: itemName,
-        isDone: false,
-      };
-      todoItems.push(itemObj);
-      setLocalStorage(todoItems);
+      const currentItemIndex = document.querySelector("#objIndex").value;
+      if (currentItemIndex) {
+        // update item
+        updateItem(currentItemIndex, itemName);
+        document.querySelector("#objIndex").value = "";
+      } else {
+        const itemObj = {
+          addedAt: new Date().getTime(),
+          name: itemName,
+          isDone: false,
+        };
+        todoItems.push(itemObj);
+        setLocalStorage(todoItems);
+      }
+      getList(todoItems);
     }
+    inputItem.value = "";
   });
   // load the items from LS
   getLocalStorage();
