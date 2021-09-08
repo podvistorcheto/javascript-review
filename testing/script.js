@@ -13,13 +13,12 @@ let itemsList = document.querySelector("#itemsList");
 const getLocalStorage = function () {
   let webTask = localStorage.getItem("todoItems");
   if (webTask === "undefined" || webTask === null) {
-    todoItems = [];
     console.log(5);
   } else {
     todoItems = JSON.parse(webTask);
     console.log(6);
   }
-  showTask();
+  showTask(todoItems);
   console.log(8);
 };
 
@@ -30,7 +29,8 @@ const setLocalStorage = function (todoItems) {
 };
 
 // Step 1: Add task and store in LS
-addTaskBtn.addEventListener("click", function () {
+addTaskBtn.addEventListener("click", function (e) {
+  e.preventDefault();
   addTaskInputValue = addTaskInput.value;
   if (addTaskInputValue.length === 0) {
     alert("Please add a task...");
@@ -44,7 +44,6 @@ addTaskBtn.addEventListener("click", function () {
     console.log(1);
     setLocalStorage(todoItems);
     console.log(2);
-    console.log(taskObject);
     addTaskInput.value = "";
     console.log(3);
   }
@@ -54,38 +53,29 @@ addTaskBtn.addEventListener("click", function () {
 });
 
 // step 4 get the list for the UI
-function showTask() {
-  let webTask = localStorage.getItem("todoItems");
-  if (webTask == null) {
-    taskObject = [];
-    console.log(
-      "Piece 2: No tasks to show, hence creates an empty array, and waits for user input"
-    );
+function showTask(todoItems) {
+  if (todoItems == null) {
+    console.log("no todos");
   } else {
-    taskObject = JSON.parse(webTask);
-    console.log(
-      `Piece 2.1: object websTask exists already in LS, it has stored at least the key of 'localtask'.`
-    );
+    let html = "";
+    let addedtasklist = document.getElementById("addedtasklist");
+    for (let i = 0; i < todoItems.length; i++) {
+      html += `<tr>
+      <th><i class="far fa-check-square"></i></th>
+      <td>${todoItems[i].name}</td>
+      <td><button type="button"
+      class="text-primary"><i class="fas fa-edit"></i>
+      Edit</button></td>
+      <td><button type="button"
+      class="text-danger"><i class="fas fa-trash-alt"></i>
+      Remove</button></td>
+  </tr>`;
+      addedtasklist.innerHTML = html;
+      console.log(addedtasklist);
+    }
   }
-  let html = "";
-  let addedtasklist = document.getElementById("addedtasklist");
-  taskObject.forEach((item, index) => {
-    console.log(item);
-    html += `<tr>
-                      <th><i class="far fa-check-square"></i></th>
-                      <td>${item.id}</td>
-                      <td>${item.name}</td>
-                      <td>${item.completed}</td>
-                      <td><button type="button" onclick="edittask(${item.id})"
-                      class="text-primary"><i class="fas fa-edit"></i>
-                      Edit</button></td>
-                      <td><button type="button" onclick="deleteitem(${index})"
-                      class="text-danger"><i class="fas fa-trash-alt"></i>
-                      Remove</button></td>
-                  </tr>`;
-  });
-  addedtasklist.innerHTML = html;
 }
+
 // Step 5 - Manage Items
 
 // method to edit task
@@ -147,44 +137,3 @@ function edittask(id) {
 //   localStorage.setItem("localtask", JSON.stringify(taskObject));
 //   showTask();
 // }
-
-// // clear all method
-// let deleteallbtn = document.getElementById("deleteallbtn");
-// deleteallbtn.addEventListener("click", function () {
-//   let savetaskbtn = document.getElementById("savetaskbtn");
-//   let addTaskBtn = document.getElementById("addtaskbtn");
-//   let webTask = localStorage.getItem("localtask");
-//   let taskObject = JSON.parse(webTask);
-//   if (taskObject == 0) {
-//     taskObject = [];
-//   } else {
-//     taskObject = JSON.parse(webTask);
-//     taskObject = [];
-//   }
-//   savetaskbtn.style.display = "none";
-//   addTaskBtn.style.display = "block";
-//   localStorage.setItem("localtask", JSON.stringify(taskObject));
-//   showTask();
-// });
-
-// // search box method
-// let searchtextbox = document.getElementById("searchtextbox");
-// searchtextbox.addEventListener("input", function () {
-//   let trlist = document.querySelector("tr");
-//   Array.from(trlist).forEach(function (item) {
-//     let searchedtext = item.getElementsByTagName("td")[0].innerText;
-//     let searchtextboxval = searchtextbox.value;
-//     let re = new RegExp(searchtextboxval, "gi");
-//     if (searchedtext.match(re)) {
-//       item.style.display = "table-row";
-//     } else {
-//       item.style.display = "none";
-//     }
-//   });
-// });
-// Action points:
-// Separation of concerns. Google. Styling update, data update (optional)
-// Add feature marking as done. Done should be visually highlighted. Also it should be persistent.
-// Advanced: Add feature: mark currently editing task in green
-// Read about event delegation, event bubbling
-// Refactor: saveData, loadData
