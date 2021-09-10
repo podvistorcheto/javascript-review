@@ -20,31 +20,11 @@
     <title>To Do List</title>
   </head>
   <body>
-    <header class="bg-dark mb-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <nav class="navbar justify-content-between">
-              <a class="navbar-brand" id="date">Todo List</a>
-              <form class="form-inline">
-                <input
-                  class="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                  id="searchtextbox"
-                />
-              </form>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header>
     <section class="todo-outer">
       <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-sm-12 col-md-8">
-            <div><h1>My Todo List</h1></div>
+            <div><h4>todo List</h4></div>
             <div class="todo-inner">
               <div class="form-row">
                 <div class="col-8 mr-sm-2">
@@ -71,15 +51,13 @@
                 >
                   Update
                 </button>
-                <button type="button" id="deleteallbtn" class="btn btn-light">
-                  Delete All
-                </button>
               </div>
               <div class="to-do-output">
-                <table
-                  class="table table-striped mt-3 mb-0"
-                  id="addedtasklist"
-                ></table>
+                <ul id="item-list" class="list-group">
+                  <!-- <li class="list-group-item">Task One</li>
+                  <li class="list-group-item">Task Two</li>
+                  <li class="list-group-item">Task Three</li> -->
+                </ul>
               </div>
             </div>
           </div>

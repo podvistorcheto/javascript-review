@@ -1,17 +1,12 @@
 body {
+  margin: 0;
   font-family: Lato;
-  background: #f5f5f5;
-}
-
-#date {
-  color: #fafafa;
-}
-header .navbar {
-  padding: 0.5rem 0;
-}
-
-header nav.navbar .navbar-brand {
-  color: #fafafa;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: rgb(61, 57, 57);
 }
 
 section.todo-outer {
@@ -30,21 +25,8 @@ section.todo-outer h1 {
   float: left;
   padding: 40px;
   box-shadow: 0px 0px 10px #c1c1c1;
-  background: #fff;
-}
-
-table tr td button {
-  background: no-repeat;
-  border: none;
-  padding: 0;
-  cursor: pointer;
 }
 
 .completed {
   text-decoration: line-through;
-}
-
-.fab,
-.far {
-  font-size: 32px;
 }
