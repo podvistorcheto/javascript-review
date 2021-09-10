@@ -14,9 +14,9 @@ const ItemCtrl = (function () {
   // data structure / state
   const data = {
     items: [
-      { id: 0, name: "Task One", completed: false },
-      { id: 1, name: "Task Two", completed: false },
-      { id: 2, name: "Task Three", completed: false },
+      // {id: 0, name: 'Task One', completed:false},
+      // {id: 1, name: 'Task Two', completed:false},
+      // {id: 2, name: 'Task Three', completed:false}
     ],
     currentItem: null,
   };
@@ -63,10 +63,10 @@ const UICtrl = (function () {
       items.forEach(function (item) {
         html += `<li class="list-group-item d-flex justify-content-between align-items-center" id="item-${item.id}">
           <p>${item.completed}<i class="far fa-check-circle"></i></p><strong>${item.name}</strong>
-          <span class="badge badge-success badge-pill"><i class="fas fa-edit"></i></span>
+          <span class="badge badge-success badge-pill"><i class="fas fa-edit"></i>
         </li>`;
       });
-      // insert list items
+      // insert list with items
       document.querySelector(UISelectors.itemList).innerHTML = html;
     },
     getItemInput: function () {
@@ -76,6 +76,26 @@ const UICtrl = (function () {
           UISelectors.itemCompletedStatus
         ).value = false),
       };
+    },
+    addListItem: function (item) {
+      // create li element
+      const li = document.createElement("li");
+      // Add classes
+      li.className =
+        "list-group-item d-flex justify-content-between align-items-center";
+      // Add ID
+      li.id = `item-${item.id}`;
+      // Add html
+      li.innerHTML = `<p>${item.completed}<i class="far fa-check-circle"></i></p><strong>${item.name}</strong>
+        <span class="badge badge-success badge-pill"><i class="fas fa-edit"></i></span>`;
+      // insert item
+      document
+        .querySelector(UISelectors.itemList)
+        .insertAdjacentElement("beforeend", li);
+    },
+    clearInput: function () {
+      document.querySelector(UISelectors.itemNameInput).value = "";
+      document.querySelector(UISelectors.itemCompletedStatus).value = "";
     },
     getSelectors: function () {
       return UISelectors;
@@ -102,7 +122,12 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
     if (input.name !== "") {
       // Add item
       const newItem = ItemCtrl.addItem(input.name, input.completed);
+      UICtrl.addListItem(newItem);
+
+      // Clear input fields
+      UICtrl.clearInput();
     }
+
     e.preventDefault();
   };
   // Public methods to start the app with all features from ItemCtrl and UICtrl
