@@ -26,6 +26,22 @@ const ItemCtrl = (function () {
     getItems: function () {
       return data.items;
     },
+    addItem: function (name, completed) {
+      let ID;
+      // Create ID with auto increment
+      if (data.items.length > 0) {
+        ID = data.items[data.items.length - 1].id + 1;
+      } else {
+        ID = 0;
+      }
+      // switch completed to boolean
+      // completed = false;
+      // Create new item
+      newItem = new Item(ID, name, completed);
+      // add to items array
+      data.items.push(newItem);
+      return newItem;
+    },
     logData: function () {
       return data;
     },
@@ -36,6 +52,9 @@ const ItemCtrl = (function () {
 const UICtrl = (function () {
   const UISelectors = {
     itemList: "#item-list",
+    addBtn: ".add-btn",
+    itemNameInput: ".item-name",
+    itemCompletedStatus: ".item-completed",
   };
   // Fetch items from data structure
   return {
@@ -50,11 +69,42 @@ const UICtrl = (function () {
       // insert list items
       document.querySelector(UISelectors.itemList).innerHTML = html;
     },
+    getItemInput: function () {
+      return {
+        name: document.querySelector(UISelectors.itemNameInput).value,
+        completed: (document.querySelector(
+          UISelectors.itemCompletedStatus
+        ).value = false),
+      };
+    },
+    getSelectors: function () {
+      return UISelectors;
+    },
   };
 })();
 
 // App controller
 const AppCtrl = (function (ItemCtrl, UICtrl) {
+  // create event listeners
+  const loadEventListeners = function () {
+    // variable to use the getSelectors from UICtrl in AppCtrl
+    const UISelectors = UICtrl.getSelectors();
+    // Add item event to Data Storage
+    document
+      .querySelector(UISelectors.addBtn)
+      .addEventListener("click", itemAddSubmit);
+  };
+  // add item submit method from the event listener
+  const itemAddSubmit = function (e) {
+    // get item input from UICtrl
+    const input = UICtrl.getItemInput();
+    // check for user input
+    if (input.name !== "") {
+      // Add item
+      const newItem = ItemCtrl.addItem(input.name, input.completed);
+    }
+    e.preventDefault();
+  };
   // Public methods to start the app with all features from ItemCtrl and UICtrl
   return {
     init: function () {
@@ -63,6 +113,8 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
       const items = ItemCtrl.getItems();
       // Populate list with the items
       UICtrl.populateItemList(items);
+      // load event listeners
+      loadEventListeners();
     },
   };
 })(ItemCtrl, UICtrl);
