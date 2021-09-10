@@ -42,6 +42,22 @@ const ItemCtrl = (function () {
       data.items.push(newItem);
       return newItem;
     },
+    getItemById: function (id) {
+      let found = null;
+      // loop through the items
+      data.items.forEach(function (item) {
+        if (item.id === id) {
+          found = item;
+        }
+      });
+      return found;
+    },
+    setCurrentItem: function (item) {
+      data.currentItem = item;
+    },
+    getCurrentItem: function () {
+      return data.currentItem;
+    },
     logData: function () {
       return data;
     },
@@ -53,6 +69,9 @@ const UICtrl = (function () {
   const UISelectors = {
     itemList: "#item-list",
     addBtn: ".add-btn",
+    updateBtn: ".edit-item",
+    saveUpdateBtn: "#savetaskbtn",
+    markBtn: ".mark-completed",
     itemNameInput: ".item-name",
     itemCompletedStatus: ".item-completed",
   };
@@ -62,8 +81,8 @@ const UICtrl = (function () {
       let html = "";
       items.forEach(function (item) {
         html += `<li class="list-group-item d-flex justify-content-between align-items-center" id="item-${item.id}">
-          <p>${item.completed}<i class="far fa-check-circle"></i></p><strong>${item.name}</strong>
-          <span class="badge badge-success badge-pill"><i class="fas fa-edit"></i>
+          <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
+          <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
         </li>`;
       });
       // insert list with items
@@ -86,8 +105,8 @@ const UICtrl = (function () {
       // Add ID
       li.id = `item-${item.id}`;
       // Add html
-      li.innerHTML = `<p>${item.completed}<i class="far fa-check-circle"></i></p><strong>${item.name}</strong>
-        <span class="badge badge-success badge-pill"><i class="fas fa-edit"></i></span>`;
+      li.innerHTML = `<p>${item.completed}<i class="mark-completed far fa-check-circle"></i></p><strong>${item.name}</strong>
+        <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
       // insert item
       document
         .querySelector(UISelectors.itemList)
@@ -97,6 +116,20 @@ const UICtrl = (function () {
       document.querySelector(UISelectors.itemNameInput).value = "";
       document.querySelector(UISelectors.itemCompletedStatus).value = "";
     },
+    addItemToForm: function () {
+      document.querySelector(UISelectors.itemNameInput).value =
+        ItemCtrl.getCurrentItem().name;
+      UICtrl.showEditState();
+    },
+    clearEditState: function () {
+      document.querySelector(UISelectors.saveUpdateBtn).style.display = "none";
+      document.querySelector(UISelectors.addBtn).style.display = "inline";
+    },
+    showEditState: function () {
+      document.querySelector(UISelectors.saveUpdateBtn).style.display =
+        "inline";
+      document.querySelector(UISelectors.addBtn).style.display = "none";
+    },
     getSelectors: function () {
       return UISelectors;
     },
@@ -105,6 +138,7 @@ const UICtrl = (function () {
 
 // App controller
 const AppCtrl = (function (ItemCtrl, UICtrl) {
+  UICtrl.clearEditState();
   // create event listeners
   const loadEventListeners = function () {
     // variable to use the getSelectors from UICtrl in AppCtrl
@@ -113,6 +147,14 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
     document
       .querySelector(UISelectors.addBtn)
       .addEventListener("click", itemAddSubmit);
+    // Edit icon click event
+    document
+      .querySelector(UISelectors.itemList)
+      .addEventListener("click", itemUpdateClick);
+    // Edit item submit event
+    document
+      .querySelector(UISelectors.updateBtn)
+      .addEventListener("click", itemUpdateSubmit);
   };
   // add item submit method from the event listener
   const itemAddSubmit = function (e) {
@@ -130,10 +172,38 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
 
     e.preventDefault();
   };
+
+  // Update item submit
+  const itemUpdateClick = function (e) {
+    if (e.target.classList.contains("edit-item")) {
+      // Get list item ID
+      const listId = e.target.parentNode.parentNode.id;
+      // break into an array
+      const listIdArr = listId.split("-");
+      // get the actual id of the item
+      const id = parseInt(listIdArr[1]);
+      // get item
+      const itemToEdit = ItemCtrl.getItemById(id);
+      console.log(itemToEdit);
+      // set current item
+      ItemCtrl.setCurrentItem(itemToEdit);
+      // Add item to form
+      UICtrl.addItemToForm();
+      //
+    }
+    e.preventDefault();
+  };
+
+  const itemUpdateSubmit = function (e) {
+    console.log("update");
+    e.preventDefault();
+  };
+
   // Public methods to start the app with all features from ItemCtrl and UICtrl
   return {
     init: function () {
       console.log("App Initialiazed...");
+      //
       // load the items
       const items = ItemCtrl.getItems();
       // Populate list with the items
