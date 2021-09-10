@@ -52,6 +52,17 @@ const ItemCtrl = (function () {
       });
       return found;
     },
+    updateItem: function (name, completed) {
+      let found = null;
+      data.items.forEach(function (item) {
+        if (item.id === data.currentItem.id) {
+          item.name = name;
+          item.completed = completed;
+          found = item;
+        }
+      });
+      return found;
+    },
     setCurrentItem: function (item) {
       data.currentItem = item;
     },
@@ -117,9 +128,9 @@ const UICtrl = (function () {
       document.querySelector(UISelectors.itemCompletedStatus).value = "";
     },
     addItemToForm: function () {
+      UICtrl.showEditState();
       document.querySelector(UISelectors.itemNameInput).value =
         ItemCtrl.getCurrentItem().name;
-      UICtrl.showEditState();
     },
     clearEditState: function () {
       document.querySelector(UISelectors.saveUpdateBtn).style.display = "none";
@@ -153,7 +164,7 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
       .addEventListener("click", itemUpdateClick);
     // Edit item submit event
     document
-      .querySelector(UISelectors.updateBtn)
+      .querySelector(UISelectors.saveUpdateBtn)
       .addEventListener("click", itemUpdateSubmit);
   };
   // add item submit method from the event listener
@@ -195,7 +206,10 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
   };
 
   const itemUpdateSubmit = function (e) {
-    console.log("update");
+    // Get item input
+    const input = UICtrl.getItemInput();
+    // update the item
+    const updatedItem = ItemCtrl.updateItem(input.name, input.completed);
     e.preventDefault();
   };
 
