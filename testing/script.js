@@ -79,6 +79,7 @@ const ItemCtrl = (function () {
 const UICtrl = (function () {
   const UISelectors = {
     itemList: "#item-list",
+    listItems: "#item-list li",
     addBtn: ".add-btn",
     updateBtn: ".edit-item",
     saveUpdateBtn: "#savetaskbtn",
@@ -92,9 +93,9 @@ const UICtrl = (function () {
       let html = "";
       items.forEach(function (item) {
         html += `<li class="list-group-item d-flex justify-content-between align-items-center" id="item-${item.id}">
-          <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
-          <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
-        </li>`;
+            <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
+            <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
+          </li>`;
       });
       // insert list with items
       document.querySelector(UISelectors.itemList).innerHTML = html;
@@ -117,11 +118,26 @@ const UICtrl = (function () {
       li.id = `item-${item.id}`;
       // Add html
       li.innerHTML = `<p>${item.completed}<i class="mark-completed far fa-check-circle"></i></p><strong>${item.name}</strong>
-        <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
+          <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
       // insert item
       document
         .querySelector(UISelectors.itemList)
         .insertAdjacentElement("beforeend", li);
+    },
+    updateListItem: function (item) {
+      let listItems = document.querySelectorAll(UISelectors.listItems);
+      // convert listItems from node list to array
+      listItems = Array.from(listItems);
+
+      listItems.forEach(function (listItem) {
+        const itemID = listItem.getAttribute("id");
+        if (itemID === `item-${item.id}`) {
+          document.querySelector(
+            `#${itemID}`
+          ).innerHTML = `<p>${item.completed}<i class="mark-completed far fa-check-circle"></i></p><strong>${item.name}</strong>
+            <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
+        }
+      });
     },
     clearInput: function () {
       document.querySelector(UISelectors.itemNameInput).value = "";
@@ -208,8 +224,12 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
   const itemUpdateSubmit = function (e) {
     // Get item input
     const input = UICtrl.getItemInput();
-    // update the item
+    // update the item in the data storage
     const updatedItem = ItemCtrl.updateItem(input.name, input.completed);
+    // update item in the UI
+    UICtrl.updateListItem(updatedItem);
+    UICtrl.clearEditState();
+    UICtrl.clearInput();
     e.preventDefault();
   };
 
