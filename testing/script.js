@@ -93,7 +93,7 @@ const UICtrl = (function () {
       let html = "";
       items.forEach(function (item) {
         html += `<li class="list-group-item d-flex justify-content-between align-items-center" id="item-${item.id}">
-            <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
+            <p>${item.completed}<i class="mark-completed fas fa-calendar-minus"></i></p><strong>${item.name}</strong>
             <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
           </li>`;
       });
@@ -117,7 +117,7 @@ const UICtrl = (function () {
       // Add ID
       li.id = `item-${item.id}`;
       // Add html
-      li.innerHTML = `<p>${item.completed}<i class="mark-completed far fa-check-circle"></i></p><strong>${item.name}</strong>
+      li.innerHTML = `<p>${item.completed}<i class="mark-completed far fa-calendar-minus"></i></p><strong>${item.name}</strong>
           <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
       // insert item
       document
@@ -134,11 +134,16 @@ const UICtrl = (function () {
         if (itemID === `item-${item.id}`) {
           document.querySelector(
             `#${itemID}`
-          ).innerHTML = `<p>${item.completed}<i class="mark-completed far fa-check-circle"></i></p><strong>${item.name}</strong>
+          ).innerHTML = `<p>${item.completed}<i class="mark-completed far fa-calendar-minus"></i></p><strong>${item.name}</strong>
             <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
         }
       });
     },
+    // completedListItem: function () {
+    //   document.querySelector(UISelectors.itemCompletedStatus).value =
+    //     ItemCtrl.getCurrentItem();
+    //   alert(ItemCtrl.getCurrentItem());
+
     clearInput: function () {
       document.querySelector(UISelectors.itemNameInput).value = "";
       document.querySelector(UISelectors.itemCompletedStatus).value = "";
@@ -182,7 +187,12 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
     document
       .querySelector(UISelectors.saveUpdateBtn)
       .addEventListener("click", itemUpdateSubmit);
+    // mark completed event
+    document
+      .querySelector(UISelectors.markBtn)
+      .addEventListener("click", itemMarkComplete);
   };
+
   // add item submit method from the event listener
   const itemAddSubmit = function (e) {
     // get item input from UICtrl
@@ -200,7 +210,7 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
     e.preventDefault();
   };
 
-  // Update item submit
+  // Update item click
   const itemUpdateClick = function (e) {
     if (e.target.classList.contains("edit-item")) {
       // Get list item ID
@@ -211,7 +221,6 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
       const id = parseInt(listIdArr[1]);
       // get item
       const itemToEdit = ItemCtrl.getItemById(id);
-      console.log(itemToEdit);
       // set current item
       ItemCtrl.setCurrentItem(itemToEdit);
       // Add item to form
@@ -233,6 +242,21 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
     e.preventDefault();
   };
 
+  const itemMarkComplete = function (e) {
+    // get the item to complete it
+    if (e.target.classList.contains("mark-completed")) {
+      const listId = e.target.parentNode.parentNode.id;
+      const listIdArr = listId.split("-");
+      const id = parseInt(listIdArr[1]);
+      // get list item completed status
+      const itemIsCompleted = ItemCtrl.getItemById(id);
+      // set is as current item
+      ItemCtrl.setCurrentItem(itemIsCompleted);
+      alert(itemIsCompleted.completed);
+      console.log(itemIsCompleted);
+    }
+    e.preventDefault();
+  };
   // Public methods to start the app with all features from ItemCtrl and UICtrl
   return {
     init: function () {
