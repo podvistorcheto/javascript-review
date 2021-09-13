@@ -63,6 +63,18 @@ const ItemCtrl = (function () {
       });
       return found;
     },
+    markItem: function (completed) {
+      //get the ids
+      const completes = data.items.map(function (item) {
+        return item.completed;
+      });
+      const index = completes.indexOf(completed);
+      const currentItem = data.items[index];
+      // alert(currentItem.completed);
+      currentItem.completed = currentItem.completed ? false : true;
+      data.items.splice(index, 1, currentItem);
+      console.log(currentItem.completed);
+    },
     setCurrentItem: function (item) {
       data.currentItem = item;
     },
@@ -123,6 +135,13 @@ const UICtrl = (function () {
       document
         .querySelector(UISelectors.itemList)
         .insertAdjacentElement("beforeend", li);
+    },
+    markListItemCompleted: function () {
+      return {
+        completed: (document.querySelector(
+          UISelectors.itemCompletedStatus
+        ).value = true),
+      };
     },
     updateListItem: function (item) {
       let listItems = document.querySelectorAll(UISelectors.listItems);
@@ -249,19 +268,17 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
       const listIdArr = listId.split("-");
       const id = parseInt(listIdArr[1]);
       // get list item completed status
-      const itemIsCompleted = ItemCtrl.getItemById(id);
-      // set is as current item
-      ItemCtrl.setCurrentItem(itemIsCompleted);
-      alert(itemIsCompleted.completed);
-      console.log(itemIsCompleted);
+      const status = UICtrl.getItemInput();
+      // mark item as complete in data storage
+      const itemIsCompleted = ItemCtrl.markItem(status.completed);
+      // update item in UI
+      UICtrl.markListItemCompleted(itemIsCompleted);
     }
     e.preventDefault();
   };
   // Public methods to start the app with all features from ItemCtrl and UICtrl
   return {
     init: function () {
-      console.log("App Initialiazed...");
-      //
       // load the items
       const items = ItemCtrl.getItems();
       // Populate list with the items
