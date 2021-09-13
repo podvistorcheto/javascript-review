@@ -9,7 +9,7 @@ const ItemCtrl = (function () {
   const Item = function (id, name, completed) {
     this.id = id;
     this.name = name;
-    this.completed = completed;
+    this.completed = false;
   };
   // data structure / state
   const data = {
@@ -70,7 +70,6 @@ const ItemCtrl = (function () {
       });
       const index = completes.indexOf(completed);
       const currentItem = data.items[index];
-      // alert(currentItem.completed);
       currentItem.completed = currentItem.completed ? false : true;
       data.items.splice(index, 1, currentItem);
       console.log(currentItem.completed);
@@ -92,6 +91,7 @@ const UICtrl = (function () {
   const UISelectors = {
     itemList: "#item-list",
     listItems: "#item-list li",
+    doneItems: "#item-list li p",
     addBtn: ".add-btn",
     updateBtn: ".edit-item",
     saveUpdateBtn: "#savetaskbtn",
@@ -105,9 +105,9 @@ const UICtrl = (function () {
       let html = "";
       items.forEach(function (item) {
         html += `<li class="list-group-item d-flex justify-content-between align-items-center" id="item-${item.id}">
-            <p>${item.completed}<i class="mark-completed fas fa-calendar-minus"></i></p><strong>${item.name}</strong>
-            <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
-          </li>`;
+              <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
+              <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
+            </li>`;
       });
       // insert list with items
       document.querySelector(UISelectors.itemList).innerHTML = html;
@@ -129,20 +129,14 @@ const UICtrl = (function () {
       // Add ID
       li.id = `item-${item.id}`;
       // Add html
-      li.innerHTML = `<p>${item.completed}<i class="mark-completed far fa-calendar-minus"></i></p><strong>${item.name}</strong>
-          <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
+      li.innerHTML = `<p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
+            <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
       // insert item
       document
         .querySelector(UISelectors.itemList)
         .insertAdjacentElement("beforeend", li);
     },
-    markListItemCompleted: function () {
-      return {
-        completed: (document.querySelector(
-          UISelectors.itemCompletedStatus
-        ).value = true),
-      };
-    },
+
     updateListItem: function (item) {
       let listItems = document.querySelectorAll(UISelectors.listItems);
       // convert listItems from node list to array
@@ -158,11 +152,15 @@ const UICtrl = (function () {
         }
       });
     },
-    // completedListItem: function () {
-    //   document.querySelector(UISelectors.itemCompletedStatus).value =
-    //     ItemCtrl.getCurrentItem();
-    //   alert(ItemCtrl.getCurrentItem());
-
+    markListItemCompleted: function (items) {
+      let completedItems = document.querySelectorAll(UISelectors.doneItems);
+      completedItems = Array.from(completedItems);
+      completedItems.forEach(function (completedItem) {
+        console.log(completedItem);
+        const classCompleted = document.getElementsByTagName("P")[0].innerHTML;
+        console.log(classCompleted);
+      });
+    },
     clearInput: function () {
       document.querySelector(UISelectors.itemNameInput).value = "";
       document.querySelector(UISelectors.itemCompletedStatus).value = "";
@@ -268,8 +266,9 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
       const listIdArr = listId.split("-");
       const id = parseInt(listIdArr[1]);
       // get list item completed status
-      const status = UICtrl.getItemInput();
+      const status = ItemCtrl.getItemById(id);
       // mark item as complete in data storage
+      console.log(status.completed);
       const itemIsCompleted = ItemCtrl.markItem(status.completed);
       // update item in UI
       UICtrl.markListItemCompleted(itemIsCompleted);
