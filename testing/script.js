@@ -66,7 +66,7 @@ const ItemCtrl = (function () {
     markItem: function (completed) {
       //get the ids
       const completes = data.items.map(function (item) {
-        return item.completed;
+        return item.id;
       });
       const index = completes.indexOf(completed);
       const currentItem = data.items[index];
@@ -157,14 +157,10 @@ const UICtrl = (function () {
       doneItems = Array.from(doneItems);
       doneItems.forEach(function (doneItem) {
         let isCompleted = doneItem.getElementsByTagName("p")[0];
-        console.log(isCompleted.parentNode.id);
-        console.log(doneItem.id);
-        if (doneItem.id === isCompleted.parentNode.id) {
+        if (doneItem.id === "item-" + item) {
           doneItem.classList.add("task-completed");
           isCompleted = doneItem.getElementsByTagName("p")[0].innerHTML =
             "(completed ✓)";
-        } else {
-          console.log(false);
         }
       });
     },
@@ -277,9 +273,9 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
       const status = ItemCtrl.getItemById(id);
       // mark item as complete in data storage
       console.log(status.completed);
-      const itemIsCompleted = ItemCtrl.markItem(status.completed);
+      const itemIsCompleted = ItemCtrl.markItem(status.id);
       // update item in UI
-      UICtrl.markListItemCompleted(itemIsCompleted);
+      UICtrl.markListItemCompleted(status.id);
     }
     e.preventDefault();
   };
