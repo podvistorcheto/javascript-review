@@ -9,7 +9,7 @@ const ItemCtrl = (function () {
   const Item = function (id, name, completed) {
     this.id = id;
     this.name = name;
-    this.completed = false;
+    this.completed = completed;
   };
   // data structure / state
   const data = {
@@ -91,7 +91,7 @@ const UICtrl = (function () {
   const UISelectors = {
     itemList: "#item-list",
     listItems: "#item-list li",
-    doneItems: "#item-list li p",
+    doneItems: "#item-list li",
     addBtn: ".add-btn",
     updateBtn: ".edit-item",
     saveUpdateBtn: "#savetaskbtn",
@@ -105,9 +105,9 @@ const UICtrl = (function () {
       let html = "";
       items.forEach(function (item) {
         html += `<li class="list-group-item d-flex justify-content-between align-items-center" id="item-${item.id}">
-              <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
-              <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
-            </li>`;
+                <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
+                <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
+              </li>`;
       });
       // insert list with items
       document.querySelector(UISelectors.itemList).innerHTML = html;
@@ -130,7 +130,7 @@ const UICtrl = (function () {
       li.id = `item-${item.id}`;
       // Add html
       li.innerHTML = `<p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
-            <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
+              <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
       // insert item
       document
         .querySelector(UISelectors.itemList)
@@ -148,19 +148,27 @@ const UICtrl = (function () {
           document.querySelector(
             `#${itemID}`
           ).innerHTML = `<p>${item.completed}<i class="mark-completed far fa-calendar-minus"></i></p><strong>${item.name}</strong>
-            <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
+              <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
         }
       });
     },
-    markListItemCompleted: function (items) {
-      let completedItems = document.querySelectorAll(UISelectors.doneItems);
-      completedItems = Array.from(completedItems);
-      completedItems.forEach(function (completedItem) {
-        console.log(completedItem);
-        const classCompleted = document.getElementsByTagName("P")[0].innerHTML;
-        console.log(classCompleted);
+    markListItemCompleted: function (item) {
+      let doneItems = document.querySelectorAll(UISelectors.doneItems);
+      doneItems = Array.from(doneItems);
+      doneItems.forEach(function (doneItem) {
+        let isCompleted = doneItem.getElementsByTagName("p")[0];
+        console.log(isCompleted.parentNode.id);
+        console.log(doneItem.id);
+        if (doneItem.id === isCompleted.parentNode.id) {
+          doneItem.classList.add("task-completed");
+          isCompleted = doneItem.getElementsByTagName("p")[0].innerHTML =
+            "(completed ✓)";
+        } else {
+          console.log(false);
+        }
       });
     },
+
     clearInput: function () {
       document.querySelector(UISelectors.itemNameInput).value = "";
       document.querySelector(UISelectors.itemCompletedStatus).value = "";
