@@ -96,6 +96,7 @@ const UICtrl = (function () {
     updateBtn: ".edit-item",
     saveUpdateBtn: "#savetaskbtn",
     markBtn: ".mark-completed",
+    deleteBtn: "#deletetaskbtn",
     itemNameInput: ".item-name",
     itemCompletedStatus: ".item-completed",
   };
@@ -105,9 +106,9 @@ const UICtrl = (function () {
       let html = "";
       items.forEach(function (item) {
         html += `<li class="list-group-item d-flex justify-content-between align-items-center" id="item-${item.id}">
-                <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
-                <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
-              </li>`;
+                  <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
+                  <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
+                </li>`;
       });
       // insert list with items
       document.querySelector(UISelectors.itemList).innerHTML = html;
@@ -130,7 +131,7 @@ const UICtrl = (function () {
       li.id = `item-${item.id}`;
       // Add html
       li.innerHTML = `<p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
-              <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
+                <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
       // insert item
       document
         .querySelector(UISelectors.itemList)
@@ -148,7 +149,7 @@ const UICtrl = (function () {
           document.querySelector(
             `#${itemID}`
           ).innerHTML = `<p>${item.completed}<i class="mark-completed far fa-calendar-minus"></i></p><strong>${item.name}</strong>
-              <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
+                <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
         }
       });
     },
@@ -177,10 +178,12 @@ const UICtrl = (function () {
     clearEditState: function () {
       document.querySelector(UISelectors.saveUpdateBtn).style.display = "none";
       document.querySelector(UISelectors.addBtn).style.display = "inline";
+      document.querySelector(UISelectors.deleteBtn).style.display = "none";
     },
     showEditState: function () {
       document.querySelector(UISelectors.saveUpdateBtn).style.display =
         "inline";
+      document.querySelector(UISelectors.deleteBtn).style.display = "inline";
       document.querySelector(UISelectors.addBtn).style.display = "none";
     },
     getSelectors: function () {
@@ -212,6 +215,11 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
     document
       .querySelector(UISelectors.markBtn)
       .addEventListener("click", itemMarkComplete);
+    // delete item
+    document
+      .querySelector(UISelectors.deleteBtn)
+      .addEventListener("click", itemDeleteSubmit);
+    // Edit icon click event
   };
 
   // add item submit method from the event listener
@@ -277,6 +285,11 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
       // update item in UI
       UICtrl.markListItemCompleted(status.id);
     }
+    e.preventDefault();
+  };
+
+  const itemDeleteSubmit = function (e) {
+    console.log(123);
     e.preventDefault();
   };
   // Public methods to start the app with all features from ItemCtrl and UICtrl

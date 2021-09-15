@@ -31,5 +31,5 @@ section.todo-outer h1 {
 
 .task-completed {
   text-decoration: line-through;
-  color: rgb(130, 153, 130);
+  color: rgb(144, 179, 144);
 }
