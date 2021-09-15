@@ -74,6 +74,16 @@ const ItemCtrl = (function () {
       data.items.splice(index, 1, currentItem);
       console.log(currentItem.completed);
     },
+    deleteItem: function (id) {
+      // find the id for the items
+      deleteIds = data.items.map(function (item) {
+        return item.id;
+      });
+      // get the item index
+      const deleteIndex = deleteIds.indexOf(id);
+      // remove item
+      data.items.splice(deleteIndex, 1);
+    },
     setCurrentItem: function (item) {
       data.currentItem = item;
     },
@@ -289,7 +299,11 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
   };
 
   const itemDeleteSubmit = function (e) {
-    console.log(123);
+    // get current item
+    const currnetItem = ItemCtrl.getCurrentItem();
+    // delete item from data structure
+    ItemCtrl.deleteItem(currnetItem.id);
+
     e.preventDefault();
   };
   // Public methods to start the app with all features from ItemCtrl and UICtrl
