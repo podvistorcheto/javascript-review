@@ -175,6 +175,11 @@ const UICtrl = (function () {
         }
       });
     },
+    deleteListItem: function (id) {
+      const targetIdDelete = `#item-${id}`;
+      const selectIdDelete = document.querySelector(targetIdDelete);
+      selectIdDelete.remove();
+    },
 
     clearInput: function () {
       document.querySelector(UISelectors.itemNameInput).value = "";
@@ -303,7 +308,11 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
     const currnetItem = ItemCtrl.getCurrentItem();
     // delete item from data structure
     ItemCtrl.deleteItem(currnetItem.id);
-
+    // Delete from the UI
+    UICtrl.deleteListItem(currnetItem.id);
+    // clear the views
+    UICtrl.clearEditState();
+    UICtrl.clearInput();
     e.preventDefault();
   };
   // Public methods to start the app with all features from ItemCtrl and UICtrl
