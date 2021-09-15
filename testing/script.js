@@ -1,7 +1,36 @@
 // Storage Controller
-// const StorageCtrl = (function(){
-
-// })();
+const StorageCtrl = (function () {
+  // public methods
+  return {
+    storeItem: function (item) {
+      let items;
+      // Check if any items in local storage
+      if (localStorage.getItem("items") === null) {
+        items = [];
+        // push new item
+        items.push(item);
+        // set it to LS
+        localStorage.setItem("items", JSON.stringify(items));
+      } else {
+        // Load existing data from LS
+        items = JSON.parse(localStorage.getItem("items"));
+        // push new item
+        items.push(item);
+        // reset the LS
+        localStorage.setItem("items", JSON.stringify(items));
+      }
+    },
+    getItemsFromStorage: function () {
+      let items;
+      if (localStorage.getItem("items") === null) {
+        items = [];
+      } else {
+        items = JSON.parse(localStorage.getItem("items"));
+      }
+      return items;
+    },
+  };
+})();
 
 // Items Controller
 const ItemCtrl = (function () {
@@ -18,6 +47,7 @@ const ItemCtrl = (function () {
       // {id: 1, name: 'Task Two', completed:false},
       // {id: 2, name: 'Task Three', completed:false}
     ],
+    items: StorageCtrl.getItemsFromStorage(),
     currentItem: null,
   };
 
@@ -208,7 +238,7 @@ const UICtrl = (function () {
 })();
 
 // App controller
-const AppCtrl = (function (ItemCtrl, UICtrl) {
+const AppCtrl = (function (ItemCtrl, StorageCtrl, UICtrl) {
   UICtrl.clearEditState();
   // create event listeners
   const loadEventListeners = function () {
@@ -246,7 +276,8 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
       // Add item
       const newItem = ItemCtrl.addItem(input.name, input.completed);
       UICtrl.addListItem(newItem);
-
+      // Store in localStorage
+      StorageCtrl.storeItem(newItem);
       // Clear input fields
       UICtrl.clearInput();
     }
@@ -315,6 +346,7 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
     UICtrl.clearInput();
     e.preventDefault();
   };
+
   // Public methods to start the app with all features from ItemCtrl and UICtrl
   return {
     init: function () {
@@ -326,7 +358,7 @@ const AppCtrl = (function (ItemCtrl, UICtrl) {
       loadEventListeners();
     },
   };
-})(ItemCtrl, UICtrl);
+})(ItemCtrl, StorageCtrl, UICtrl);
 
 // Iniitialize the app
 AppCtrl.init();
