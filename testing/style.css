@@ -37,3 +37,7 @@ section.todo-outer h1 {
 .not-completed {
   text-decoration: none;
 }
+
+.list-group-item-success {
+  text-decoration: line-through;
+}
