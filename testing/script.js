@@ -197,18 +197,20 @@ const UICtrl = (function () {
     populateItemList: function (items) {
       let html = "";
       items.forEach(function (item) {
-        let completedClass = "";
-        let completeItemMarked = "";
-        if (item.completed) {
-          completedClass = "task-completed";
-          completeItemMarked = "(completed ✓)";
-        }
-        // const currentStatus = item.completed;
+        // let completedClass = "";
+        // let completeItemMarked = "";
         // if (item.completed) {
-        //   currentStatus.classList.add("item-completed");
-        // }
-        html += `<li class="list-group-item d-flex justify-content-between align-items-center" id="item-${item.id}">
-                  <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
+        //   completedClass = "task-completed";
+        //   completeItemMarked = "(completed ✓)";
+        // // }
+        const statusCompleted = item.completed
+          ? "list-group-item-success"
+          : "list-group-item-light";
+        const iconCompleted = item.completed
+          ? "bi-check-circle-fill"
+          : "bi-check-circle";
+        html += `<li class="list-group-item ${statusCompleted} d-flex justify-content-between align-items-center" id="item-${item.id}">
+                  <p>${item.completed}<i class="mark-completed bi ${iconCompleted}"></i></p><strong>${item.name}</strong>
                   <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
                 </li>`;
       });
