@@ -29,6 +29,36 @@ const StorageCtrl = (function () {
       }
       return items;
     },
+    updateItemStorage: function (updatedItem) {
+      let items = JSON.parse(localStorage.getItem("items"));
+
+      items.forEach(function (item, index) {
+        if (updatedItem.id === item.id) {
+          items.splice(index, 1, updatedItem);
+        }
+      });
+      localStorage.setItem("items", JSON.stringify(items));
+    },
+    markCompleteItemStorage: function (isComplete) {
+      let items = JSON.parse(localStorage.getItem("items"));
+
+      items.forEach(function (item, index) {
+        if (isComplete.id === item.id) {
+          items.splice(index, 1, isComplete);
+        }
+      });
+      localStorage.setItem("items", JSON.stringify(items));
+    },
+    deleteItemFromStorage: function (id) {
+      let items = JSON.parse(localStorage.getItem("items"));
+
+      items.forEach(function (item, index) {
+        if (id === item.id) {
+          items.splice(index, 1);
+        }
+      });
+      localStorage.setItem("items", JSON.stringify(items));
+    },
   };
 })();
 
@@ -72,6 +102,26 @@ const ItemCtrl = (function () {
       data.items.push(newItem);
       return newItem;
     },
+    getItemFilter: function (type) {
+      let filterItems = data.items;
+      switch (type) {
+        case "active":
+          filterItems = data.items.filter((item) => !item.completed);
+          break;
+        case "completed":
+          filterItems = data.items.filter((item) => item.completed);
+          // let completedClass = "";
+          // let completeItemMarked = "";
+          // if (item.completed) {
+          //   completedClass = "task-completed";
+          //   completeItemMarked = "(completed ✓)";
+          // }
+          break;
+        default:
+          filterItems = data.items;
+      }
+      UICtrl.populateItemList(filterItems);
+    },
     getItemById: function (id) {
       let found = null;
       // loop through the items
@@ -100,6 +150,7 @@ const ItemCtrl = (function () {
       });
       const index = completes.indexOf(completed);
       const currentItem = data.items[index];
+      console.log(currentItem.completed);
       currentItem.completed = currentItem.completed ? false : true;
       data.items.splice(index, 1, currentItem);
       console.log(currentItem.completed);
@@ -139,12 +190,23 @@ const UICtrl = (function () {
     deleteBtn: "#deletetaskbtn",
     itemNameInput: ".item-name",
     itemCompletedStatus: ".item-completed",
+    filters: ".nav-item",
   };
   // Fetch items from data structure
   return {
     populateItemList: function (items) {
       let html = "";
       items.forEach(function (item) {
+        let completedClass = "";
+        let completeItemMarked = "";
+        if (item.completed) {
+          completedClass = "task-completed";
+          completeItemMarked = "(completed ✓)";
+        }
+        // const currentStatus = item.completed;
+        // if (item.completed) {
+        //   currentStatus.classList.add("item-completed");
+        // }
         html += `<li class="list-group-item d-flex justify-content-between align-items-center" id="item-${item.id}">
                   <p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
                   <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
@@ -188,7 +250,7 @@ const UICtrl = (function () {
         if (itemID === `item-${item.id}`) {
           document.querySelector(
             `#${itemID}`
-          ).innerHTML = `<p>${item.completed}<i class="mark-completed far fa-calendar-minus"></i></p><strong>${item.name}</strong>
+          ).innerHTML = `<p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
                 <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
         }
       });
@@ -199,18 +261,37 @@ const UICtrl = (function () {
       doneItems.forEach(function (doneItem) {
         let isCompleted = doneItem.getElementsByTagName("p")[0];
         if (doneItem.id === "item-" + item) {
+          doneItem.style.color = "green";
           doneItem.classList.add("task-completed");
-          isCompleted = doneItem.getElementsByTagName("p")[0].innerHTML =
-            "(completed ✓)";
+        } else {
+          doneItem.style.color = "black";
+          doneItem.classList.remove("task-completed");
         }
       });
+      const filterValues = document.querySelector("#filter-types");
+      ItemCtrl.getItemFilter(filterValues);
     },
     deleteListItem: function (id) {
       const targetIdDelete = `#item-${id}`;
       const selectIdDelete = document.querySelector(targetIdDelete);
       selectIdDelete.remove();
     },
-
+    filterTabs: function () {
+      let filterItems = document.querySelectorAll(".nav-item");
+      console.log(filterItems);
+      filterItems.forEach((tab) => {
+        tab.addEventListener("click", function (e) {
+          e.preventDefault();
+          const tabType = this.getAttribute("data-type");
+          document.querySelectorAll(".nav-link").forEach(function (nav) {
+            nav.classList.remove("active");
+          });
+          this.firstElementChild.classList.add("active");
+          ItemCtrl.getItemFilter(tabType);
+          document.querySelector("#filter-types").value = tabType;
+        });
+      });
+    },
     clearInput: function () {
       document.querySelector(UISelectors.itemNameInput).value = "";
       document.querySelector(UISelectors.itemCompletedStatus).value = "";
@@ -264,7 +345,10 @@ const AppCtrl = (function (ItemCtrl, StorageCtrl, UICtrl) {
     document
       .querySelector(UISelectors.deleteBtn)
       .addEventListener("click", itemDeleteSubmit);
-    // Edit icon click event
+    // filter tabs
+    document
+      .querySelector(UISelectors.filters)
+      .addEventListener("click", UICtrl.filterTabs());
   };
 
   // add item submit method from the event listener
@@ -312,6 +396,10 @@ const AppCtrl = (function (ItemCtrl, StorageCtrl, UICtrl) {
     const updatedItem = ItemCtrl.updateItem(input.name, input.completed);
     // update item in the UI
     UICtrl.updateListItem(updatedItem);
+
+    // update in localStorage
+    StorageCtrl.updateItemStorage(updatedItem);
+    // clear views
     UICtrl.clearEditState();
     UICtrl.clearInput();
     e.preventDefault();
@@ -324,12 +412,13 @@ const AppCtrl = (function (ItemCtrl, StorageCtrl, UICtrl) {
       const listIdArr = listId.split("-");
       const id = parseInt(listIdArr[1]);
       // get list item completed status
-      const status = ItemCtrl.getItemById(id);
+      const isComplete = ItemCtrl.getItemById(id);
       // mark item as complete in data storage
-      console.log(status.completed);
-      const itemIsCompleted = ItemCtrl.markItem(status.id);
+      const itemIsCompleted = ItemCtrl.markItem(isComplete.id);
       // update item in UI
-      UICtrl.markListItemCompleted(status.id);
+      UICtrl.markListItemCompleted(isComplete.id);
+      StorageCtrl.markCompleteItemStorage(isComplete);
+      console.log(isComplete);
     }
     e.preventDefault();
   };
@@ -341,11 +430,18 @@ const AppCtrl = (function (ItemCtrl, StorageCtrl, UICtrl) {
     ItemCtrl.deleteItem(currnetItem.id);
     // Delete from the UI
     UICtrl.deleteListItem(currnetItem.id);
+    // delete from LS
+    StorageCtrl.deleteItemFromStorage(currnetItem.id);
     // clear the views
     UICtrl.clearEditState();
     UICtrl.clearInput();
     e.preventDefault();
   };
+
+  // const filterItemTabs = function (e) {
+  //   const filterIist = ItemCtrl.getItems();
+  //   UICtrl.filterTabs(items);
+  // };
 
   // Public methods to start the app with all features from ItemCtrl and UICtrl
   return {
@@ -362,3 +458,17 @@ const AppCtrl = (function (ItemCtrl, StorageCtrl, UICtrl) {
 
 // Iniitialize the app
 AppCtrl.init();
+// let instrumentsList = document.querySelectorAll("li");
+// let doneItems = Array.from(instrumentsList);
+// doneItems.forEach(function (completedItem) {
+//   const doneItem = completedItem.getAttribute("id");
+//   for (let i = 0; i < instrumentsList.length; i++) {
+//     if (instrumentsList[i].id === doneItem) {
+//       instrumentsList[i].style.color = "green";
+//       instrumentsList[i].classList.add("task-completed");
+//     } else {
+//       instrumentsList[i].style.color = "black";
+//       instrumentsList[i].classList.remove("task-completed");
+//     }
+//   }
+// });
