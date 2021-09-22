@@ -132,12 +132,11 @@ const ItemCtrl = (function () {
       });
       return found;
     },
-    updateItem: function (name, completed) {
+    updateItem: function (name) {
       let found = null;
       data.items.forEach(function (item) {
         if (item.id === data.currentItem.id) {
           item.name = name;
-          item.completed = completed;
           found = item;
         }
       });
@@ -210,9 +209,9 @@ const UICtrl = (function () {
           ? "bi-check-circle-fill"
           : "bi-check-circle";
         html += `<li class="list-group-item ${statusCompleted} d-flex justify-content-between align-items-center" id="item-${item.id}">
-                  <p>${item.completed}<i class="mark-completed bi ${iconCompleted}"></i></p><strong>${item.name}</strong>
-                  <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
-                </li>`;
+                    <p>${item.completed}<i class="mark-completed bi ${iconCompleted}"></i></p><strong>${item.name}</strong>
+                    <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i>
+                  </li>`;
       });
       // insert list with items
       document.querySelector(UISelectors.itemList).innerHTML = html;
@@ -230,12 +229,15 @@ const UICtrl = (function () {
       const li = document.createElement("li");
       // Add classes
       li.className =
-        "list-group-item d-flex justify-content-between align-items-center";
+        "list-group-item list-group-item-light d-flex justify-content-between align-items-center";
       // Add ID
       li.id = `item-${item.id}`;
       // Add html
-      li.innerHTML = `<p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
-                <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
+      const iconCompleted = item.completed
+        ? "bi-check-circle-fill"
+        : "bi-check-circle";
+      li.innerHTML = `<p>${item.completed}<i class="mark-completed bi ${iconCompleted}"></i></p><strong>${item.name}</strong>
+                  <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
       // insert item
       document
         .querySelector(UISelectors.itemList)
@@ -250,10 +252,13 @@ const UICtrl = (function () {
       listItems.forEach(function (listItem) {
         const itemID = listItem.getAttribute("id");
         if (itemID === `item-${item.id}`) {
+          const iconCompleted = item.completed
+            ? "bi-check-circle-fill"
+            : "bi-check-circle";
           document.querySelector(
             `#${itemID}`
-          ).innerHTML = `<p>${item.completed}<i class="mark-completed fas fa-check-circle"></i></p><strong>${item.name}</strong>
-                <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
+          ).innerHTML = `<p>${item.completed}<i class="mark-completed fas ${iconCompleted}"></i></p><strong>${item.name}</strong>
+                  <span class="badge badge-success badge-pill"><i class="edit-item fas fa-edit"></i></span>`;
         }
       });
     },
@@ -286,7 +291,7 @@ const UICtrl = (function () {
           e.preventDefault();
           const tabType = this.getAttribute("data-type");
           document.querySelectorAll(".nav-link").forEach(function (nav) {
-            nav.classList.remove("active");
+            nav.classList.add("active");
           });
           this.firstElementChild.classList.add("active");
           ItemCtrl.getItemFilter(tabType);
@@ -460,17 +465,3 @@ const AppCtrl = (function (ItemCtrl, StorageCtrl, UICtrl) {
 
 // Iniitialize the app
 AppCtrl.init();
-// let instrumentsList = document.querySelectorAll("li");
-// let doneItems = Array.from(instrumentsList);
-// doneItems.forEach(function (completedItem) {
-//   const doneItem = completedItem.getAttribute("id");
-//   for (let i = 0; i < instrumentsList.length; i++) {
-//     if (instrumentsList[i].id === doneItem) {
-//       instrumentsList[i].style.color = "green";
-//       instrumentsList[i].classList.add("task-completed");
-//     } else {
-//       instrumentsList[i].style.color = "black";
-//       instrumentsList[i].classList.remove("task-completed");
-//     }
-//   }
-// });
