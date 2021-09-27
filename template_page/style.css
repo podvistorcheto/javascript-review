@@ -1,0 +1,52 @@
+.color-text-selection-for-topbar {
+  background-color: #a39987;
+  font-size: 14px;
+}
+
+positioned-at-the-right-end {
+  background-color: brown;
+}
+
+.color-selected-for-navbar {
+  background-color: #42403b;
+}
+
+.new-color-selected-title {
+  color: #fafafa;
+}
+
+.sub-navigation-bar-list {
+  display: flex;
+  color: #fafafa;
+  list-style-type: none;
+}
+
+.list-item-new-color-selected {
+  color: #fafafa;
+  padding: 10px;
+  margin: 0 5px;
+  list-style: none;
+  text-decoration: none;
+}
+
+.list-item-new-color-selected:hover {
+  text-decoration: none;
+  color: #a39987;
+  border-bottom: 3px #a39987 solid;
+}
+
+.customized-slider-styles {
+  margin: 0;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  width: 100%;
+  height: 50vh;
+}
+
+.reservation-form-design-attributes {
+  color: #967a43;
+  background-color: lightgray;
+  height: 25vh;
+}
