@@ -1,9 +1,12 @@
+/* body {
+  background-color: #adb5bd;
+} */
 .color-text-selection-for-topbar {
   background-color: #a39987;
   font-size: 14px;
 }
 
-positioned-at-the-right-end {
+.positioned-at-the-right-end {
   background-color: brown;
 }
 
@@ -42,7 +45,7 @@ positioned-at-the-right-end {
   padding-bottom: 0px;
   padding-left: 0px;
   width: 100%;
-  height: 50vh;
+  height: 65vh;
 }
 
 .reservation-form-design-attributes {
@@ -50,3 +53,90 @@ positioned-at-the-right-end {
   background-color: lightgray;
   height: 25vh;
 }
+
+.position-the-call-to-action-captionbtn {
+  position: relative;
+  right: 15%;
+  bottom: 25rem;
+  left: 15px;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fafafa;
+  text-align: center;
+}
+
+.food-options-mini-interface {
+  padding: 25px;
+}
+
+.restaurant-philosophy {
+  padding: 10px;
+}
+
+.restaurant-history {
+  padding: 10px;
+}
+
+.display-recipes-rollercoaster {
+  display: flex;
+}
+
+.page-end-styles-colors {
+  background: #42403b;
+  color: #fafafa;
+}
+
+/* .shortlisted-recipes-from-the-restaurant {
+    background: beige;
+    width: 100%;
+    height: 25vh;
+    position: relative;
+  }
+  
+  
+  
+  .recipe-rollercoaster-column {
+    width: 800px;
+    height: 20vh;
+    position: relative;
+  }
+  
+  .photo-recipe-restaurant-upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+  }
+  
+  .capture-recipe-image {
+    height: 30vh;
+    border-radius: 10px;
+  }
+  
+  .desciption-pitch-recipe {
+    background: #2d3a59;
+    font-size: 18px;
+    line-height: 24px;
+    width: 520px;
+    height: 270px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 10px;
+    color: #d3d4d6;
+    padding: 45px;
+    box-sizing: border-box;
+    z-index: 2;
+  }
+  
+  .recipe-universal-name {
+    margin: 35px 0 5px;
+    color: #fafafa;
+  }
+  
+  .universal-text-recipe-masterchef {
+    font-size: 18px;
+    line-height: 24px;
+  } */

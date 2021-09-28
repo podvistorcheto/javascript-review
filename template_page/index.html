@@ -13,16 +13,20 @@
     />
     <link
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <title>Document</title>
   </head>
   <body>
-      <div class="container">
     <header>
+      <div class="container-fluid">
         <div class="row flex-nowrap justify-content-between align-items-start color-text-selection-for-topbar">
             <div class="col">Openning hours</div>
-            <div class="col d-flex justify-content-end">Contact detail</div>
+            <div class="col d-flex justify-content-end">Contacts & Social Media</div>
           </div>
           <div class="row navbar color-selected-for-navbar">
             <h1 class="new-color-selected-title">Podvis Bor</h1>
@@ -35,38 +39,168 @@
               </ul>
             </nav>
         </div>
+      </div>
     </header>
+    <div class="container">
     <main>
         <div id="carouselExampleFade" class="row carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner customized-slider-styles">
               <div class="carousel-item active">
                 <img src="img/pic-4.jpg" class="d-block w-100" alt="...">
+                <div class="position-the-call-to-action-captionbtn d-none d-md-block">
+                  <p>We accept reservations</p>
+                <button type="button" class="btn btn-light">Book a table</button>
+                </div>
               </div>
               <div class="carousel-item">
                 <img src="img/pic-2.jpg" class="d-block w-100" alt="...">
+                <div class="position-the-call-to-action-captionbtn d-none d-md-block ">
+                  <p>We accept reservations</p>
+                <button type="button" class="btn btn-light">Book a table</button>
+                </div>
               </div>
               <div class="carousel-item">
                 <img src="img/pic-3.jpg" class="d-block w-100" alt="...">
-                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button> -->
+                <div class="position-the-call-to-action-captionbtn d-none d-md-block">
+                  <p>We accept reservations</p>
+                <button type="button" class="btn btn-light">Book a table</button>
+                </div>
               </div>
             </div>
           </div>
     </main>
-    <section>
+    <section class="food-options-mini-interface">
+      <h3 class="col text-center">Food Options</h3>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4 text-center">
+            <i class="bi bi-flower1 fa-3x mb-2"></i>
+            <h4>Veggie</h4>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia, a eligendi quidem eum beatae qui cum illum enim deleniti tenetur.</p>
+          </div>
+          <div class="col-md-4 mb-4 text-center">
+            <i class="bi bi-puzzle-fill fa-3x mb-2"></i>
+            <h4>Meat Lovers</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam incidunt eum, expedita veritatis esse quas dolor eaque soluta nam quod!</p>
+          </div>
+          <div class="col-md-4 mb-4 text-center">
+            <i class="bi bi-shield-slash-fill fa-3x mb-2"></i>
+            <h4>Gluten-Free</h4>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima rerum mollitia consectetur ipsum facilis a incidunt magni dignissimos hic officia!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="restaurant-philosophy">
         <div class="container">
             <div class="row">
-              <div class="col-md-9 col-sm-8">Reserve your table here</div>
-              <div class="col-md-3 col-sm-4">book your dinner</div>
-          </div>
+              <div class="col-md-6 align-self-center">
+                <h3>Philosophy Behind Food</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Saepe dolorem autem ratione voluptatem sunt doloribus alias dolores libero unde error.
+                  Accusantium iusto corporis excepturi, libero minima distinctio culpa eum illo!</p>
+                  <a href="#" class="btn btn-outline-secondary">Read More</a>
+              </div>
+              <div class="col-md-6">
+                <img src="img/pic-1.jpg" alt="Fourth Image" class="img-fluid image-nextto-restaurant-philosophy">
+              </div>
+            </div>
+        </div>
     </section>
-    <footer></footer>
+    <section class="restaurant-history">
+      <div class="container">
+          <div class="row">
+            
+            <div class="col-md-6">
+              <img src="img/pic-4.jpg" alt="Fourth Image" class="img-fluid image-nextto-restaurant-philosophy">
+            </div>
+            <div class="col-md-6 align-self-center">
+              <h3>Our History</h3>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Saepe dolorem autem ratione voluptatem sunt doloribus alias dolores libero unde error.
+                Accusantium iusto corporis excepturi, libero minima distinctio culpa eum illo!</p>
+                <a href="#" class="btn btn-outline-secondary">Read More</a>
+            </div>
+          </div>
+      </div>
+  </section>
+  <section class="restaurant-founders">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-6 align-self-center">
+            <h3>Founders</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Saepe dolorem autem ratione voluptatem sunt doloribus alias dolores libero unde error.
+              Accusantium iusto corporis excepturi, libero minima distinctio culpa eum illo!</p>
+              <a href="#" class="btn btn-outline-secondary">Read More</a>
+          </div>
+          <div class="col-md-6">
+            <img src="img/pic-6.jpg" alt="Fourth Image" class="img-fluid image-nextto-restaurant-philosophy">
+          </div>
+        </div>
+    </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      
+    </div><h3 class="col text-center py-5">Selected Recipes</h3></div>
+    <div class="display-recipes-rollercoaster">
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="img/pic-1.jpg" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">1 New Recipe</h5>
+            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem natus sed alias, iure rem totam temporibus nesciunt sunt velit quo.</p>
+            <p class="card-text"><small class="text-muted">Chef's Favourite</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="img/pic-1.jpg" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">2 New Recipe</h5>
+            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem natus sed alias, iure rem totam temporibus nesciunt sunt velit quo.</p>
+            <p class="card-text"><small class="text-muted">Chef's Favourite</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="img/pic-1.jpg" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">3 New Recipe</h5>
+            <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem natus sed alias, iure rem totam temporibus nesciunt sunt velit quo.</p>
+            <p class="card-text"><small class="text-muted">Chef's Favourite</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+    </section>
+    <footer class="page-end-styles-colors">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col text-center">
+            <p>Copyright &copy</p>
+            <span id="real-time-date-year">For Educational Purposes Only</span>
+          </div>
+        </div>
+      </div>
+    </footer>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
@@ -78,3 +212,4 @@
 <script src="script.js"></script>
   </body>
 </html>
+
