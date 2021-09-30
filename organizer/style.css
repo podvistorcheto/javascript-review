@@ -1,117 +1,127 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  margin: 0px;
+  padding: 0px;
 }
 
-body {
-  height: 100vh;
-  width: 100%;
-  background: linear-gradient(to bottom, #fafafa 0%, #9ba8c0 100%);
+.main-container {
+  width: 1140px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid black;
+  overflow: auto;
 }
 
-.wrapper {
-  margin: 120px auto;
-  max-width: 400px;
-  width: 100%;
-  background: rgb(128, 141, 155);
-  border-radius: 10px;
-  padding: 25px;
-}
-
-.wrapper header {
-  font-size: 30px;
-  font-weight: 600;
-}
-
-.wrapper .addNewTask {
+.main-container--background {
+  background-color: burlywood;
   display: flex;
-  height: 45px;
-  width: 100%;
-  margin: 20px 0;
 }
 
-.addNewTask input {
-  width: 85%;
-  height: 100%;
-  border: 1px solid #ccc;
-  font-size: 17px;
-  border-radius: 3px;
-  padding-left: 15px;
+/* topbar */
+.main-container--column-1 {
+  width: 50%;
 }
 
-.addNewTask button {
-  width: 60px;
-  height: 100%;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  font-size: 22px;
+.main-container--column-2 {
+  text-align: end;
+  width: 50%;
+}
+
+/* navbar */
+.main-container--background_caderblue {
+  background-color: #253436;
   color: #fafafa;
-  background: darkcyan;
-  cursor: pointer;
-  margin-left: 5px;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.addNewTask button {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.wrapper .taskList {
-  max-height: 250px;
-  overflow-y: auto;
-}
-
-.taskList li {
-  position: relative;
-  list-style: none;
-  margin-bottom: 8px;
-  background: #f2f2f2;
-  border-radius: 3px;
-  padding: 10px 15px;
-  cursor: default;
-  overflow: hidden;
-  word-wrap: break-word;
-}
-.taskList li .icon {
-  position: absolute;
-  right: -45px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: coral;
-  width: 45px;
-  text-align: center;
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 0 3px 3px 0;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.taskList li:hover .icon {
-  right: 0px;
-}
-
-.wrapper .footer {
   display: flex;
-  width: 100%;
-  margin-top: 100%;
-  align-items: center;
+}
+
+.main-container--navbar {
+  list-style-type: none;
+  display: flex;
+  justify-content: end;
+  height: 70px;
+}
+
+.main-container--column-6 {
+  border: 1px solid black;
+  width: 50%;
+}
+
+.navbar_list-item {
+  list-style-type: none;
+  text-decoration: none;
+  color: #fafafa;
+  padding: 10px;
+}
+
+.main-container-background_oranje {
+  background-size: cover;
+  background-color: coral;
+  height: 580px;
+  background: url(./img/pic-2.jpg);
+  background-repeat: no-repeat;
+  background-size: 1140px 580px;
+}
+
+.main-container--background-footer {
+  background-color: darkgray;
+}
+
+.main-container--food_options {
+  display: flex;
   justify-content: space-between;
 }
 
-.footer button {
-  border: none;
-  outline: none;
-  background: coral;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 3px;
-  padding: 6px 10px;
+.item-control-alignment {
+  text-align: center;
+}
+
+.container-column-4 {
+  border: 1px solid black;
+  width: 30%;
+}
+
+.container-column-6 {
+  border: 1px solid black;
+  width: 50%;
+}
+
+/* Restaurant Info Section */
+.capture-image-info {
+  width: 570px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  background-color: coral;
+  background-repeat: no-repeat;
+}
+
+.image-info--one {
+  background-image: url(./img/pic-4.jpg);
+}
+
+.image-info--two {
+  background-image: url(./img/pic-2.jpg);
+}
+
+.image-info--three {
+  background-image: url(./img/pic-6.jpg);
+}
+
+/* Recipe section */
+.capture-image_food {
+  height: 375px;
+  background-size: cover;
+  background-color: coral;
+  background-repeat: no-repeat;
+}
+
+.capture-image--recipe_one {
+  background-image: url(./img/pic-3.jpg);
+}
+
+.capture-image--recipe_two {
+  background-image: url(./img/pic-3.jpg);
+}
+
+.capture-image--recipe_three {
+  background-image: url(./img/pic-3.jpg);
 }

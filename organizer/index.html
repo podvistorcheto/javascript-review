@@ -2,29 +2,195 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tudu App With JavaScript</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Template</title>
   </head>
   <body>
-    <div class="wrapper">
-      <header>tudu app</header>
-      <div class="addNewTask">
-        <input type="text" placeholder="Add new task" />
-        <button><i class="fas fa-plus"></i></button>
+    <!-- Page Top Menu and NavBar -->
+    <div>
+      <header>
+        <div class="main-container main-container--background">
+          <div class="main-container--column-1">
+            <span>Opening Hours</span>
+          </div>
+          <div class="main-container--column-2">
+            <span class="topbar_delivery-info"
+              >Social Media Links & !DELIVERY!</span
+            >
+          </div>
+        </div>
+        <div class="main-container main-container--background_caderblue">
+          <div class="main-container--column-6">
+            <h2 class="column-6_title">PODVIS BOR</h2>
+          </div>
+          <div class="main-container--column-6">
+            <ul class="main-container--navbar">
+              <li>
+                <a href="#" class="navbar_list-item">The Menu</a>
+              </li>
+              <li><a href="#" class="navbar_list-item">The Location</a></li>
+              <li>
+                <a href="#" class="navbar_list-item">The Kitchen</a>
+              </li>
+              <li>
+                <a href="#" class="navbar_list-item">Teamwork</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <!-- Image slider with call to action  -->
+      <div class="main-container main-container-background_oranje">
+        <h3>Image slider with crossfades with 3 Photos</h3>
+        <div>
+          <!-- <img src="" alt="Slider Two" />
+            <img src="" alt="Slider Three" /> -->
+          <a href="">Book a Table</a>
+        </div>
       </div>
-      <ul class="taskList">
-        <!-- generates data from local storage in the browser -->
-      </ul>
-      <div class="footer">
-        <span>you have <span class="taskSheet"></span> tasks completed</span>
-        <button>See All</button>
+      <!-- Food Preferences -->
+      <div class="main-container">
+        <div class="item-control-alignment"><span>Food Preferences</span></div>
+      </div>
+      <div class="main-container main-container--food_options">
+        <div class="container-column-4">
+          <h5 class="item-control-alignment">Veggie</h5>
+          <span
+            >Lorem ipsum dolor sit, amet consectetur adipisicing elit. In nemo
+            distinctio facere laudantium molestiae soluta!</span
+          >
+          <span><a href="#">Read More</a></span>
+        </div>
+        <div class="container-column-4">
+          <h5 class="item-control-alignment">Meat Lovers</h5>
+          <span
+            >Lorem ipsum dolor sit, amet consectetur adipisicing elit. In nemo
+            distinctio facere laudantium molestiae soluta!</span
+          >
+          <span><a href="#">Read More</a></span>
+        </div>
+        <div class="container-column-4">
+          <h5 class="item-control-alignment">Gluten-Free</h5>
+          <span
+            >Lorem ipsum dolor sit, amet consectetur adipisicing elit. In nemo
+            distinctio facere laudantium molestiae soluta!</span
+          >
+          <span><a href="#">Read More</a></span>
+        </div>
+      </div>
+      <!-- Philosophy behind food -->
+      <div class="main-container main-container--food_options">
+        <div class="container-column-6">
+          <h3>The Philosophy Behind Food</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia
+            cumque adipisci error dolorum ullam minus numquam eaque, placeat
+            pariatur ipsam, ipsa et. Sunt, incidunt culpa?
+          </p>
+          <span><a href="#">Read More</a></span>
+        </div>
+        <div class="container-column-6">
+          <div class="capture-image-info image-info--one">Photo 1</div>
+        </div>
+      </div>
+      <!-- History Info -->
+      <div class="main-container main-container--food_options">
+        <div class="container-column-6">
+          <div class="capture-image-info image-info--two">Photo 1</div>
+        </div>
+        <div class="container-column-6">
+          <h3>Our History</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut et sed
+            fuga sint, autem id a recusandae asperiores nobis quae reprehenderit
+            consequuntur ab esse sit?
+          </p>
+          <span><a href="#">Read More</a></span>
+        </div>
+      </div>
+      <!-- A word about the founders -->
+      <div class="main-container main-container--food_options">
+        <div class="container-column-6">
+          <h3>Founders</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia
+            cumque adipisci error dolorum ullam minus numquam eaque, placeat
+            pariatur ipsam, ipsa et. Sunt, incidunt culpa?
+          </p>
+          <span><a href="#">Read More</a></span>
+        </div>
+        <div class="container-column-6">
+          <div class="capture-image-info image-info--three">Photo 1</div>
+        </div>
+      </div>
+      <!-- Recipes Page -->
+      <div class="main-container">
+        <div class="item-control-alignment"><span>Selected Recipes</span></div>
+      </div>
+      <div class="main-container main-container--food_options">
+        <div class="container-column-4">
+          <div class="capture-image_food capture-image--recipe_one"></div>
+          <div>
+            <h5>Recipe One</h5>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit,
+              voluptate!
+            </p>
+            <span><a href="#">Read More</a></span>
+          </div>
+        </div>
+        <div class="container-column-4">
+          <div class="capture-image_food capture-image--recipe_two"></div>
+          <div>
+            <h5>Recipe Two</h5>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit,
+              voluptate!
+            </p>
+            <span><a href="#">Read More</a></span>
+          </div>
+        </div>
+        <div class="container-column-4">
+          <div class="capture-image_food capture-image--recipe_three"></div>
+          <div>
+            <h5>Recipe Three</h5>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit,
+              voluptate!
+            </p>
+            <span><a href="#">Read More</a></span>
+          </div>
+        </div>
+      </div>
+      <!-- Additional Design Features -->
+      <div class="main-container">
+        <div class="item-control-alignment">
+          <span>Additional Design Features</span>
+        </div>
+      </div>
+      <div class="main-container main-container--food_options">
+        <div>
+          <h5>Column One</h5>
+          About Amsterdam
+        </div>
+        <div>
+          <h5>Column Two</h5>
+          Events Gallery
+        </div>
+        <div>
+          <h5>Column Three</h5>
+          Inspirations
+        </div>
+      </div>
+      <!-- Footer Mini Bar -->
+      <div class="main-container main-container--background-footer">
+        <h5 class="item-control-alignment">
+          Copyright &copy For Educational Purposes Only
+        </h5>
       </div>
     </div>
-    <script src="script.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
