@@ -43,9 +43,9 @@ pictureCrossFades.animate(
       offset: 0,
     },
     {
-      transform: "scale(1)",
+      transform: "scale(0.5)",
       background: "url('./img/pic-2.jpg')",
-      opacity: 0.5,
+      opacity: 1,
       offset: 0.2,
     },
     {
