@@ -1,3 +1,18 @@
+document.getElementById("slider").addEventListener("input", (e) => {
+  var a = document.querySelector(".img-1");
+  var b = document.querySelector(".img-2");
+
+  var c = document.querySelector(".img-3");
+  var d = document.querySelector(".img-4");
+
+  console.log(e.target.value);
+  var opacity = Number(e.target.value);
+  a.style.opacity = opacity / 100;
+  b.style.opacity = 1 - opacity / 100;
+
+  d.style.opacity = 1 - opacity / 100;
+});
+
 // // Storage Controller
 // const StorageCtrl = (function () {
 //   // public methods

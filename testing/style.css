@@ -1,4 +1,37 @@
 body {
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Checkerboard_Pattern_8x6.svg/1600px-Checkerboard_Pattern_8x6.svg.png);
+}
+
+h1 {
+  background: white;
+}
+
+.fader-1 {
+  width: 50%;
+  height: 300px;
+  float: left;
+}
+.img {
+  width: 50%;
+  height: 300px;
+  background-size: cover;
+  position: absolute;
+}
+.img-1,
+.img-3 {
+  background-image: url(https://www.sgs.nl/-/media/global/images/structural-website-images/hero-images/hero-agri-forestry.jpg);
+}
+
+.img-2,
+.img-4 {
+  background-image: url(https://www.entreemagazine.nl/sites/default/files/afbeeldingen/nieuws/91c2bea613d887476a0bfc820504f25b.jpg);
+}
+
+.fader {
+  height: 300px;
+  position: relative;
+}
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
@@ -40,4 +73,4 @@ section.todo-outer h1 {
 
 .list-group-item-success {
   text-decoration: line-through;
-}
+} */
