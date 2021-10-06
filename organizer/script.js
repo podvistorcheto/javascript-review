@@ -68,21 +68,24 @@ let i = 0;
 let images = [];
 let time = 5000;
 
-images[0] = "img/pic-2.jpg";
-images[1] = "img/pic-3.jpg";
-images[2] = "img/pic-4.jpg";
+images[0] = "img/food-4.jpg";
+images[1] = "img/food-1.jpg";
+images[2] = "img/table.jpeg";
 
-function changeImg() {
+function crossfadeImages() {
+  //   let i = 0;
+  //   let images = ["img/food-4.jpg", "img/food-1.jpg", "img/table.jpeg"];
+  //   let time = 1000;
   document.myPhotoCrossFades.src = images[i];
   if (i < images.length - 1) {
     i++;
   } else {
     i = 0;
   }
-  setTimeout("changeImg()", time);
+  setTimeout("crossfadeImages()", time);
 }
 
-window.onload = changeImg;
+window.onload = crossfadeImages();
 
 document
   .querySelector(".navbar_submenu")
