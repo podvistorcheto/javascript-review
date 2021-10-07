@@ -7,54 +7,82 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
     />
-
-    <title>to_do_list</title>
+    <title>To Do List</title>
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col mx-auto col-md-8 mt-3 text-center">
-          <div class="alert align-items-center" id="message"></div>
-          <form id="itemForm">
-            <h3 class="">to_do_list</h3>
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="itemInput"
-                value=""
-                placeholder="Please enter name..."
-              />
-              <button class="btn btn-outline-primary">ADD ITEM</button>
+    <section class="todo-outer">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-sm-12 col-md-8">
+            <div><h4>todo List</h4></div>
+            <div class="todo-inner">
+              <div class="form-row">
+                <div class="col-8 mr-sm-2">
+                  <input
+                    type="text"
+                    class="form-control item-name item-completed"
+                    placeholder="Enter your task"
+                  />
+                  <input type="hidden" id="saveindex" />
+                </div>
+                <button
+                  type="button"
+                  class="add-btn btn btn-warning mr-sm-2"
+                  id="addtaskbtn"
+                >
+                  Add Task
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary mr-sm-2"
+                  id="savetaskbtn"
+                >
+                  Update
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-light mr-sm-2"
+                  id="deletetaskbtn"
+                >
+                  Delete
+                </button>
+              </div>
+              <div class="to-do-output">
+                <ul class="nav nav-tabs">
+                  <li class="nav-item" data-type="all">
+                    <a class="nav-link active" href="#">All</a>
+                  </li>
+                  <li class="nav-item" data-type="active">
+                    <a class="nav-link" href="#">Active</a>
+                  </li>
+                  <li class="nav-item" data-type="completed">
+                    <a class="nav-link" href="#">Completed</a>
+                  </li>
+                </ul>
+                <input type="hidden" id="filter-types" value="all" />
+                <ul
+                  id="item-list"
+                  class="list-group edit-item mark-completed"
+                ></ul>
+              </div>
             </div>
-          </form>
-          <ul class="nav nav-tabs">
-            <li class="nav-item" data-type="all">
-              <a class="nav-link active" href="#">All</a>
-            </li>
-            <li class="nav-item" data-type="todo">
-              <a class="nav-link" href="#">To Do</a>
-            </li>
-            <li class="nav-item" data-type="done">
-              <a class="nav-link" href="#">Completed</a>
-            </li>
-          </ul>
-          <!-- list items -->
-          <ul class="list-group list-group-flush" id="itemsList"></ul>
-          <input type="hidden" id="objIndex" value="all" />
-          <input type="hidden" id="citem" value="" />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
     <script src="script.js"></script>
   </body>
 </html>
