@@ -8,7 +8,7 @@
   width: 1140px;
   margin-right: auto;
   margin-left: auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   overflow: auto;
 }
 
@@ -20,11 +20,48 @@
 /* topbar */
 .main-container--column-1 {
   width: 50%;
+  padding-top: 15px;
+}
+
+.topbar_working-hours {
+  font-family: "Ubuntu";
+  font-size: 12px;
+  font-weight: 900;
+  /* padding: 0 10px 0; */
+}
+
+.topbar_icon-working-hours {
+  font-size: 15px;
+  padding-left: 15px;
 }
 
 .main-container--column-2 {
   text-align: end;
   width: 50%;
+  padding: 5px;
+}
+.topbar_delivery-info {
+  padding: 15px;
+}
+
+.topbar_social-media {
+  padding: 15px;
+  font-size: 30px;
+}
+
+.topbar_delivery-button {
+  padding: 15px;
+  font-size: 15px;
+  border-radius: 10px;
+  font-family: "Ubuntu";
+  font-weight: 600;
+  background-color: #e0d179;
+  letter-spacing: 0.5px;
+}
+
+.topbar_delivery-button:hover {
+  color: #e0d179;
+  background: #253436;
 }
 
 /* navbar */
@@ -35,18 +72,37 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .navbar_title-name {
   padding-left: 10px;
   text-transform: uppercase;
+  font-weight: 900;
+  font-family: "Dosis";
+  letter-spacing: 5px;
 }
 .main-container--navbar {
   list-style-type: none;
   display: inline-flex;
-  padding: 15px;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
 }
 
 .navbar_list-item {
-  padding: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: "Dosis";
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 3px;
+}
+
+.navbar_control-text-design {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .navbar_list-item:hover {
@@ -54,7 +110,7 @@
   transition: all 0.3s ease-in-out;
   background-color: #cac18e;
   color: #253436;
-  border-radius: 5px;
+  font-weight: 900;
   transition: all 0.8;
   /* z-index: 1; */
 }
@@ -103,7 +159,8 @@
   color: #253436;
   background-color: #cac18e;
   border-radius: 5px;
-  font-size: 18px;
+  font-family: "Ubuntu";
+  font-size: 25px;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -112,14 +169,34 @@
   background-color: #e0d179;
 }
 
+/* main content styles */
 .main-container--background-footer {
   background-color: #253436;
   color: #fafafa;
 }
 
+/* styles for the info section tu */
+/* Restaurant Info Section */
+
 .main-container--food_options {
   display: flex;
   justify-content: space-between;
+}
+
+.continer-column-4_food-pref-icons {
+  font-size: 30px;
+}
+
+.item-control-text-design {
+  text-transform: uppercase;
+  font-family: "Ubuntu";
+  font-weight: 600;
+  letter-spacing: -1.5px;
+}
+
+.m-c_layout-symmetry {
+  padding-bottom: 15px;
+  font-weight: 600px;
 }
 
 .main-container--end-page {
@@ -134,11 +211,18 @@
 }
 
 .container-column-4 {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 30%;
   padding-bottom: 30px;
 }
 
+.continer-column-4_layout-symmetry {
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: "Ubuntu";
+  letter-spacing: 2.5px;
+}
 .container-column-6 {
   border: 1px solid black;
   width: 50%;
@@ -146,7 +230,16 @@
   padding-bottom: 10px;
 }
 
-/* Restaurant Info Section */
+.continer-column-6_layout-symmetry {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-weight: 900;
+  font-family: "Ubuntu";
+  letter-spacing: 2.5px;
+}
+
+/* Recipes section */
+
 .capture-image-info {
   width: 568px;
   height: 228px;
@@ -169,7 +262,6 @@
   background-image: url(./img/food-3.jpg);
 }
 
-/* Recipe section */
 .capture-image_food {
   height: 375px;
   background-size: cover;
@@ -187,4 +279,29 @@
 
 .capture-image--recipe_three {
   background-image: url(./img/meatballs.jpg);
+}
+
+/* additional design features */
+.capture-image_city-sketch {
+  height: 275px;
+  background-size: cover;
+  background-color: coral;
+  background-repeat: no-repeat;
+  filter: brightness(1.25);
+}
+
+.capture-image_inspire {
+  height: 275px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  filter: brightness(1.75);
+}
+
+.capture-image--amsterdam {
+  background-image: url(./img/zuiderkerk.jpg);
+}
+
+.capture-image--star-ratings {
+  background-image: url(./img/aspire_michelin.png);
 }
