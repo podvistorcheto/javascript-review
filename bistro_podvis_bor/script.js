@@ -96,3 +96,18 @@ function expandDropdownMenu() {
     .querySelector(".navbar_sublist")
     .classList.toggle("navbar_list-active");
 }
+
+for (let x = 0; x < foodWisdomAccordions.length; x++) {
+  let foodWisdomAccordions = document.querySelector(
+    ".container-column-4_accordion-button"
+  );
+  foodWisdomAccordions[x].onclick = function () {
+    let wisdomTexts = this.nextElementSibling;
+    if (wisdomTexts.style.maxHeight) {
+      // if accordion is open
+      wisdomTexts.style.maxHeight = null;
+    } else {
+      wisdomTexts.style.maxHeight = wisdomTexts.scrollHeight + "px";
+    }
+  };
+}

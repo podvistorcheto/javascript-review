@@ -305,3 +305,13 @@
 .capture-image--star-ratings {
   background-image: url(./img/aspire_michelin.png);
 }
+
+/* accordion style */
+.container-column-4_accordion-button {
+  width: 100%;
+}
+.accordion-button--text {
+  background-color: whitesmoke;
+  max-height: 0;
+  overflow: hidden;
+}
