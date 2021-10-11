@@ -307,11 +307,58 @@
 }
 
 /* accordion style */
-.container-column-4_accordion-button {
+/* accordion style */
+.container-column-4_accordion {
   width: 100%;
 }
-.accordion-button--text {
-  background-color: whitesmoke;
-  max-height: 0;
+
+.container-column-4_accordion .container-column-4_accordion-button {
+  position: relative;
+  margin: 10px 20px;
+  text-align: center;
+}
+
+.container-column-4_accordion
+  .container-column-4_accordion-button
+  .accordion-button--label {
+  position: relative;
+  padding: 10px;
+  background-color: #5f5e53;
+  color: #fafafa;
+  cursor: pointer;
+}
+
+.container-column-4_accordion
+  .container-column-4_accordion-button
+  .accordion-button--label::before {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+}
+
+.container-column-4_accordion
+  .container-column-4_accordion-button.active
+  .accordion-button--label::before {
+  content: "-";
+}
+
+.container-column-4_accordion
+  .container-column-4_accordion-button
+  .accordion-button--content {
+  position: relative;
+  background-color: #fafafa;
+  height: 0;
   overflow: hidden;
+  transition: 0.5s;
+  overflow-y: hidden;
+}
+
+.container-column-4_accordion
+  .container-column-4_accordion-button.active
+  .accordion-button--content {
+  height: 75px;
+  padding: 5px;
 }
