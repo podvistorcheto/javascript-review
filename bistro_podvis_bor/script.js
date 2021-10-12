@@ -67,6 +67,21 @@
 let i = 0;
 let images = [];
 let time = 5000;
+const mainMenu = document.querySelector(".main-container--navbar_hamburger");
+const closeMenu = document.querySelector(".closeMenu");
+const openMenu = document.querySelector(".openMenu");
+
+openMenu.addEventListener("click", show);
+closeMenu.addEventListener("click", close);
+
+function show() {
+  mainMenu.style.display = "flex";
+  mainMenu.style.top = "0";
+}
+
+function close() {
+  mainMenu.style.top = "-100%";
+}
 
 images[0] = "img/food-4.jpg";
 images[1] = "img/food-1.jpg";
@@ -105,3 +120,23 @@ for (let x = 0; x < accordion.length; x++) {
     this.classList.toggle("active");
   });
 }
+
+openMenu.addEventListener("click", show);
+closeMenu.addEventListener("click", close);
+
+function show() {
+  mainMenu.style.display = "flex";
+  mainMenu.style.top = "0";
+}
+
+function close() {
+  mainMenu.style.top = "-100%";
+}
+// const show = function(){
+//     let hamburgerMenu = document.querySelector('.main-container--navbar_hamburger')
+//     console.log('Hello');
+// };
+
+// (function () {
+//     const openMenu = document.querySelector(".openMenu").addEventListener('click', show);
+// })();
