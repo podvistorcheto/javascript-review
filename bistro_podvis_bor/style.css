@@ -654,3 +654,9 @@
     display: none;
   }
 }
+
+@media print {
+  .main-container {
+    width: 1100px;
+  }
+}
