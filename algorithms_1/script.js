@@ -125,29 +125,24 @@
 // console.log(memoFibb(3));
 // console.log(memoFibb(4));
   
-// binary search algorithm
+// binary search algorithm leetCode solved
 
-const binarySearchSimple = function(val, arr) {
-    let startIndex = 0
-    let endIndex = arr.length -1;
-
-    while (startIndex <= endIndex){
-        console.log('try')
-        const middleIndex = Math.floor((startIndex + endIndex)/2);
-        if (arr[middleIndex] === val) {
-            return console.log('Target found at index ' + middleIndex)
+const binarySearchSimple = function(nums, target) {
+    let startPoint = 0;
+    let endPoint = nums.length -1;
+    
+    while (startPoint <= endPoint) {
+        let middlePoint = Math.floor((startPoint + endPoint)/2);
+        if (nums[middlePoint] === target) {
+            return middlePoint;
         }
-        if (arr[middleIndex] < val) {
-            console.log('Searching in the left side of the array...')
-            startIndex = middleIndex - 1;
-        }
-        if (arr[middleIndex] > val) {
-            console.log('Searching in the right side of the array....')
-            endIndex = middleIndex + 1;
+        if (nums[middlePoint] < target) {
+            startPoint = middlePoint + 1;
+        } else {
+            endPoint = middlePoint -1;
         }
     }
     return -1;
-}
-const searchArray = [1, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59];
-console.log(binarySearchSimple(17, searchArray));
+};
+console.log(binarySearchSimple([-1,0,3,5,9,12], 0));
 
