@@ -6,4 +6,8 @@
     background-color: rgb(47, 47, 49) !important;
     color: #fafafa;
   }
+.corrected-position {
+    margin: auto;
+    padding: 25px;
+}
   
