@@ -125,9 +125,9 @@
 // console.log(memoFibb(3));
 // console.log(memoFibb(4));
   
-// binary search algorithm leetCode solved
+// binary search algorithm leetCode solved with iteration
 
-const binarySearchSimple = function(nums, target) {
+const binarySearchIteration = function(nums, target) {
     let startPoint = 0;
     let endPoint = nums.length -1;
     
@@ -144,5 +144,30 @@ const binarySearchSimple = function(nums, target) {
     }
     return -1;
 };
-console.log(binarySearchSimple([-1,0,3,5,9,12], 0));
+// console.log(binarySearchIteration([-1,0,3,5,9,11,12], 5));
+// console.log(binarySearchIteration([-1,0,3,5,9,11,12], 15));
 
+
+// binary search recursive
+
+function whichCallsMainBinSearchFunction(nums, target) {
+    return mainBinarySearchFunction(nums, target, 0, nums.length - 1);
+}
+// main function  
+function mainBinarySearchFunction(nums, target, startIndex, endIndex){
+    if (startIndex > endIndex) {
+        return -1;
+    }
+    //main method code goes here
+    let midIndex = Math.floor((startIndex + endIndex)/2);
+    if (nums[midIndex] === target) {
+        return midIndex;
+    } else if (nums[midIndex] > target){
+        return mainBinarySearchFunction(nums, target, startIndex, midIndex -1);
+    } else {
+        return mainBinarySearchFunction(nums, target, midIndex + 1, endIndex);
+    }
+}
+console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 5));
+console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 0));
+console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 15));
