@@ -168,6 +168,28 @@ function mainBinarySearchFunction(nums, target, startIndex, endIndex){
         return mainBinarySearchFunction(nums, target, midIndex + 1, endIndex);
     }
 }
-console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 5));
-console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 0));
-console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 15));
+// console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 5));
+// console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 0));
+// console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 15));
+
+// COIN CHANGE LEET CODE
+const coinChange = function(coins, target) {
+    let tableWithTargets = new Array(target + 1).fill(Infinity);
+    tableWithTargets[0] = 0;
+
+    for (let coin of coins) {
+        for (let i = 0; i < tableWithTargets.length; i++){
+            if (coin <= i) {
+                let idxAmount = i-coin;
+                let targetAmount = tableWithTargets[idxAmount] + 1;
+                tableWithTargets[i] = Math.min(targetAmount, tableWithTargets[i])
+            }
+        }
+    }
+    return tableWithTargets[tableWithTargets.length -1] === Infinity ? -1 : tableWithTargets[tableWithTargets.length - 1];
+}
+console.log(coinChange([1, 2, 5], 11));
+console.log(coinChange([2], 3));
+console.log(coinChange([1], 0));
+console.log(coinChange([1], 1));
+console.log(coinChange([1], 2));
