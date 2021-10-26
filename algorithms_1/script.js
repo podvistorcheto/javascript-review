@@ -188,8 +188,40 @@ const coinChange = function(coins, target) {
     }
     return tableWithTargets[tableWithTargets.length -1] === Infinity ? -1 : tableWithTargets[tableWithTargets.length - 1];
 }
-console.log(coinChange([1, 2, 5], 11));
-console.log(coinChange([2], 3));
-console.log(coinChange([1], 0));
-console.log(coinChange([1], 1));
-console.log(coinChange([1], 2));
+// console.log(coinChange([1, 2, 5], 11));
+// console.log(coinChange([2], 3));
+// console.log(coinChange([1], 0));
+// console.log(coinChange([1], 1));
+// console.log(coinChange([1], 2));
+
+
+function superSquad(number) {
+    const partitionMatrix = Array(number + 1)
+      .fill(null)
+      .map(function () {
+        return Array(number + 1).fill(null);
+      });
+    for (let numberIndex = 1; numberIndex <= number; numberIndex += 1) {
+      partitionMatrix[0][numberIndex] = 0;
+    }
+    for (let summandIndex = 0; summandIndex <= number; summandIndex += 1) {
+      partitionMatrix[summandIndex][0] = 1;
+    }
+    for (let summandIndex = 1; summandIndex <= number; summandIndex += 1) {
+      for (let numberIndex = 1; numberIndex <= number; numberIndex += 1) {
+        if (summandIndex > numberIndex) {
+          partitionMatrix[summandIndex][numberIndex] =
+            partitionMatrix[summandIndex - 1][numberIndex];
+        } else {
+          const combosWithoutSummand =
+            partitionMatrix[summandIndex - 1][numberIndex];
+          const comboWithSummand =
+            partitionMatrix[summandIndex][numberIndex - summandIndex];
+          partitionMatrix[summandIndex][numberIndex] =
+            comboWithSummand + combosWithoutSummand;
+        }
+      }
+    }
+    return partitionMatrix[number][number];
+  }
+  console.log(superSquad(4));
