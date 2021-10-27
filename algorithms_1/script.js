@@ -1,20 +1,20 @@
 // // const test = true;
 // // console.log(test);
-// const fizzBuzzOne = function (n) {
-//     let answer = [];
-//     for (let i = 1; i <= n; i++) {
-//       if (i % 3 === 0 && i % 5 === 0) {
-//         answer.push("FizzBuzz");
-//       } else if (i % 3 === 0) {
-//         answer.push("Fizz");
-//       } else if (i % 5 === 0) {
-//         answer.push("Buzz");
-//       } else {
-//         answer.push(i.toString());
-//       }
-//     }
-//     return answer;
-//   };
+const fizzBuzzOne = function (n) {
+    let answer = [];
+    for (let i = 1; i <= n; i++) {
+      if (i % 3 === 0 && i % 5 === 0) {
+        answer.push("FizzBuzz");
+      } else if (i % 3 === 0) {
+        answer.push("Fizz");
+      } else if (i % 5 === 0) {
+        answer.push("Buzz");
+      } else {
+        answer.push(i.toString());
+      }
+    }
+    return answer;
+  };
 //   // console.log(fizzBuzzOne(3));
 //   // console.log(fizzBuzzOne(5));
 //   // console.log(fizzBuzzOne(15));
@@ -23,20 +23,20 @@
 //   // Memory Usage: 40.7 MB, less than 78.99% of JavaScript
 //   //online submissions for Fizz Buzz.
   
-//   const fizzBuzzTwo = function (n) {
-//     let answer = [];
-//     for (let x = 1; x <= n; x++) {
-//       let newString = "";
-//       if (x % 3 === 0) {
-//         newString += "Fizz";
-//       }
-//       if (x % 5 === 0) {
-//         newString += "Buzz";
-//       }
-//       answer.push(newString.length ? newString : x.toString());
-//     }
-//     return answer;
-//   };
+  const fizzBuzzTwo = function (n) {
+    let answer = [];
+    for (let x = 1; x <= n; x++) {
+      let newString = "";
+      if (x % 3 === 0) {
+        newString += "Fizz";
+      }
+      if (x % 5 === 0) {
+        newString += "Buzz";
+      }
+      answer.push(newString.length ? newString : x.toString());
+    }
+    return answer;
+  };
 //   // console.log(fizzBuzzTwo(3));
 //   // console.log(fizzBuzzTwo(5));
 //   // console.log(fizzBuzzTwo(15));
@@ -45,82 +45,82 @@
 //   //Memory Usage: 40.7 MB,
 //   //less than 86.81% of JavaScript online submissions for Fizz Buzz.
   
-//   const fizzBuzzThree = function (n) {
-//     let memoTable = [
-//       [3, "Fizz"],
-//       [5, "Buzz"],
-//     ];
-//     let output = [];
-//     for (let x = 1; x <= n; x++) {
-//       let newString = "";
-//       for (let y = 0; y < memoTable.length; y++) {
-//         if (x % memoTable[y][0] === 0) {
-//           newString += memoTable[y][1];
-//         }
-//       }
-//       output.push(newString.length ? newString : x.toString());
-//     }
-//     return output;
-//   };
+  const fizzBuzzThree = function (n) {
+    let memoTable = [
+      [3, "Fizz"],
+      [5, "Buzz"],
+    ];
+    let output = [];
+    for (let x = 1; x <= n; x++) {
+      let newString = "";
+      for (let y = 0; y < memoTable.length; y++) {
+        if (x % memoTable[y][0] === 0) {
+          newString += memoTable[y][1];
+        }
+      }
+      output.push(newString.length ? newString : x.toString());
+    }
+    return output;
+  };
 // //   console.log(fizzBuzzThree(15));
   
 //   // TwoSum Leetcode Manual Solution with input: nums = [2,7,11,15]; target = 9;
-//   const twoSumManual = function (nums, target) {
-//     for (let x = 0; x < nums.length; x++) {
-//       for (let y = x + 1; y < nums.length; y++) {
-//         if (nums[x] + nums[y] === target) {
-//           return [x, y];
-//         }
-//       }
-//     }
-//   };
+  const twoSumManual = function (nums, target) {
+    for (let x = 0; x < nums.length; x++) {
+      for (let y = x + 1; y < nums.length; y++) {
+        if (nums[x] + nums[y] === target) {
+          return [x, y];
+        }
+      }
+    }
+  };
 //   // console.log(twoSumManual([2, 7, 11, 15], [26]));
   
 //   // TwoSum Leetcode - Linear Solution with input: nums = [2,7,11,15]; target = 9;
-// const twoSumLinear = function (nums, target) {
-//     let numObj = {};
-//     for (let x = 0; x < nums.length; x++) {
-//       let exactDifference = target - nums[x];
-//       if (numObj[exactDifference] !== undefined) {
-//         return [numObj[exactDifference], x];
-//       }
-//     numObj[nums[x]] = x;
-//     }
-// };
+const twoSumLinear = function (nums, target) {
+    let numObj = {};
+    for (let x = 0; x < nums.length; x++) {
+      let exactDifference = target - nums[x];
+      if (numObj[exactDifference] !== undefined) {
+        return [numObj[exactDifference], x];
+      }
+    numObj[nums[x]] = x;
+    }
+};
 // // console.log(twoSumLinear([2, 7, 11, 15], [9]));
 // // console.log(twoSumLinear([3, 2, 4], [6]));
 // // console.log(twoSumLinear([3, 3], [6]));
   
 //   // Leetcode fibbonacci soluition one: simple recursion
-//   const fib = function (n) {
-//     if (n <= 1) {
-//       // if (n <= 0 || n <= 1)
-//       return n;
-//     } else {
-//       return fib(n - 1) + fib(n - 2);
-//     }
-//   };
+  const fib = function (n) {
+    if (n <= 1) {
+      // if (n <= 0 || n <= 1)
+      return n;
+    } else {
+      return fib(n - 1) + fib(n - 2);
+    }
+  };
   
-// //   console.log(fib(2));
-// //   console.log(fib(3));
-// //   console.log(fib(4));
+//   console.log(fib(2));
+//   console.log(fib(3));
+//   console.log(fib(4));
   
 //   // Leetcode fibbonacci solution two: memoized recursion
   
-// const memoFibb = function (n) {
-//     let memo = {
-//         "0":1,
-//         "1":1,
-//     };
-//     for (let x = 2; x <= n; x++) {
-//       if (n <= 1) {
-//         return 1;
-//       } else {
-//         memo[x] = memo[x - 1] + memo[x - 2];
-//       }
-//     }
-//     return memo[n];
-//   };
+const memoFibb = function (n) {
+    let memo = {
+        "0":1,
+        "1":1,
+    };
+    for (let x = 2; x <= n; x++) {
+      if (n <= 1) {
+        return 1;
+      } else {
+        memo[x] = memo[x - 1] + memo[x - 2];
+      }
+    }
+    return memo[n];
+  };
 // console.log(memoFibb(2));
 // console.log(memoFibb(3));
 // console.log(memoFibb(4));
@@ -150,7 +150,7 @@ const binarySearchIteration = function(nums, target) {
 
 // binary search recursive
 
-function whichCallsMainBinSearchFunction(nums, target) {
+function initMainBinSearchFunction(nums, target) {
     return mainBinarySearchFunction(nums, target, 0, nums.length - 1);
 }
 // main function  
@@ -168,9 +168,9 @@ function mainBinarySearchFunction(nums, target, startIndex, endIndex){
         return mainBinarySearchFunction(nums, target, midIndex + 1, endIndex);
     }
 }
-// console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 5));
-// console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 0));
-// console.log(whichCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 15));
+// console.log(initMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 5));
+// console.log(initCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 0));
+// console.log(initCallsMainBinSearchFunction([-1, 0, 3, 5, 9, 12], 15));
 
 // COIN CHANGE LEET CODE
 const coinChange = function(coins, target) {
@@ -224,4 +224,107 @@ function superSquad(number) {
     }
     return partitionMatrix[number][number];
   }
-  console.log(superSquad(4));
+//   console.log(superSquad(4));
+
+// coin change 2 - LeetCode 
+const changeCoinTwo = function(amount, coins) {
+    let testCases = [];
+    
+    for (let row = 0; row <= coins.length; row++) {
+        let array = [];
+
+        for (let col = 0; col <= amount; col++) {
+            array.push(-1);
+        testCases.push(array);
+        }
+    }
+    for (let check = 0; check <= coins.length; check++) {
+        testCases[check][0] = 1;
+    }
+    for (let check = 1; check <= amount; check++) {
+        testCases[0][check]= 0;
+    }
+    for (let row = 1; row <= coins.length; row++) {
+        for (col = 1; col <= amount; col++) {
+            if(coins[row-1] <= col){
+                testCases[row][col] = testCases[row][col-coins[row-1]] + testCases[row-1][col];
+            } else {
+                testCases[row][col] = testCases[row-1][col];
+            }
+        }
+    }
+    return testCases[coins.length][amount];
+}
+// console.log(changeCoinTwo(5, [1,2,5]));
+
+
+const changeUnboundedCoin2 = (amount, coins) => {
+    const dp = Array(amount + 1).fill(0);
+    dp[0] = 1;
+    for (let coin of coins) {
+      for (let i = coin; i <= amount; i++) {
+        dp[i] += dp[i - coin];
+      }
+    }
+    return dp[amount];
+};
+
+// console.log(change(10, [3,4,5,6,7,8,9,10]));
+
+// function superSquad(number) {
+//     const partitionMatrix = Array(number + 1)
+//       .fill(null)
+//       .map(function () {
+//         return Array(number + 1).fill(null);
+//       });
+//     for (let numberIndex = 1; numberIndex <= number; numberIndex += 1) {
+//       partitionMatrix[0][numberIndex] = 0;
+//     }
+//     for (let summandIndex = 0; summandIndex <= number; summandIndex += 1) {
+//       partitionMatrix[summandIndex][0] = 1;
+//     }
+//     for (let summandIndex = 1; summandIndex <= number; summandIndex += 1) {
+//       for (let numberIndex = 1; numberIndex <= number; numberIndex += 1) {
+//         if (summandIndex > numberIndex) {
+//           partitionMatrix[summandIndex][numberIndex] =
+//             partitionMatrix[summandIndex - 1][numberIndex];
+//         } else {
+//           const combosWithoutSummand =
+//             partitionMatrix[summandIndex - 1][numberIndex];
+//           const comboWithSummand =
+//             partitionMatrix[summandIndex][numberIndex - summandIndex];
+//           partitionMatrix[summandIndex][numberIndex] =
+//             comboWithSummand + combosWithoutSummand;
+//         }
+//       }
+//     }
+//     return partitionMatrix[number][number];
+//   }
+  // console.log(superSquad(4));
+
+// VALIDATE SUBSEQUENCE
+const validateSubsequence = function(mainArray, subArray) {
+    let validSubsequence = [];
+    for (let i = 0; i < mainArray.length; i++) {
+        if (subArray.includes(mainArray[i])) {
+            console.log(true);
+            validSubsequence.push(mainArray[i]);
+        } else {
+            console.log(false);
+        }
+    } 
+    return validSubsequence;
+}
+console.log(validateSubsequence([5, 1, 22, 25, 6, -1, 8, 10],[1, 6, -1, 10]));
+
+// algo expert solution
+const s = function(a, b) {
+    let x = 0;
+    let y = 0;
+    while (x < a.length && y < b.length) {
+        if (a[x] === b[y]) x++; 
+        y++;
+    }
+    return y === b.length;
+}
+console.log(s([5, 1, 22, 25, 6, -1, 8, 10],[1, 6, -1, 10]));
