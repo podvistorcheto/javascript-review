@@ -328,3 +328,35 @@ const s = function(a, b) {
     return y === b.length;
 }
 console.log(s([5, 1, 22, 25, 6, -1, 8, 10],[1, 6, -1, 10]));
+
+
+// Leetcode 46. Permutations
+/*
+Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+
+Example 1:
+Input: nums = [1,2,3]
+Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] 
+*/
+
+const btPermutations = function (nums) {
+    // 1. create a variable to populate with the result
+    let resultPermutations = [];
+    //2. then we create the method to mix them
+    const baseCase = function (i, nums) {
+      // base case for comparison in the mixing
+      if (i === nums.length) {
+        // we make a copy of the result and push in the resultPermutation
+        resultPermutations.push(nums.slice());
+        return;
+      }
+      for (let j = i; j < nums.length; j++) {
+        [nums[i], nums[j]] = [nums[j], nums[i]];
+        baseCase(i + 1, nums);
+        [nums[i], nums[j]] = [nums[j], nums[i]];
+      }
+    };
+    baseCase(0, nums);
+    return resultPermutations;
+  };
+  console.log(btPermutations([4, 5, 6]));
