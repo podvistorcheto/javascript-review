@@ -360,3 +360,21 @@ const btPermutations = function (nums) {
     return resultPermutations;
   };
   console.log(btPermutations([4, 5, 6]));
+
+
+  // Supernatural Squad 2
+const superNaturalSquad2 = function (numTotal, k) {
+    // define main results variable
+    let resultsArray = [];
+    // 1. convert k into array to combine sums from
+    let lineArray = [];
+    for (let i = 0; i < numTotal; i++){
+      lineArray[i] = i+1;
+      let newArray = lineArray.slice(k-1);
+      console.log(newArray);
+    }
+    // 2. recursion method - to be added
+    // 
+    return resultsArray;
+}
+console.log(superNaturalSquad2(10, 3));
