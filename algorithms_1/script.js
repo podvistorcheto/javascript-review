@@ -359,22 +359,56 @@ const btPermutations = function (nums) {
     baseCase(0, nums);
     return resultPermutations;
   };
-  console.log(btPermutations([4, 5, 6]));
+//   console.log(btPermutations([4, 5, 6]));
 
 
   // Supernatural Squad 2
-const superNaturalSquad2 = function (numTotal, k) {
-    // define main results variable
+// const superNaturalSquad2 = function (numTotal, k) {
+//     // define main results variable
+//     let resultsArray = [];
+//     // 1. convert k into array to combine sums from
+//     let lineArray = [];
+//     for (let i = 0; i < numTotal; i++){
+//       lineArray[i] = i+1;
+//       let newArray = lineArray.slice(k-1);
+//       console.log(newArray);
+//     }
+//     // 2. recursion method - to be added
+//     // 
+//     return resultsArray;
+// }
+// console.log(superNaturalSquad2(10, 3));
+
+// soluttion with bugs
+const superNaturalSquad2 = function (numTotal, minGroup) {
     let resultsArray = [];
-    // 1. convert k into array to combine sums from
     let lineArray = [];
     for (let i = 0; i < numTotal; i++){
-      lineArray[i] = i+1;
-      let newArray = lineArray.slice(k-1);
-      console.log(newArray);
+      lineArray[i] = i+1; 
+    minGroup = lineArray.slice(minGroup-1);
+    console.log(minGroup);
     }
-    // 2. recursion method - to be added
-    // 
+    // 2. recursion method
+    const recursiveMethod = function(num, minGroup, numTotal, cache) {
+      // backtracking case
+      if (numTotal < 0) {
+        return -1;
+      }
+      // base case
+      if (numTotal === 0) {
+        resultsArray.push(cache.slice());
+        return;
+      }
+      // recursion loop
+      for (let j = num; j < minGroup.length; j++) {
+        cache.push(minGroup[j]);
+        recursiveMethod(j, minGroup, numTotal - minGroup[j], cache);
+        cache.pop();
+      }
+    }
+    recursiveMethod(2, minGroup, numTotal, []);
+    console.log(resultsArray.length)
     return resultsArray;
-}
-console.log(superNaturalSquad2(10, 3));
+  }
+  console.log(superNaturalSquad2(10, 3));
+  // console.log(superNaturalSquad2(20, 5));
