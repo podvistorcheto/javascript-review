@@ -255,7 +255,7 @@ const changeCoinTwo = function(amount, coins) {
     }
     return testCases[coins.length][amount];
 }
-// console.log(changeCoinTwo(5, [1,2,5]));
+console.log(changeCoinTwo(5, [1, 2, 5]));
 
 
 const changeUnboundedCoin2 = (amount, coins) => {
@@ -269,7 +269,7 @@ const changeUnboundedCoin2 = (amount, coins) => {
     return dp[amount];
 };
 
-// console.log(change(10, [3,4,5,6,7,8,9,10]));
+console.log(changeUnboundedCoin2(5, [1, 2, 5]));
 
 // function superSquad(number) {
 //     const partitionMatrix = Array(number + 1)
@@ -315,7 +315,7 @@ const validateSubsequence = function(mainArray, subArray) {
     } 
     return validSubsequence;
 }
-console.log(validateSubsequence([5, 1, 22, 25, 6, -1, 8, 10],[1, 6, -1, 10]));
+// console.log(validateSubsequence([5, 1, 22, 25, 6, -1, 8, 10],[1, 6, -1, 10]));
 
 // algo expert solution
 const s = function(a, b) {
@@ -327,7 +327,7 @@ const s = function(a, b) {
     }
     return y === b.length;
 }
-console.log(s([5, 1, 22, 25, 6, -1, 8, 10],[1, 6, -1, 10]));
+// console.log(s([5, 1, 22, 25, 6, -1, 8, 10],[1, 6, -1, 10]));
 
 
 // Leetcode 46. Permutations
@@ -379,17 +379,19 @@ const btPermutations = function (nums) {
 // }
 // console.log(superNaturalSquad2(10, 3));
 
-// soluttion with bugs
+// SupernaturalSquad[2] from hackerearth  - using Permutations
 const superNaturalSquad2 = function (numTotal, minGroup) {
+    // define main results variable
     let resultsArray = [];
+    // 1. convert k into array to combine integers from
     let lineArray = [];
     for (let i = 0; i < numTotal; i++){
       lineArray[i] = i+1; 
-    minGroup = lineArray.slice(minGroup-1);
-    console.log(minGroup);
     }
+    let numberLineArray = lineArray.slice(minGroup-1);
+    console.log(numberLineArray);
     // 2. recursion method
-    const recursiveMethod = function(num, minGroup, numTotal, cache) {
+    const recursiveMethod = function(num, numberLineArray, numTotal, cache) {
       // backtracking case
       if (numTotal < 0) {
         return -1;
@@ -400,15 +402,17 @@ const superNaturalSquad2 = function (numTotal, minGroup) {
         return;
       }
       // recursion loop
-      for (let j = num; j < minGroup.length; j++) {
-        cache.push(minGroup[j]);
-        recursiveMethod(j, minGroup, numTotal - minGroup[j], cache);
+      for (let j = num; j < numberLineArray.length; j++) {
+        cache.push(numberLineArray[j]);
+        recursiveMethod(j, numberLineArray, numTotal - numberLineArray[j], cache);
         cache.pop();
       }
     }
-    recursiveMethod(2, minGroup, numTotal, []);
-    console.log(resultsArray.length)
-    return resultsArray;
+    recursiveMethod(0, numberLineArray, numTotal, []);
+    console.log(resultsArray);
+    return resultsArray.length;
   }
   console.log(superNaturalSquad2(10, 3));
-  // console.log(superNaturalSquad2(20, 5));
+  console.log(superNaturalSquad2(20, 5));
+
+
