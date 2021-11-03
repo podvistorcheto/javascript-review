@@ -238,24 +238,24 @@ const changeCoinTwo = function(amount, coins) {
         testCases.push(array);
         }
     }
-    for (let check = 0; check <= coins.length; check++) {
-        testCases[check][0] = 1;
-    }
-    for (let check = 1; check <= amount; check++) {
-        testCases[0][check]= 0;
-    }
-    for (let row = 1; row <= coins.length; row++) {
-        for (col = 1; col <= amount; col++) {
-            if(coins[row-1] <= col){
-                testCases[row][col] = testCases[row][col-coins[row-1]] + testCases[row-1][col];
-            } else {
-                testCases[row][col] = testCases[row-1][col];
-            }
-        }
-    }
+    // for (let check = 0; check <= coins.length; check++) {
+    //     testCases[check][0] = 1;
+    // } 
+    // for (let check = 1; check <= amount; check++) {
+    //     testCases[0][check]= 0;
+    // }
+    // for (let row = 1; row <= coins.length; row++) {
+    //     for (col = 1; col <= amount; col++) {
+    //         if(coins[row-1] <= col){
+    //             testCases[row][col] = testCases[row][col-coins[row-1]] + testCases[row-1][col];
+    //         } else {
+    //             testCases[row][col] = testCases[row-1][col];
+    //         }
+    //     }
+    // }
     return testCases[coins.length][amount];
 }
-console.log(changeCoinTwo(5, [1, 2, 5]));
+// console.log(changeCoinTwo(5, [1, 2, 5]));
 
 
 const changeUnboundedCoin2 = (amount, coins) => {
@@ -269,7 +269,7 @@ const changeUnboundedCoin2 = (amount, coins) => {
     return dp[amount];
 };
 
-console.log(changeUnboundedCoin2(5, [1, 2, 5]));
+// console.log(changeUnboundedCoin2(5, [1, 2, 5]));
 
 // function superSquad(number) {
 //     const partitionMatrix = Array(number + 1)
@@ -412,7 +412,25 @@ const superNaturalSquad2 = function (numTotal, minGroup) {
     console.log(resultsArray);
     return resultsArray.length;
   }
-  console.log(superNaturalSquad2(10, 3));
-  console.log(superNaturalSquad2(20, 5));
+//   console.log(superNaturalSquad2(10, 3));
+//   console.log(superNaturalSquad2(20, 5));
 
 
+// Leetcode 49 Group Anagrams
+
+const anagramsGroup = function(strings){
+    
+    const hashResults = {};
+    for(let i of strings) {
+        let sortedInput = i.split('').sort().join('');
+        console.log(sortedInput)
+    
+        if (!hashResults[sortedInput]){
+            hashResults[sortedInput] = [i];
+        } else {
+            hashResults[sortedInput].push(i);
+        }
+    }
+    return Object.values(hashResults);
+}
+console.log(anagramsGroup(["eat","tea","tan","ate","nat","bat"]));
