@@ -36,6 +36,30 @@ We continually tweak and adjust this template to help give you the best experien
 
 **December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
 
+
+
+asgiref==3.4.1
+backports.zoneinfo==0.2.1
+cryptography==35.0.0
+dj-database-url==0.5.0
+Django==3.2.9
+django-allauth==0.45.0
+django-ckeditor==6.1.0
+django-crispy-forms==1.13.0
+django-js-asset==1.2.2
+django-shortcuts==1.6
+django-storages==1.12.3
+gunicorn==20.1.0
+oauthlib==3.1.1
+Pillow==8.4.0
+psycopg==3.0.1
+PyJWT==2.3.0
+python3-openid==3.2.0
+pytz==2021.3
+requests-oauthlib==1.3.0
+sqlparse==0.4.2
+stripe==2.61.0
+
 --------
 
 Happy coding!
