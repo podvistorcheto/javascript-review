@@ -451,3 +451,24 @@ var sortedSquares = function(nums) {
     })
 };
 console.log(sortedSquares([-4,-1,0,3,10]))
+
+// 977. Squares of a Sorted Array - Two Pointers approach
+var sortedSquares = function(nums) {
+    let result = [];
+    let startPoint = 0;
+    let endPoint = nums.length - 1;
+
+    while (startPoint <= endPoint) {
+        let nums1 = Math.pow(nums[startPoint], 2);
+        let nums2 = Math.pow(nums[endPoint], 2);
+        if (nums1 > nums2) {
+            result.push(nums1);
+            startPoint++;
+        } else {
+            result.push(nums2);
+            endPoint--;
+        }
+    }
+    return result.reverse();
+};
+console.log(sortedSquares([-4,-1,0,3,10]))
