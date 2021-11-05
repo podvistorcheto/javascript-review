@@ -423,7 +423,6 @@ const anagramsGroup = function(strings){
     const hashResults = {};
     for(let i of strings) {
         let sortedInput = i.split('').sort().join('');
-        console.log(sortedInput)
     
         if (!hashResults[sortedInput]){
             hashResults[sortedInput] = [i];
@@ -433,4 +432,22 @@ const anagramsGroup = function(strings){
     }
     return Object.values(hashResults);
 }
-console.log(anagramsGroup(["eat","tea","tan","ate","nat","bat"]));
+// console.log(anagramsGroup(["eat","tea","tan","ate","nat","bat"]));
+
+// 977. Squares of a Sorted Array
+var sortedSquares = function(nums) {
+    // let solution = [];
+    // return nums.map(function(element){
+    //     return element * element;
+    // }).sort(function(a,b){
+    //     return a - b;
+    // })
+    for (let i = 0; i < nums.length; i++){
+        // nums[i] = Math.pow(nums[i],2);
+        nums[i] = nums[i] ** 2;
+    }
+    return nums.sort(function(a,b){
+        return a - b;
+    })
+};
+console.log(sortedSquares([-4,-1,0,3,10]))
